@@ -26,6 +26,10 @@ $(document).ready(function () {
         const collegeCity = $("#clgcity").val();
         const collegeId = $("#rollnum").val();
         const gradYear = $("#gradYear").val();
+        if(gradYear < 1900 || gradYear > 2500){
+            alert("Enter valid Year of graduation");
+            $("#gradYear").val();
+        }
         const collegeState = $("#clgstate").val();
         const dob = $("#dob").val();
         const userDetails = {

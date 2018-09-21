@@ -87,7 +87,7 @@ i::before{
 /*buttons*/
 #forms .action-button {
     width: 100px;
-    background: #0099FF;
+    background: #52E814;
     font-weight: bold;
     color: white;
     border: 0 none;
@@ -101,7 +101,8 @@ i::before{
     background: #FC1F1B;
 }
 #forms .action-button:hover, #forms .action-button:focus {
-    box-shadow: 0 0 0 2px #83858C, 0 0 0 3px #0099FF;
+    box-shadow: 0 0 0 2px #83858C,
+    0 0 0 3px #52E814;
 }
 #forms .delete:hover, #forms .delete:focus {
     box-shadow: 0 0 0 2px #83858C, 0 0 0 3px #FC1F1B;
