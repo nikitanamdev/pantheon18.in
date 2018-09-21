@@ -52,7 +52,7 @@ $(document).ready(function () {
             $("#gradYear").val("");
             return;
         }
-        
+
         const dob = $("#dob").val();
         const userDetails = {
             collegeName,
@@ -113,7 +113,7 @@ $(document).ready(function () {
             $("#clgstate").val(result.user[0].collegeState);
             $("#rollnum").val(result.user[0].collegeId);
             $("#gradYear").val(result.user[0].gradYear);
-            $('#panID').val(result.user[0].panId);
+            $('#panID').val('PA'+result.user[0].panId);
             $('#gender').val(result.user[0].gender.toUpperCase());
 
         })
