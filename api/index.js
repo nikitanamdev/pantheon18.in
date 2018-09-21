@@ -35,7 +35,7 @@ app.use(cors());
  */
 const rootRoutes = require('./routes/register.js');
 
-app.use('/', rootRoutes);
+app.use('/api', rootRoutes);
 
 
 
