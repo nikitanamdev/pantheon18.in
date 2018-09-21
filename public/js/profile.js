@@ -23,19 +23,25 @@ $(document).ready(function () {
     $('.save').click((e) => {
         e.preventDefault();
         const collegeName = $("#clgname").val();
-        if (collegeName === null) {
+        if (collegeName === null || collegeName.length < 1) {
             alert("Enter valid College Name");
             $("#clgname").val("");
             return;
         }
         const collegeCity = $("#clgcity").val();
-        if (collegeCity === null) {
+        if (collegeCity === null || collegeCity.length < 1) {
             alert("Enter valid College City");
             $("#clgcity").val("");
             return;
         }
+        const collegeState = $("#clgstate").val();
+        if (collegeState === null || collegeState.length < 1) {
+            alert("Enter valid College State");
+            $("#clgstate").val("");
+            return;
+        }
         const collegeId = $("#rollnum").val();
-        if (collegeId === null) {
+        if (collegeId === null || collegeId.length < 1) {
             alert("Enter valid College Id");
             $("#rollnum").val("");
             return;
@@ -46,12 +52,7 @@ $(document).ready(function () {
             $("#gradYear").val("");
             return;
         }
-        const collegeState = $("#clgstate").val();
-        if (collegeState === null) {
-            alert("Enter valid College State");
-            $("#clgstate").val("");
-            return;
-        }
+        
         const dob = $("#dob").val();
         const userDetails = {
             collegeName,
