@@ -28,10 +28,6 @@ var animating; //flag to prevent quick multi-click glitches
 var pName,pEmail,pPass,pCpass,pContact;
 
 
-function enableSubmit(){
-    document.getElementById("step1").disabled = false;
-}
-
 $(".next").click(function () {
 
     if(validate_form($(this).val())===false){
