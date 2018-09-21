@@ -23,14 +23,35 @@ $(document).ready(function () {
     $('.save').click((e) => {
         e.preventDefault();
         const collegeName = $("#clgname").val();
+        if (collegeName === null) {
+            alert("Enter valid College Name");
+            $("#clgname").val("");
+            return;
+        }
         const collegeCity = $("#clgcity").val();
+        if (collegeCity === null) {
+            alert("Enter valid College City");
+            $("#clgcity").val("");
+            return;
+        }
         const collegeId = $("#rollnum").val();
+        if (collegeId === null) {
+            alert("Enter valid College Id");
+            $("#rollnum").val("");
+            return;
+        }
         const gradYear = $("#gradYear").val();
-        if(gradYear < 1900 || gradYear > 2500){
+        if(gradYear===null || gradYear < 1900 || gradYear > 2500){
             alert("Enter valid Year of graduation");
-            $("#gradYear").val();
+            $("#gradYear").val("");
+            return;
         }
         const collegeState = $("#clgstate").val();
+        if (collegeState === null) {
+            alert("Enter valid College State");
+            $("#clgstate").val("");
+            return;
+        }
         const dob = $("#dob").val();
         const userDetails = {
             collegeName,
