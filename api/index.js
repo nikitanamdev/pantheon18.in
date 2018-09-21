@@ -9,7 +9,7 @@ const cors = require("cors");
  * Database connectivity
  */
 mongoose
-    .connect("mongodb://localhost/pantheon", { useNewUrlParser: true }, (err, db) =>{
+    .connect("mongodb://localhost:43927/pantheon", { useNewUrlParser: true }, (err, db) =>{
         if(err){
             console.log(err);
             console.log("Database Connectivity Error!!");
