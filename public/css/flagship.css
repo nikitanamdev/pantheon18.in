@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+@import url('https://fonts.googleapis.com/css?family=Orbitron|Playfair+Display');
+@import url('https://fonts.googleapis.com/css?family=Bangers|Boogaloo');
+/* THe heading with the logo */
+#headLogo {
+    height: 25vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+#headLogo img {
+    max-height: 80%;
+    max-width: 80%;
+}
+
+#headLogo span {
+    margin: auto 0;
+    color: white;
+    font-size: 48px;
+    font-family: 'Alice', serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+h1 {
+    margin: 0;
+    line-height: 1;
+    color:#D72638;
+    font-family: 'Boogaloo', cursive;
+    font-size: 40px;
+}
+
+.page {
+    width: 100vw;
+    height: 100vh;
+    min-height: 700px;
+    overflow: hidden;
+}
+
+.tabs-controls {
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 50px 0 100px;
+    list-style-type: none;
+}
+
+.tabs-controls__link {
+    position: relative;
+    display: block;
+    padding: 16px 32px;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.tabs-controls__link:after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    width: 0;
+    height: 4px;
+    background-color: rgb(252, 251, 250);
+    border-radius: 2px;
+    margin: auto;
+    content: '';
+    transition: width 0.4s;
+}
+
+.tabs-controls__link--active:after {
+    width: 100%;
+}
+
+.cards-container {
+    position: relative;
+    z-index: 1;
+    width: 60vw;
+    /* height: calc(100vh - 205px); */
+    height: 70vh;
+    margin: 0 auto;
+}
+
+.card {
+    position: absolute;
+    width: 60vw;
+    height: 70vh;
+    background-color: #EDEBD7;
+    border: 1px solid #423E37;
+    box-shadow: 9px 11px 3px 0px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    padding: 40px;
+    transition: transform 0.3s, opacity 0.2s;
+}
+
+.card.hidden {
+    z-index: 100;
+    background-color: #fff;
+    color: #fff;
+    opacity: 0;
+    transition: color 0.5s, background-color 0.5s, transform 1s, opacity 0.2s 0.4s;
+}
+
+.card.hidden h1 {
+    color: #fff;
+    transition: color 0.5s;
+}
+
+.card.hidden:nth-of-type(1) {
+    transform: rotate(-28deg) translateX(101%) translateY(-14%) scale(0.7) skewX(6deg) skewY(6deg);
+}
+
+.card.hidden:nth-of-type(2) {
+    transform: rotate(-83deg) translateX(101%) translateY(-34%) scale(0.5) skewX(12deg) skewY(5deg);
+}
+
+.card.hidden:nth-of-type(3) {
+    transform: rotate(-24deg) translateX(101%) translateY(-17%) scale(0.7) skewX(11deg) skewY(6deg);
+}
+
+.card.hidden:nth-of-type(4) {
+    transform: rotate(-86deg) translateX(101%) translateY(-39%) scale(0.5) skewX(12deg) skewY(2deg);
+}
+
+.card.hidden:nth-of-type(5) {
+    transform: rotate(-65deg) translateX(101%) translateY(-48%) scale(0.3) skewX(10deg) skewY(6deg);
+}
+
+.card.hidden:nth-of-type(6) {
+    transform: rotate(-32deg) translateX(101%) translateY(-32%) scale(0.9) skewX(9deg) skewY(12deg);
+}
+
+.card:nth-of-type(1) {
+    z-index: 5;
+    transform: translateX(0px) translateY(0px);
+}
+
+.card:nth-of-type(2) {
+    z-index: 4;
+    transform: translateX(10px) translateY(10px);
+}
+
+.card:nth-of-type(3) {
+    z-index: 3;
+    transform: translateX(20px) translateY(20px);
+}
+
+.card:nth-of-type(4) {
+    z-index: 2;
+    transform: translateX(30px) translateY(30px);
+}
+
+.card:nth-of-type(5) {
+    z-index: 1;
+    transform: translateX(40px) translateY(40px);
+}
+
+.card:nth-of-type(6) {
+    z-index: 0;
+    transform: translateX(50px) translateY(50px);
+}
+.desc {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: #29577E;
+    height:auto;
+    margin-top: 50px;
+    word-wrap: break-word;
+}
+.eventImg{
+    border-radius: 10px;
+    margin-top: 20px;
+}
+/* .btn{
+    border-radius: 5px;
+    background-color: #60CF34;
+    padding: 10px;
+    font-size:20px;
+    margin-top: 200px;
+} */
+a:active{
+    text-decoration: none;
+    color: white;
+}
+a:link {
+    text-decoration: none;
+    color: white;
+}
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+a:hover {
+    text-decoration: none;
+    color: white;
+}

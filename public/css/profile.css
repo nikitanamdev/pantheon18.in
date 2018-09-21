@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+/* THe heading with the logo */
+#headLogo {
+    height: 25vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+#headLogo img {
+    max-height: 80%;
+    max-width: 80%;
+}
+
+#headLogo span {
+    margin: auto 0;
+    color: white;
+    font-size: 48px;
+    font-family: 'Alice', serif;
+}
+#upper h1{
+    font-family: 'Oswald', sans-serif;
+    font-size: 40px;
+    color: #FDCA40;
+}
+#upper{
+    background-color: #001011 !important;
+    height:200px;
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+/*inputs*/
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Style the form icons */
+.icon {
+  background: #001011;
+  color: white;
+  min-width: 50px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+#forms .input-container .fa{
+    font-size: 25px;
+}
+i::before{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-left: 35%;
+    display: block;
+}
+/* Style the input fields */
+.input-field {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  font-size: 13px;
+  font-family:'Montserrat', sans-serif;
+  background-color: white;
+  color: black;
+}
+
+#forms input:disabled{
+    background: rgba(232, 232, 232, 0.6);
+}
+.jumbotron{
+    width: 800px;
+    height:auto;
+    margin:auto;
+    background-color:#83858C !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/*buttons*/
+#forms .action-button {
+    width: 100px;
+    background: #0099FF;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin-top: 20px;
+    box-shadow: none;
+}
+#forms .delete{
+    background: #FC1F1B;
+}
+#forms .action-button:hover, #forms .action-button:focus {
+    box-shadow: 0 0 0 2px #83858C, 0 0 0 3px #0099FF;
+}
+#forms .delete:hover, #forms .delete:focus {
+    box-shadow: 0 0 0 2px #83858C, 0 0 0 3px #FC1F1B;
+}
+#forms input[type='button']:disabled{
+    background-color:#00385D;
+}
+#forms input[type='button']:disabled:hover, #forms input[type='button']:disabled:focus {
+    box-shadow: 0 0 0 2px #83858C, 0 0 0 3px #00385D;
+}

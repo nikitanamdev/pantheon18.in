@@ -1,0 +1,5 @@
+{
+    "dbURL": "mongodb://localhost/pantheon",
+    "sapCount": 18000,
+    "jwt_token": "pantheon'18"
+}
