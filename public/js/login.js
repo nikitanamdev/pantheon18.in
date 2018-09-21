@@ -15,14 +15,14 @@ $(document).ready(function () {
                 const token = 'bearer ' +  res.token;
                 localStorage.setItem('token', token);
                 //console.log(token);
-                window.location.href = 'profile'
+                window.location.href = 'profile.html'
             }
             else{
                 alert('Wrong credentials');
             }
         }).fail((err) => {
             //console.log(err);
-            window.location.href = 'login';
+            window.location.href = 'login.html';
         });
     });
 });

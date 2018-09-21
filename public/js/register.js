@@ -177,7 +177,7 @@ $(".submit").click(function () {
             alert(data.message);
         }
     }).fail((err) => {
-        console.log(err);
+        //console.log(err);
         alert("Something went wrong!! Please try again.")
     });
     return false;

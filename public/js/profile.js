@@ -10,14 +10,14 @@ $(document).ready(function () {
         })
         .done((result) => {
             localStorage.setItem('token','');
-            window.location.href = 'index';
+            window.location.href = 'index.html';
             //console.log(result);
             // console.log('deleted');
         })
         .fail((err) => {
             //console.log(err);
             alert("Some error occured. Try Again later.")
-            window.location.href = 'profile';
+            window.location.href = 'profile.html';
         });
     });
     $('.save').click((e) => {
@@ -47,11 +47,11 @@ $(document).ready(function () {
         })
         .done((result) => {
             //console.log('Updated');
-            window.location.href = 'profile';
+            window.location.href = 'profile.html';
         })
         .fail((err) => {
             alert("Some error occured. Try Again later.")
-            window.location.href = 'profile';
+            window.location.href = 'profile.html';
         });
     });
     $('.editProfile').click((e) => {
@@ -94,6 +94,6 @@ $(document).ready(function () {
         .fail((err) => {
             //console.log(err);
             alert("Some error occured. Try Again later.")
-            window.location.href = 'profile';
+            window.location.href = 'profile.html';
         });
 });
