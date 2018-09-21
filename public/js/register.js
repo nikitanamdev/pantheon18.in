@@ -28,6 +28,10 @@ var animating; //flag to prevent quick multi-click glitches
 var pName,pEmail,pPass,pCpass,pContact;
 
 
+function enableSubmit(){
+    document.getElementById("step1").disabled = false;
+}
+
 $(".next").click(function () {
 
     if(validate_form($(this).val())===false){
@@ -143,6 +147,11 @@ $(".submit").click(function () {
     }
     const email = $("#emailbox").val();
     const gender = $("input[name='gender']:checked").val().toString();
+    const collegeSelect = $("input[name='collg']:checked").val();
+    let sapId = "-1";
+    if(collegeSelect==='OTHER') {
+        sapId = $("#sap").val();
+    }
     const payload = {
         email: email,
         dob: dob,
@@ -151,7 +160,8 @@ $(".submit").click(function () {
         clgstate: clgstate,
         rollnum: rollnum,
         gradYear: gradYear,
-        gender: gender
+        gender: gender,
+        sapId: sapId
     };
     $.ajax({
         type: 'POST',

@@ -29,6 +29,10 @@ const UserSchema = new mongoose.Schema({
       type: Number,
       default: -1
     },
+    sapId:  {
+      type: String,
+      default: "-1"
+    },
     panId: {
       type: Number,
       default: -1

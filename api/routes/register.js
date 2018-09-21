@@ -275,7 +275,8 @@ router.post('/submit', (req, res, next) => {
                             collegeId: req.body.rollnum,
                             gradYear: req.body.gradYear,
                             panId: parseInt(pantheonID),
-                            gender: req.body.gender
+                            gender: req.body.gender,
+                            sapId: req.body.sapId
                         }
                     })
                     .exec()
