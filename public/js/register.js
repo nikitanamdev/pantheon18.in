@@ -91,6 +91,7 @@ $(".next").click(function () {
 });
 
 $(".previous").click(function () {
+    grecaptcha.reset();
     if (animating) return false;
     animating = true;
 
@@ -158,7 +159,7 @@ $(".submit").click(function () {
     };
     $.ajax({
         type: 'POST',
-        url: "https://www.pantheon18.in:5000/api/submit",
+        url: "https://www.pantheon18.in/api/submit",
         data: payload
     }).done((data) => {
         //console.log(data);
@@ -184,7 +185,7 @@ function validate_form(valCheck) {
 
         if(pName==="") {
             alert("Enter Name");
-            //grecaptcha.reset();
+            grecaptcha.reset();
             return false;
         }
 
@@ -193,20 +194,20 @@ function validate_form(valCheck) {
         const regmail = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         if(mail==="") {
             alert("Enter Email");
-            //grecaptcha.reset();
+            grecaptcha.reset();
             return false;
         }
         if(!regmail.test(mail)){
             $("#email").val("");
             alert("Enter valid email address");
-            //grecaptcha.reset();
+            grecaptcha.reset();
             return false;
         }
 
         const password = $("#pass").val();
         if(password.length<5) {
             alert("Password should be atleast 5 characters long");
-            //grecaptcha.reset();
+            grecaptcha.reset();
             return false;
         }
 
@@ -215,7 +216,7 @@ function validate_form(valCheck) {
             $("#pass").val("");
             $("#cpass").val("");
             alert("Passwords do not match.");
-            //grecaptcha.reset();
+            grecaptcha.reset();
             return false;
         }
 
@@ -224,7 +225,7 @@ function validate_form(valCheck) {
         if( !(phoneNum >=1000000000 && phoneNum <=9999999999) ){
             $("#contact").val("");
             alert("Enter valid phone number");
-            //grecaptcha.reset();
+            grecaptcha.reset();
             return false;
         }
         const payload = {
@@ -233,7 +234,7 @@ function validate_form(valCheck) {
             pass: password,
             cpass: confirmPassword,
             contact: phone,
-            // "g-recaptcha-response": grecaptcha.getResponse()
+            "g-recaptcha-response": grecaptcha.getResponse()
         };
         // AJAX request code
         $.ajax({
@@ -244,7 +245,7 @@ function validate_form(valCheck) {
             if(data.status === 'exists') {
                 alert(data.message);
                 // windows redirect code
-                location.reload(true);s
+                location.reload(true);
             }
             return true;
         }).fail((err) => {
@@ -265,7 +266,7 @@ function validate_form(valCheck) {
         }
         $.ajax({
             type: 'POST',
-            url: 'https://www.pantheon18.in:5000/verify',
+            url: 'https://www.pantheon18.in/api/verify',
             data: payload
         }).done((data)=>{
             //console.log(data);

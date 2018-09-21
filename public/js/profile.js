@@ -3,7 +3,7 @@ $(document).ready(function () {
         e.preventDefault();
         $.ajax({
             type: 'DELETE',
-            url: 'https://www.pantheon18.in:5000/profile',
+            url: 'https://www.pantheon18.in/api/profile',
             headers: {
                 'token': localStorage.getItem('token')
             }
@@ -39,7 +39,7 @@ $(document).ready(function () {
         };
         $.ajax({
             type: 'PATCH',
-            url: 'https://www.pantheon18.in:5000/profile',
+            url: 'https://www.pantheon18.in/api/profile',
             headers: {
                 'token': localStorage.getItem('token')
             },
@@ -72,7 +72,7 @@ $(document).ready(function () {
     });
     $.ajax({
             type: 'GET',
-            url: 'https://www.pantheon18.in:5000/profile',
+            url: 'https://www.pantheon18.in/api/profile',
             headers: {
                 'token': localStorage.getItem('token')
             }

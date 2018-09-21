@@ -5,7 +5,7 @@ $(document).ready(function () {
         const password = $('#pass').val();
         $.ajax({
             type: 'POST',
-            url: 'https://www.pantheon18.in/login',
+            url: 'https://www.pantheon18.in/api/login',
             data: {
                 email: email,
                 password: password
