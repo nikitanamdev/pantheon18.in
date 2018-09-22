@@ -521,8 +521,60 @@ router.post('/fetchTeam', checkAuth, (req, res, next) => {
         });
 });
 
-router.post('/teamRegister', (req, res, next) => {
+
     
+router.post('/teamRegister', checkAuth ,(req, res, next) => {
+    teams
+        .find({ teamName : req.body.teamName })
+        .exec()
+        .then((team) => {
+            if(team && team.length>=1){
+                res.status(200).json({
+                    status: "exists",
+                    message: "This Team Name already exists!!"
+                });
+            }
+            else{
+                bcrypt.hash(req.body.teamPassword, 10, (err, hash) => {
+                    if (err) {
+                        res.status(500).json({
+                            status: "fail",
+                            message: err
+                        });
+                    } else {
+                        const newTeam = new teams({
+                            _id: mongoose.Types.ObjectId(),
+                            teamName: req.body.teamName,
+                            teamPassword: hash,
+                            teamMembers: req.body.teamMembers
+                        });
+                        newTeam
+                            .save()
+                            .then((result) => {
+                                console.log(result);
+                                res.status(200).json({
+                                    status: "success",
+                                    message: "Team registered!!"
+                                });
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                                res.status(500).json({
+                                    status: "fail",
+                                    message: err
+                                });
+                            });
+                    }
+                });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
 });
 module.exports = router;
 
