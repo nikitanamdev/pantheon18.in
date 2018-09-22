@@ -8,7 +8,7 @@ const counterSchema = new mongoose.Schema({
     },
     count: {
         type: Number,
-        default: 18001
+        default: 180001
     }
 });
 

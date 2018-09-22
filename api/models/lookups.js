@@ -10,12 +10,13 @@ const LookupSchema = new mongoose.Schema({
     teamName:{
         type: String,
         required:true,
-        unique: true
-    }
+        unique: true,
+        default: ""
+    },
     teamPoints:{
         type: Number,
         default: 0
     }
 });
 
-module.exports = mongoose.model("lookups", UserSchema);
+module.exports = mongoose.model("lookups", LoopupSchema);

@@ -455,6 +455,72 @@ router.delete('/profile', checkAuth, (req, res, next) => {
             });
         });
 });
+
+router.post('/fetchTeam', checkAuth, (req, res, next) => {
+    lookups
+        .find({ email: req.userData.email })
+        .exec()
+        .then((result) => {
+            if(result === null || result.length < 1){
+                    // send the pan Id
+                    users
+                        .find({
+                            email: result[0].email
+                        })
+                        .exec()
+                        .then((user) => {
+                            if (user === null || user.length < 1) {
+                                res.status(200).json({
+                                    status: 'fail',
+                                    message: "user not found! Can't make Team"
+                                });
+                            } else {
+                                res.status(200).json({
+                                    status: 'success',
+                                    message: 'Team is not yet Registered.',
+                                    email: user[0].email,
+                                    panId: user[0].panId
+                                });
+                            }
+                        })
+                        .catch(err => {
+                            res.status(500).json({
+                                message: err
+                            });
+                        });
+            } else {
+                // team name found -> send team details
+                teams
+                    .find({ teamName: result[0].teamName })
+                    .exec()
+                    .then((teamdetails) => {
+                        if(teamdetails === null || teamdetails.length < 1) {
+                            res.status(200).json({
+                                status: 'fail',
+                                message: "team details not found!"
+                            });
+                        } else {
+                            res.status(200).json({
+                                status: 'success',
+                                message: "Team details found! You have already been registered",
+                                team : teamdetails[0]
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        res.status(500).json({
+                            message: err
+                        });
+                    });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: err
+            });
+        });
+});
+
 router.post('/teamRegister', (req, res, next) => {
     
 });
