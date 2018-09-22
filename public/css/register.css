@@ -14,7 +14,7 @@
 #headLogo span {
     margin: auto 0;
     color: white;
-    font-size: 48px;
+    font-size: 3.8em;
     font-family: 'Alice', serif;
 }
 
@@ -25,7 +25,7 @@
 /*form styles*/
 #msform {
     width: 50vw;
-    margin: 50px auto;
+    margin: 2% auto;
     text-align: center;
     position: relative;
 }
@@ -88,7 +88,7 @@
 
 .fs-subtitle {
     font-weight: normal;
-    font-size: 13px;
+    font-size: 1.2em;
     color: #666;
     margin-bottom: 20px;
 }
@@ -151,4 +151,25 @@
 }
 input #g1,input #g2 {
     margin: 0 10px 0 10px;
+}
+
+@media (max-width: 768px) {
+    #msform {
+        width: 60vw;
+    }
+    #headLogo span {
+        font-size: 3em;
+    }
+}
+
+@media (max-width: 620px) {
+    #headLogo span {
+        font-size: 2.8em;
+    }
+}
+
+@media (max-width: 545px) {
+    #msform {
+        width: 100vw;
+    }
 }
