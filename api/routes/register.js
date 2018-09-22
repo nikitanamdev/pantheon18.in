@@ -541,38 +541,38 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
         .exec()
         .then((teamSearchResult)=>{
             if(teamSearchResult===null || teamSearchResult.length < 1){
-                console.log(req.body);
-                console.log(req.body['teamMembers[]']);
                 for (let i = 0; i < req.body['teamMembers[]'].length; i++) {
                     const participant = req.body['teamMembers[]'][i];
                     users
-                        .find({ email : participant.email })
+                        .find({ email : participant })
                         .exec()
                         .then((userResult)=>{
                             if(userResult===null || userResult.length < 1){
                                 return res.status(200).json({
                                     status: 'fail',
-                                    message: "The user: " + participant.email + "doesn't exists"
+                                    message: "The user: " + participant + " doesn't exists"
                                 });
                             }else {
                                 // update the lookup table
                                 lookups
-                                    .find({email: participant.email})
+                                    .find({ email: participant})
                                     .exec()
                                     .then(resultLookup => {
                                         if(resultLookup===null || resultLookup.length < 1){
                                             var requestArray = [];
                                             requestArray.push(req.body.teamName);
                                             const newuserLookup = new lookups({
-                                                email : participant.email,
+                                                _id: mongoose.Types.ObjectId(),
+                                                email : participant,
                                                 requests: requestArray
                                             });
                                             newuserLookup
                                                 .save()
                                                 .then((lookupUpdate) => {
-                                                    console.log("Lookup updated. Request sent to user : " + participant.email);
-                                                    if(i === teamMembers.length - 1){
+                                                    console.log("Lookup updated. Request sent to user : " + participant);
+                                                    if (i === req.body['teamMembers[]'].length - 1) {
                                                         const teamLeaderLookup = new lookups({
+                                                            _id: mongoose.Types.ObjectId(),
                                                             email: req.userData.email,
                                                             teamName: req.body.teamName,
                                                             teamLeader: "yes",
@@ -589,9 +589,10 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                                             message: err
                                                                         });
                                                                     } else {
-                                                                        let memberArray = req.body.teamMembers;
+                                                                        let memberArray = req.body['teamMembers[]'];
                                                                         memberArray.push(req.userData.email);
                                                                         const newTeam = new teams({
+                                                                            _id: mongoose.Types.ObjectId(),
                                                                             teamName: req.body.teamName,
                                                                             teamPassword: hash,
                                                                             teamMembers: memberArray,
@@ -625,6 +626,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                     }
                                                 })
                                                 .catch(err => {
+                                                    console.log('sds');
                                                     console.log(err);
                                                     return res.status(500).json({
                                                         status: 'fail',
@@ -634,7 +636,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                         } else {
                                             lookups
                                                 .update({
-                                                    email: participant.email
+                                                    email: participant
                                                 }, {
                                                     $set: {
                                                         teamName: "",
@@ -645,9 +647,10 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                 })
                                                 .exec()
                                                 .then((requestuser) => {
-                                                    console.log("request sent to user : " + participant.email);
-                                                    if (i === teamMembers.length - 1) {
+                                                    console.log("request sent to user : " + participant);
+                                                    if (i === req.body['teamMembers[]'].length - 1) {
                                                         const teamLeaderLookup = new lookups({
+                                                            _id: mongoose.Types.ObjectId(),
                                                             email: req.userData.email,
                                                             teamName: req.body.teamName,
                                                             teamLeader: "yes",
@@ -664,9 +667,10 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                                             message: err
                                                                         });
                                                                     } else {
-                                                                        let memberArray = req.body.teamMembers;
+                                                                        let memberArray = req.body['teamMembers'];
                                                                         memberArray.push(req.userData.email);
                                                                         const newTeam = new teams({
+                                                                            _id: mongoose.Types.ObjectId(),
                                                                             teamName: req.body.teamName,
                                                                             teamPassword: hash,
                                                                             teamMembers: memberArray,
@@ -718,6 +722,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                             }
                         })
                         .catch(err => {
+                            console.log("ghusa bdhhu");
                             console.log(err);
                             return res.status(500).json({
                                 status: 'fail',
