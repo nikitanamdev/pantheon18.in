@@ -18,7 +18,7 @@
     font-family: 'Alice', serif;
 }
 #loginForm{
-    width: 50vw;
+    width: 60vw;
     margin: 50px auto;
     text-align: center;
     position: relative;
@@ -51,7 +51,7 @@
     box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
 .heading{
-    font-size: 15px;
+    font-size: 1.5em;
     text-transform: uppercase;
     color: #2C3E50;
     margin-bottom: 10px;
@@ -66,4 +66,10 @@
     color: #2C3E50;
     font-size: 13px;
     margin-bottom: 10px;
+}
+
+@media (max-width: 545px) {
+    #loginForm {
+        width: 100vw;
+    }
 }
