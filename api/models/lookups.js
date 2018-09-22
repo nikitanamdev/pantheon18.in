@@ -18,4 +18,4 @@ const LookupSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("lookups", UserSchema);
+module.exports = mongoose.model("lookups", LookupSchema);
