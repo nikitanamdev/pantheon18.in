@@ -1,7 +1,8 @@
+const requrl = 'http://localhost:5000'
 $(document).ready(function () {
     $.ajax({
         type: 'GET',
-        url: 'https://www.pantheon18.in/api/preTeamRegistration',
+        url: requrl + '/api/preTeamRegistration',
         headers: {
             'token': localStorage.getItem('token')
         },
@@ -21,18 +22,29 @@ $(document).ready(function () {
 
     $('.teambutton').click((e) => {
         e.preventDefault();
-        const teamName = $('#team').val();
+        const teamName = $('#team').val().trim();
         const teamPass = $('#pass').val();
         const teamSize = $('#count').val();
-        var teamMembers = [];
-        teamMembers.push($('#leaderEmail').val());
-        for(i=2;i<=teamSize;i++){
-            teamMembers.push($('#member'+i).val());
+        var teamMembers = [], equity = 0;
+        //teamMembers.push($('#leaderEmail').val().trim());
+        for(let i=2;i<=teamSize;i++){
+            const newMemberValue = $('#member' + i).val().trim();
+            for(let j=0;j<teamMembers.length;j++){
+                if(newMemberValue === teamMembers[j]){
+                    equity = 1;
+                    $('#member' + i).val("");
+                }
+            }
+            teamMembers.push(newMemberValue);
+        }
+        if(equity === 1) {
+            alert("Enter Unique Members.");
+            return false;
         }
         console.log(teamMembers);
         $.ajax({
             type: 'POST',
-            url: 'https://www.pantheon18.in/api/teamRegister',
+            url: requrl + '/api/teamRegister',
             headers: {
                 'token': localStorage.getItem('token')
             },
@@ -42,6 +54,7 @@ $(document).ready(function () {
                 teamMembers : teamMembers
             }
         }).done((res) => {
+            console.log(res);
             if(res.status === 'success'){
                 alert(res.message);
             }
