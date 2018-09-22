@@ -4,16 +4,6 @@
   margin: 0;
 }
 
-/*html {
-    box-sizing: border-box;
-}*/
-
-/* *,
-*:before,
-*:after {
-    box-sizing: inherit;
-} */
-
 html {
   font-size: 62.5%;
 }
@@ -149,8 +139,7 @@ button.Toggle {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #000;
-  border-right: 2px solid #fff;
+  background: linear-gradient(#000733,#000218);
   z-index: 1;
   opacity: 1;
 }

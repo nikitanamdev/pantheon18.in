@@ -1207,3 +1207,8 @@ body {
     transform: translateY(-800%);
   }
 }
+@media (max-width:545px) {
+    #headLogo{
+        padding-top: 13vw;
+    }
+}

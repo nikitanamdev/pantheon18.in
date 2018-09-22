@@ -3,22 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pantheon'18 | Birla Institute of Technology, Mesra</title>
     <link rel="icon" href="./favicon.png">
-    <link href='./public/vendor/fontfredoka.css' rel='stylesheet' type='text/css'>
-    <link href='./public/vendor/fontsanchez.css' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
     <link rel="stylesheet" href="./public/vendor/normalizemin.css">
     <link rel="stylesheet" href="./public/vendor/animatemin.css">
-    <!-- <link rel="stylesheet" href="../css/style.css"> -->
     <link rel="stylesheet" href="./public/css/nav.css">
     <link rel="stylesheet" href="./public/css/style.css">
     <link rel="stylesheet" href="./public/css/preloader.css">
     <link rel="stylesheet" href="./public/css/scrollbar.css">
     <link rel="stylesheet" type="text/css" href="./public/css/team_registration.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"> -->
     <link href="https://fonts.googleapis.com/css?family=Alice" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -30,9 +29,11 @@
     </div>
 
     <nav class="Navbar" style="z-index: 5;">
+        <div class="navbar-header">
         <a href="#" id="toggle" class="Toggle Navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
             <span></span>
         </a>
+    </div>
 
         <div id="navbarCollapse" class="Navbar-menu">
             <ul class="Navbar-menu-major">
@@ -59,25 +60,6 @@
                 </li>
             </ul>
         </div>
-
-        <ul class="Navbar-quickLinks">
-            <li>
-                <a href="https://www.facebook.com/bitmesra.pantheon/" target="_blank">
-                    <img src="./public/images/facebook.png" title="Facebook">
-                </a>
-            </li>
-            <li>
-                <a href="https://www.instagram.com/pantheon_techfest/?utm_source=ig_profile_share&igshid=d0wpo1bg5ho2"
-                    target="_blank">
-                    <img src="./public/images/instagram.png" title="Instagram">
-                </a>
-            </li>
-            <li>
-                <a href="./brochure.pdf" target="_blank">
-                    <img src="./public/images/file.png" title="brochure">
-                </a>
-            </li>
-        </ul>
     </nav>
 
     <div id="headLogo">
@@ -85,31 +67,41 @@
             class="wow fadeInDown" data-wow-duration="2s">
             <img src="./public/images/logo.png" title="logo">
         </span>
-        <span style="animation-duration: 2s; animation-name: fadeInUp;" class="wow fadeInUp">Flagship Events</span>
+        <span style="animation-duration: 2s; animation-name: fadeInUp;" class="wow fadeInUp">Team Registration</span>
     </div>
 
     <!-- Form -->
-    <div class="cont">
-        <div class="form sign-in">
-            <h2>Welcome back,</h2>
-            <label>
-                <span>Email</span>
-                <input type="email" />
-            </label>
-            <label>
-                <span>Password</span>
-                <input type="password" />
-            </label>
-            <p class="forgot-pass">Forgot password?</p>
-            <button type="button" class="submit">Sign In</button>
-            <button type="button" class="fb-btn">Connect with <span>facebook</span></button>
+    <form id="teamForm" method="POST">
+        <div class="row">
+            <div class="details col-12 col-md-6">
+                <input type="email" name="leader" id ="leaderEmail" placeholder="Team Leader" disabled/>
+                <input type="text" name="team" id ="team" placeholder="Team Name" required/>
+                <input type="password" name="pass" id="pass" placeholder="Password" maxlength="50" minlength="5" required />
+                <select id="count" onchange="dad()" required>
+                    <option value="0">Select Team Size(including leader)
+                    <option value="3">3
+                    <option value="4">4
+                    <option value="5">5
+                    <option value="6">6
+                    <option value="7">7
+                    <option value="7">8
+                </select>
+                <div class="members"></div>
+                <input type="submit" name="teamRegister" class="teambutton" value="Make Team" id="makeTeam" />
+            </div>
+            <div class="info col-12 col-md-6">
+            </div>
         </div>
-        <div class="sub-cont">
-            
-        </div>
-    </div>
-
-
+    </form>
+    <script>
+        function dad(){
+            console.log("d");
+            const op = $('#count').val();
+            for(i=2;i<=op;i++){
+                $('.members').append("<input type='email' name='email' pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$' id ='member"+i+"' placeholder='Member "+i+"' required/>");
+            }
+        }
+    </script>
     <script src="./public/vendor/jquery.js"></script>
     <script src='./public/vendor/wowmin.js'></script>
     <script>
