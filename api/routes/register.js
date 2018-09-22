@@ -396,6 +396,34 @@ router.get('/profile', checkAuth, (req, res, next) => {
                     message: "User Not allowed"
                 });
             } else {
+                lookups
+                    .find({ email: req.userData.email })
+                    .exec()
+                    .then((lookupdoc) => {
+                        if(lookupdoc===null || lookupdoc.length < 1){
+                            res.status(200).json({
+                                status: 'success',
+                                message: "User found",
+                                user: doc
+                            });
+                        } else {
+                            const isTeamLeader = lookupdoc.teamLeader;
+                            const memberList = lookupdoc.requests;
+                            res.status(200).json({
+                                status: 'success',
+                                message: "User found",
+                                user: doc,
+                                isTeamLeader: isTeamLeader,
+                                memberArray : memberList
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        res.status(500).json({
+                            status: 'fail',
+                            message: err
+                        });
+                    });
                 res.status(200).json({
                     status: 'success',
                     message: "User found",
