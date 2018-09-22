@@ -65,7 +65,14 @@ body {
     overflow: hidden;
     margin-bottom: 2%;
     margin-top: 2%;
-    height:345px;
+}
+
+.team-member {
+    height: 50vh;
+}
+
+.team-img {
+    height: 100%;
 }
 
 .team-title {
@@ -102,6 +109,14 @@ body {
 
 .team-details h1,h2,h3,h3,h5,h4,h6 {
     color: #fff;
+}
+
+.team-details h2 {
+    font-size: 2em;
+}
+
+.team-details h3 {
+    font-size: 1.5em;
 }
 
 .team-img:hover .team-details {
@@ -142,4 +157,108 @@ body {
 .socials a:hover i {
     color: #fff;
     background-color: #355c7d;
+}
+
+@media (max-width: 768px) {
+    #headLogo span {
+        font-size: 2.5em;
+        display: block;
+      }
+	.team-member {
+        height: 40vh; 
+    }
+
+    .container {
+        margin-left: 8%;
+    }
+
+    .team-details h2 {
+        font-size: 1.5em;
+    }
+    
+    .team-details h3 {
+        font-size: 1.1em;
+    }
+
+    .team-details h4 {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 625px) {
+    #headLogo span {
+        font-size: 2em;
+        display: block;
+      }
+	.team-member {
+        height: 30vh; 
+    }
+
+    .container {
+        margin-left: 8%;
+    }
+
+    .team-details h2 {
+        font-size: 1.1em;
+    }
+    
+    .team-details h3 {
+        font-size: 1em;
+    }
+
+    .team-details h4 {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 545px) {
+    #headLogo {
+        margin-top: 10%;
+      }
+      #headLogo span {
+        font-size: 2em;
+        display: block;
+      }
+
+	.team-member {
+        height: 28vh; 
+    }
+
+    .container {
+        margin-left: 0%;
+    }
+
+    .team-details h2 {
+        font-size: 1em;
+    }
+    
+    .team-details h3 {
+        font-size: 0.9em;
+    }
+
+    .team-details h4 {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 420px) {
+	.team-member {
+        height: 24vh; 
+    }
+
+    .container {
+        margin-left: 0%;
+    }
+
+    .team-details h2 {
+        font-size: .9em;
+    }
+    
+    .team-details h3 {
+        font-size: 0.85em;
+    }
+
+    .team-details h4 {
+        font-size: 0.8em;
+    }
 }
