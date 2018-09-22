@@ -485,9 +485,12 @@ router.get('/preTeamRegistration', checkAuth, (req, res, next) => {
         .find({ email: req.userData.email })
         .exec()
         .then((lookupResult)=>{
+            
             if(lookupResult===null || lookupResult.length < 1){
+                console.log("andar");
                 // user can make the team
                 const newlookup = new lookups({
+                    _id: mongoose.Types.ObjectId(),
                     email: req.userData.email,
                     teamRequests: []
                 });
@@ -501,13 +504,14 @@ router.get('/preTeamRegistration', checkAuth, (req, res, next) => {
                         });
                     })
                     .catch(err => {
+                        console.log(err);
                         res.status(500).json({
                             status: 'fail',
                             message: err
                         });
                     });
             } else {
-                if(lookupResult.teamName===""){
+                if(lookupResult[0].teamName===""){
                     // user can still make team
                     res.status(200).json({
                         status: 'success',
@@ -537,14 +541,16 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
         .exec()
         .then((teamSearchResult)=>{
             if(teamSearchResult===null || teamSearchResult.length < 1){
-                for(let i=0; i<req.body.teamMembers.length; i++){
-                    const participant = req.body.teamMembers[i];
+                console.log(req.body);
+                console.log(req.body['teamMembers[]']);
+                for (let i = 0; i < req.body['teamMembers[]'].length; i++) {
+                    const participant = req.body['teamMembers[]'][i];
                     users
                         .find({ email : participant.email })
                         .exec()
                         .then((userResult)=>{
                             if(userResult===null || userResult.length < 1){
-                                res.status(200).json({
+                                return res.status(200).json({
                                     status: 'fail',
                                     message: "The user: " + participant.email + "doesn't exists"
                                 });
@@ -577,7 +583,8 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                             .then((savedResult)=>{
                                                                 bcrypt.hash(req.body.password, 10, (err, hash)=>{
                                                                     if(err){
-                                                                        res.status(500).json({
+                                                                        console.log(err);
+                                                                        return res.status(500).json({
                                                                             status: 'fail',
                                                                             message: err
                                                                         });
@@ -592,13 +599,14 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                                         newTeam
                                                                             .save()
                                                                             .then(teamSaveResult => {
-                                                                                res.status(200).json({
+                                                                                return res.status(200).json({
                                                                                     status: 'success',
                                                                                     message: 'Team Successfully registered.All users verified. A request has been sent to all the members. Further details can be viewed in your profile.'
                                                                                 });
                                                                             })
                                                                             .catch(err => {
-                                                                                res.status(500).json({
+                                                                                console.log(err);      
+                                                                                return res.status(500).json({
                                                                                     status: 'fail',
                                                                                     message: err
                                                                                 })
@@ -608,7 +616,8 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                                 
                                                             })
                                                             .catch(err => {
-                                                                res.status(500).json({
+                                                                console.log(err);
+                                                                return res.status(500).json({
                                                                     status: 'fail',
                                                                     message: err
                                                                 });
@@ -616,7 +625,8 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                     }
                                                 })
                                                 .catch(err => {
-                                                    res.status(500).json({
+                                                    console.log(err);
+                                                    return res.status(500).json({
                                                         status: 'fail',
                                                         message: err
                                                     });
@@ -648,7 +658,8 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                             .then((savedResult) => {
                                                                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                                                                     if (err) {
-                                                                        res.status(500).json({
+                                                                        console.log(err);
+                                                                        return res.status(500).json({
                                                                             status: 'fail',
                                                                             message: err
                                                                         });
@@ -663,13 +674,14 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                                         newTeam
                                                                             .save()
                                                                             .then(teamSaveResult => {
-                                                                                res.status(200).json({
+                                                                                return res.status(200).json({
                                                                                     status: 'success',
                                                                                     message: 'Team Successfully registered.All users verified. A request has been sent to all the members. Further details can be viewed in your profile.'
                                                                                 });
                                                                             })
                                                                             .catch(err => {
-                                                                                res.status(500).json({
+                                                                                console.log(err);
+                                                                                return res.status(500).json({
                                                                                     status: 'fail',
                                                                                     message: err
                                                                                 })
@@ -679,7 +691,8 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
 
                                                             })
                                                             .catch(err => {
-                                                                res.status(500).json({
+                                                                console.log(err);
+                                                                return res.status(500).json({
                                                                     status: 'fail',
                                                                     message: err
                                                                 });
@@ -687,7 +700,8 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                     }
                                                 })
                                                 .catch(err => {
-                                                    res.status(500).json({
+                                                    console.log(err);
+                                                    return res.status(500).json({
                                                         status: 'fail',
                                                         message: err
                                                     });
@@ -695,7 +709,8 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                         }
                                     })
                                     .catch(err => {
-                                        res.status(500).json({
+                                        console.log(err);
+                                        return res.status(500).json({
                                             status: 'fail',
                                             message: err
                                         });
@@ -703,21 +718,23 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                             }
                         })
                         .catch(err => {
-                            res.status(500).json({
+                            console.log(err);
+                            return res.status(500).json({
                                 status: 'fail',
                                 message: err
                             });
                         });
                 }
             } else {
-                res.status(200).json({
+                return res.status(200).json({
                     status: 'fail',
                     message: "Team with the same name already exists!!"
                 });
             }
         })
         .catch(err => {
-            res.status(500).json({
+            console.log(err);
+            return res.status(500).json({
                 status: 'fail',
                 message: err
             });
