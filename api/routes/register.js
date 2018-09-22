@@ -597,4 +597,55 @@ router.post('/teamRegister', checkAuth ,(req, res, next) => {
             });
         });
 });
+router.post('/eventRegister', (req, res, next) => {
+        teams
+            .find({teamName : req.body.teamName})
+            .exec()
+            .then((team) => {
+                if(team === null || team.length < 1){
+                    res.status(200).json({
+                        status: "fail",
+                        message: "No such Team present!"
+                    });
+                }
+                else if(team[0].eventsRegistered % req.body.eventValue == 0){
+                    res.status(200).json({
+                        status: "fail",
+                        message: "Team is already registered in this event"
+                    });
+                }
+                else{
+                    teams
+                        .update({
+                            teamName : team[0].teamName
+                        }, {
+                            $mul:{
+                                eventsRegistered : req.body.eventValue
+                            }
+                        })
+                        .exec()
+                        .then((result) => {
+                            console.log(result);
+                            res.status(200).json({
+                                status: 'success',
+                                message: "Team registered for event!"
+                            });
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            res.status(500).json({
+                                status: 'fail',
+                                message: error
+                            });
+                        });
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json({
+                    status: "fail",
+                    message: err
+                });
+            });
+});
 module.exports = router;
