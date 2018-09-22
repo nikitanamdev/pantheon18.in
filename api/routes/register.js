@@ -653,7 +653,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                                             message: err
                                                                         });
                                                                     } else {
-                                                                        let memberArray = [];
+                                                                        let memberArray = req.body.teamMembers;
                                                                         memberArray.push(req.userData.email);
                                                                         const newTeam = new teams({
                                                                             teamName: req.body.teamName,
