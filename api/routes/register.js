@@ -424,11 +424,6 @@ router.get('/profile', checkAuth, (req, res, next) => {
                             message: err
                         });
                     });
-                res.status(200).json({
-                    status: 'success',
-                    message: "User found",
-                    user: doc
-                });
             }
         })
         .catch(err => {
@@ -487,7 +482,7 @@ router.delete('/profile', checkAuth, (req, res, next) => {
 
 router.get('/preTeamRegistration', checkAuth, (req, res, next) => {
     lookups
-        .find()
+        .find({ email: req.userData.email })
         .exec()
         .then((lookupResult)=>{
             if(lookupResult===null || lookupResult.length < 1){
@@ -542,8 +537,8 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
         .exec()
         .then((teamSearchResult)=>{
             if(teamSearchResult===null || teamSearchResult.length < 1){
-                for(let i=0; i<teamMembers.length; i++){
-                    const participant = iterator[i];
+                for(let i=0; i<req.body.teamMembers.length; i++){
+                    const participant = req.body.teamMembers[i];
                     users
                         .find({ email : participant.email })
                         .exec()
@@ -587,7 +582,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                                             message: err
                                                                         });
                                                                     } else {
-                                                                        let memberArray = [];
+                                                                        let memberArray = req.body.teamMembers;
                                                                         memberArray.push(req.userData.email);
                                                                         const newTeam = new teams({
                                                                             teamName: req.body.teamName,
@@ -634,7 +629,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                     $set: {
                                                         teamName: "",
                                                     },
-                                                    $push: {
+                                                    $addToSet: {
                                                         requests: req.body.teamName
                                                     }
                                                 })
