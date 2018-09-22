@@ -41,7 +41,7 @@ router.post('/register', (req, res, next) => {
                     /**
                      * sending email otp
                      */
-                    
+
                     var transporter = nodemailer.createTransport({
                         service: 'Godaddy',
                         host: 'smtpout.asia.secureserver.net',
@@ -52,7 +52,7 @@ router.post('/register', (req, res, next) => {
                             pass: 'Manish@123'
                         }
                     });
-                    
+
                     const emailMessage = " <h1>Pantheon'18</h1><br><p>Here's your OTP:" + otp.emailOTPsent + "</p>";
 
                     const mailOptions = {
@@ -454,6 +454,9 @@ router.delete('/profile', checkAuth, (req, res, next) => {
                 message: err
             });
         });
+});
+router.post('/teamRegister', (req, res, next) => {
+    
 });
 module.exports = router;
 
