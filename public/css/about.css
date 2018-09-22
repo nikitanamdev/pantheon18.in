@@ -366,11 +366,9 @@ body {
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 	box-sizing: border-box;
   width: 95%;
-  height: 40vh;
 	text-align: left;
 	font: bold 16px sans-serif;
 	padding: 55px 50px;
-	margin-top: 80px;
 }
 
 .footer-distributed .footer-left,
@@ -557,7 +555,7 @@ body {
 }
 
 @media screen and (max-width: 545px) {
-  .footer-display {
+  .footer-distributed {
     margin-left: 0;
     width: 100%;
   }
@@ -578,4 +576,28 @@ body {
   .card .content p {
     font-size: 1em;
   }
+}
+
+@media (max-width: 880px) {
+
+	.footer-distributed{
+		font: bold 14px sans-serif;
+	}
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-center,
+	.footer-distributed .footer-right{
+		display: block;
+		width: 100%;
+		margin-bottom: 40px;
+		text-align: center;
+	}
+
+  .footer-distributed .footer-right {
+    display: none;
+  }
+	.footer-distributed .footer-center i{
+		margin-left: 0;
+	}
+
 }
