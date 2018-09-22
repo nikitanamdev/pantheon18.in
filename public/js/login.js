@@ -1,3 +1,5 @@
+const requrl = "http://localhost:5000";
+
 $(document).ready(function () {
     $('#login').click((e) => {
         e.preventDefault();
@@ -5,7 +7,7 @@ $(document).ready(function () {
         const password = $('#pass').val();
         $.ajax({
             type: 'POST',
-            url: 'https://www.pantheon18.in/api/login',
+            url: requrl + '/api/login',
             data: {
                 email: email,
                 password: password

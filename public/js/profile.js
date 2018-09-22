@@ -1,9 +1,10 @@
+const requrl = 'http://localhost:5000';
 $(document).ready(function () {
     $('.delete').click((e) => {
         e.preventDefault();
         $.ajax({
             type: 'DELETE',
-            url: 'https://www.pantheon18.in/api/profile',
+            url: requrl + '/api/profile',
             headers: {
                 'token': localStorage.getItem('token')
             }
@@ -65,7 +66,7 @@ $(document).ready(function () {
         };
         $.ajax({
             type: 'PATCH',
-            url: 'https://www.pantheon18.in/api/profile',
+            url: requrl + '/api/profile',
             headers: {
                 'token': localStorage.getItem('token')
             },
@@ -98,7 +99,7 @@ $(document).ready(function () {
     });
     $.ajax({
             type: 'GET',
-            url: 'https://www.pantheon18.in/api/profile',
+            url: requrl + '/api/profile',
             headers: {
                 'token': localStorage.getItem('token')
             }
