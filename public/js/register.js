@@ -263,7 +263,17 @@ function validate_form(valCheck) {
     else if(valCheck==="Verify") {
         // OTP Checking code
         const emailotp = $("#emailotp").val();
+        if(emailotp.length < 1) {
+            alert("Enter the Email OTP.")
+            $("#emailotp").val("");
+            return false;
+        }
         const mobileotp = $("#mobileotp").val();
+        if (mobileotp.length < 1) {
+            alert("Enter the Mobile OTP.")
+            $("#mobileotp").val("");
+            return false;
+        }
         const email = $("#emailbox").val();
         const payload = {
             email: email,

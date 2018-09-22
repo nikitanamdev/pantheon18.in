@@ -18,7 +18,8 @@ $(document).ready(function () {
                 window.location.href = 'profile.html'
             }
             else{
-                alert('Wrong credentials');
+                alert(res.message);
+                window.location.href = 'login.html';
             }
         }).fail((err) => {
             //console.log(err);

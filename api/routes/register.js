@@ -337,7 +337,7 @@ router.post('/login', (req, res, next) => {
                     status: 'fail',
                     message: 'User Not found.'
                 });
-            } else if( user.otpverified === 'no' ) {
+            } else if( user[0].otpverified === 'no' ) {
                 return res.status(200).json({
                     status: 'fail',
                     message: 'You have not been successfully registered.'
