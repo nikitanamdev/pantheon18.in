@@ -520,9 +520,30 @@ router.post('/fetchTeam', checkAuth, (req, res, next) => {
             });
         });
 });
-
-
-    
+router.get('/verifyMember',(req, res, next) => {
+    lookups
+        .find({ email : req.body.email })
+        .exec()
+        .then((result) => {
+            if(result === null || result.length < 1){
+                res.status(200).json({
+                    status: 'success',
+                    message: "Allowed"
+                });
+            }
+            else{
+                res.status(200).json({
+                    status: 'fail',
+                    message: "User already in a team!"
+                });
+            }
+        })
+        .catch((err) => {
+            res.status(500).json({
+                message: err
+            });
+        });
+});
 router.post('/teamRegister', checkAuth ,(req, res, next) => {
     teams
         .find({ teamName : req.body.teamName })
@@ -577,77 +598,3 @@ router.post('/teamRegister', checkAuth ,(req, res, next) => {
         });
 });
 module.exports = router;
-
-// router.post('/signup', (req, res, next) => {
-//     /**
-//      * Check for gcaptcha response
-//      */
-
-//     /**
-//      * Check if user email exists or not
-//      */
-//     sapuser
-//         .find({
-//             email: req.body.email
-//         })
-//         .exec()
-//         .then((doc) => {
-//             if (doc.length >= 1) {
-//                 res.status(409).json({
-//                     message: "user exists"
-//                 });
-//             } else {
-//                 /**
-//                  * Email and contact verification
-//                  * Make sure the content-type is empty because
-//                  * multer needs to modify the req object
-//                  */
-//                 //console.log(req.body.emailVerified + " " + req.body.contactVerified);
-//                 bcrypt.hash(req.body.password, 10, function (err, hash) {
-//                     if (err) {
-//                         res.status(500).json({
-//                             message: err
-//                         });
-//                     } else {
-//                         const newSapUser = new sapuser({
-//                             _id: mongoose.Types.ObjectId(),
-//                             name: req.body.name,
-//                             email: req.body.email,
-//                             password: hash,
-//                             contact: req.body.contact.toString(),
-//                             sapId: Number(process.env.sapCount) + 1,
-//                             createdAt: new Date(),
-//                             updatedAt: new Date(),
-//                             gender: req.body.gender,
-//                             // dob: req.body.dob,
-//                             // address: req.body.address,
-//                             collegeName: req.body.collegeName,
-//                             city: req.body.city,
-//                             collegeId: req.body.collegeId,
-//                             gradYear: req.body.yog,
-//                         });
-//                         process.env.sapCount = Number(Number(process.env.sapCount) + 1);
-//                         newSapUser
-//                             .save()
-//                             .then(result => {
-//                                 //console.log(result);
-//                                 res.status(200).json({
-//                                     message: "User Added",
-//                                     info: result
-//                                 });
-//                             })
-//                             .catch(err => {
-//                                 res.status(500).json({
-//                                     message: err
-//                                 });
-//                             });
-//                     }
-//                 });
-//             }
-//         })
-//         .catch(err => {
-//             res.status(500).json({
-//                 message: err
-//             });
-//         });
-// });
