@@ -18,8 +18,8 @@
     font-family: 'Alice', serif;
 }
 #loginForm{
-    width: 60vw;
-    margin: 50px auto;
+    width: 50vw;
+    margin: 2% auto;
     text-align: center;
     position: relative;
 }
@@ -66,6 +66,12 @@
     color: #2C3E50;
     font-size: 13px;
     margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    #loginForm {
+        width: 60vw;
+    }
 }
 
 @media (max-width: 545px) {
