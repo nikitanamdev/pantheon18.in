@@ -493,17 +493,27 @@ router.patch('/profile', checkAuth, (req, res, next) => {
 
 router.delete('/profile', checkAuth, (req, res, next) => {
     users
-        .remove({
-            email: req.userData.email
-        })
+        .remove({email: req.userData.email})
         .exec()
         .then(result => {
-            res.status(200).json({
-                message: "User Deleted!"
-            });
+            lookups
+                .remove({email: req.userData.email})
+                .exec()
+                .then((look) => {
+                    res.status(200).json({
+                        message: "User Deleted!"
+                    });
+                })
+                .catch((err) => {
+                    res.status(500).json({
+                        status: 'fail',
+                        message: err
+                    });
+                });
         })
         .catch(err => {
             res.status(500).json({
+                status: 'fail',
                 message: err
             });
         });
@@ -773,7 +783,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
             });
         });
 });
-router.post('/deleteMember/:teamN/:ema',checkAuth,(req, res, next) => {
+router.patch('/deleteMember/:teamN/:ema',checkAuth,(req, res, next) => {
     const teamEdit = req.params.teamN;
     const memberEmail = req.params.ema;
     teams
@@ -821,7 +831,7 @@ router.post('/deleteMember/:teamN/:ema',checkAuth,(req, res, next) => {
         });
 });
 
-router.post('/deleteRequest/:teamN',checkAuth,(req, res, next) => {
+router.patch('/deleteRequest/:teamN',checkAuth,(req, res, next) => {
     const teamRequestRemove = req.params.teamN;
     lookups
         .update(
@@ -847,7 +857,7 @@ router.post('/deleteRequest/:teamN',checkAuth,(req, res, next) => {
         })
 });
 
-router.post('/acceptRequest/:teamN',checkAuth,(req, res, next) => {
+router.patch('/acceptRequest/:teamN',checkAuth,(req, res, next) => {
     const teamRequestAccept = req.params.teamN;
     lookups
         .update(
@@ -960,6 +970,61 @@ router.post('/eventRegister', (req, res, next) => {
                     message: err
                 });
             });
+});
+
+router.delete('/deleteTeam/:teamN',checkAuth,(req, res, next) => {
+    const teamDelete = req.params.teamN;
+    teams
+        .findOneAndDelete({ teamName : teamDelete})
+        .exec()
+        .then((deletedDoc) => {
+            if(deletedDoc === null){
+                console.log('Team not present');
+                return res.status(200).json({
+                    status: 'fail',
+                    message: 'No team present by this name.'
+                });
+            }
+            console.log('Team Deleted.Now lookups will be updated');
+            for(let i=0;i<deletedDoc['teamMembers[]'].length;i++){
+                const teamMember = deletedDoc['teamMembers[]'][i];
+                lookups
+                    .update(
+                        { email : teamMember},
+                        {
+                            $set : {
+                                teamName : "",
+                                teamPoints : 0,
+                                teamLeader : "no"
+                            }
+                        }
+                    )
+                    .exec()
+                    .then((result) => {
+                        console.log('Member lookup updated');
+                        if(i === deletedDoc['teamMembers[]'].length -1){
+                            return return res.status(200).json({
+                                status: 'success',
+                                message: 'Team Deleted successfully.'
+                            });
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        res.status(500).json({
+                            status: "fail",
+                            message: err
+                        });
+                    });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
 });
 // router.post('/fetchTeam', checkAuth, (req, res, next) => {
 //     lookups
