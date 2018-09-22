@@ -14,7 +14,7 @@ const teamSchema = new mongoose.Schema({
         default: ""
     },
     teamMembers: [{
-        type: Number,
+        type: String
     }],
     points: {
         type: Number,
