@@ -157,11 +157,18 @@ body {
     border-color: rgba(40, 167, 69, 0.2);
 }
 
+.footer-distributed {
+    display: none;
+}
+
 @media (max-width: 820px) {
     #headLogo span {
         font-size: 2.5em;
         display: block;
       }
+      .footer-distributed {
+        display: block;
+    }
     .panels {
         display: block;
         height: 210vh;
