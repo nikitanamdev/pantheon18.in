@@ -384,6 +384,11 @@ body {
 	width: 40%;
 }
 
+.footer-distributed .footer-left img{
+  display: block;
+  margin-left: 30%;
+}
+
 /* The company logo */
 
 .footer-distributed h3{
@@ -415,7 +420,7 @@ body {
 	color:  #8f9296;
 	font-size: 14px;
 	font-weight: normal;
-	margin: 0;
+	margin: 0 0 0 30%;
 }
 
 /* Footer Center */
@@ -589,9 +594,19 @@ body {
 	.footer-distributed .footer-right{
 		display: block;
 		width: 100%;
-		margin-bottom: 40px;
-		text-align: center;
-	}
+		margin-bottom: 20px;
+		text-align: center !important;
+  }
+
+  .footer-distributed .footer-left .footer-company-name {
+    text-align: center;
+    margin: 0;
+  }
+
+  .footer-distributed .footer-left img {
+    margin: 0 auto;
+  }
+
 
   .footer-distributed .footer-right {
     display: none;
@@ -599,5 +614,4 @@ body {
 	.footer-distributed .footer-center i{
 		margin-left: 0;
 	}
-
 }
