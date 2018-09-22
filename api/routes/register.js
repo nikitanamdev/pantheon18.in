@@ -337,6 +337,11 @@ router.post('/login', (req, res, next) => {
                     status: 'fail',
                     message: 'User Not found.'
                 });
+            } else if( user.otpverified === 'no' ) {
+                return res.status(200).json({
+                    status: 'fail',
+                    message: 'You have not been successfully registered.'
+                });
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if(err) {
