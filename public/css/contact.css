@@ -65,7 +65,14 @@ body {
     overflow: hidden;
     margin-bottom: 2%;
     margin-top: 2%;
-    height:100%;
+}
+
+.team-member {
+    height: 50vh;
+}
+
+.team-img {
+    height: 100%;
 }
 
 .team-title {
@@ -153,6 +160,10 @@ body {
 }
 
 @media (max-width: 768px) {
+    #headLogo span {
+        font-size: 2.5em;
+        display: block;
+      }
 	.team-member {
         height: 40vh; 
     }
@@ -175,6 +186,10 @@ body {
 }
 
 @media (max-width: 625px) {
+    #headLogo span {
+        font-size: 2em;
+        display: block;
+      }
 	.team-member {
         height: 30vh; 
     }
@@ -197,6 +212,14 @@ body {
 }
 
 @media (max-width: 545px) {
+    #headLogo {
+        margin-top: 10%;
+      }
+      #headLogo span {
+        font-size: 2em;
+        display: block;
+      }
+
 	.team-member {
         height: 28vh; 
     }
