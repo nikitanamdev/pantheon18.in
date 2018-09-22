@@ -15,12 +15,12 @@ const teams = require('./../models/teams');
 
 router.post('/register', (req, res, next) => {
     //captcha response
-    if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null){
-        res.status(400).json({
-            status: "fail",
-            message: "Invalid Captcha"
-        });
-    }
+    // if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null){
+    //     res.status(400).json({
+    //         status: "fail",
+    //         message: "Invalid Captcha"
+    //     });
+    // }
 
     users
         .find({email: req.body.email})
