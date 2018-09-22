@@ -55,6 +55,8 @@ body {
 .panels {
     min-height: 100vh;
     overflow: hidden;
+    margin-left: 4.6%;
+    margin-bottom: 10%;
     display: flex;
 }
 
@@ -87,8 +89,6 @@ body {
 .panels .panel.panel3 {
     background-image: url("./../images/theme3.JPG");
 }
-
-
 
 .panels .panel > * {
     margin: 0;
@@ -155,4 +155,78 @@ body {
 .addGreen {
     background-color: rgba(40, 167, 69, 0.2);
     border-color: rgba(40, 167, 69, 0.2);
+}
+
+@media (max-width: 820px) {
+    #headLogo span {
+        font-size: 2.5em;
+        display: block;
+      }
+    .panels {
+        display: block;
+        height: 210vh;
+        margin-bottom: 10%;
+        margin-left: 5%;
+    }
+    .panels .panel {
+        height: 70vh;
+    }
+    .panels .panel > *:first-child {
+        transform: translateX(100%);
+    }
+    .panels .panel > *:last-child {
+        transform: translateX(-100%);
+    }
+}
+
+@media (max-width: 680px) {
+    #headLogo span {
+        font-size: 2em;
+        display: block;
+      }
+    .panels {
+        display: block;
+        margin-bottom: 10%;
+        margin-left: 5%;
+        height: 180vh;
+    }
+    .panels .panel {
+        height: 60vh;
+    }
+    .panels .panel p:nth-of-type(1) {
+        font-size: 2.5em !important;
+    }
+    .panels .panel p:nth-of-type(2) {
+        font-size: 1.2em !important;
+    }
+    .panels .panel > *:first-child {
+        transform: translateX(100%);
+    }
+    .panels .panel > *:last-child {
+        transform: translateX(-100%);
+    }
+}
+
+@media (max-width: 545px) {
+    .panels {
+        display: block;
+        margin-bottom: 10%;
+        margin-left: 0%;
+        height: 180vh;
+    }
+    .panels .panel {
+        height: 60vh;
+    }
+    .panels .panel p:nth-of-type(1) {
+        font-size: 1.8em !important;
+    }
+    .panels .panel p:nth-of-type(2) {
+        font-size: 1em !important;
+    }
+    .panels .panel > *:first-child {
+        transform: translateX(100%);
+    }
+    .panels .panel > *:last-child {
+        transform: translateX(-100%);
+    }
 }
