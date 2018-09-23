@@ -57,6 +57,7 @@ $(document).ready(function () {
             console.log(res);
             if(res.status === 'success'){
                 alert(res.message);
+                window.location.href = 'index.html';
             }
             else{
                 alert(res.message);

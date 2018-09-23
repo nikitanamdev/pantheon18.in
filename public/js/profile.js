@@ -151,6 +151,7 @@ $(document).ready(function () {
                 });
         }
         else if(id[0]=='d'){
+            alert("sexy");
             $.ajax({
                     type: 'GET',
                     url: requrl + '/api/deleteMember/' + $('#teamName').val()+'/'+$('#member' + idd).val(),
@@ -199,23 +200,32 @@ $(document).ready(function () {
             $('#panID').val('PA'+result.user[0].panId);
             $('#gender').val(result.user[0].gender.toUpperCase());
 
-
+            console.log(result);
+            // console.log(result.teamDetails[0].teamMembers[0]);  
             if(result.isTeamLeader === 'yes') {
                 // Team Leader
-                $('#teamName').val(result.teamDetails.teamName);
-                for(let i=0;i<result.teamDetails['teamMembers'].length;i++){
-                    $(".team-details").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="member' + (i + 1) + '" value="' + result.teamDetails['teamMembers'][i] + '" placeholder="' + result.teamDetails['teamMembers'][i] + '" disabled><div class="description"><span id="d' + (i + 1) + '" ><i class="fas fa-times reqq" style="padding-left:15%;padding-top: 20%;"></i></span></div></div>');
+                $('#teamName').val(result.teamDetails[0].teamName);
+                for(let i=0;i<result.teamDetails[0].teamMembers.length;i++){
+                    $(".team-details").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="member' + (i + 1) + '" value="' + result.teamDetails[0].teamMembers[i] + '" placeholder="' + result.teamDetails[0].teamMembers[i] + '" disabled><div class="description"><span><i id="d' + (i + 1) + '" class="fas fa-times reqq" style="padding-left:15%;padding-top: 20%;"></i></span></div></div>');
                 }
             } else if(result.isTeamLeader === 'no') {
-                if (result['teamRequests'].length === 0){
-                    $(".jumbotron").append('<h3 class="text-center">No Requests Recieved till now.</h3>')
+                if (result.teamDetails.length > 0) {
+                    $('#teamName').val(result.teamDetails[0].teamName);
+                    for (let i = 0; i < result.teamDetails[0]['teamMembers'].length; i++) {
+                        $(".team-details").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="member' + (i + 1) + '" value="' + result.teamDetails[0].teamMembers[i] + '" placeholder="' + result.teamDetails[0].teamMembers[i] + '" disabled><div class="description"></div></div>');
+                    }
+                }
+                if (result['teamRequests'].length === 0 && result.teamDetails.length < 0) {
+                    $(".team-details").append('<h3 class="text-center">No Requests Recieved till now.</h3>')
                 }
                 for (let i = 0; i < result['teamRequests'].length; i++) {
-                    $(".jumbotron").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="request' + (i + 1) + '" value="' + result['teamRequests'][i] + '" placeholder="' + result['teamRequests'][i] + '" disabled><div class="description"><span><i id="c' + (i + 1) + '" class="fas fa-check reqq" style="padding-left:5%;padding-right: 15%;padding-top: 20%;"></i></span><span><i id="w' + (i + 1) + '" class="fas fa-times reqq" style="padding-left:15%;padding-right: 5%;padding-top: 20%;"></i></span></div></div>');
+                    $(".team-details").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="request' + (i + 1) + '" value="' + result['teamRequests'][i] + '" placeholder="' + result['teamRequests'][i] + '" disabled><div class="description"><span><i id="c' + (i + 1) + '" class="fas fa-check reqq" style="padding-left:5%;padding-right: 15%;padding-top: 20%;"></i></span><span><i id="w' + (i + 1) + '" class="fas fa-times reqq" style="padding-left:15%;padding-right: 5%;padding-top: 20%;"></i></span></div></div>');
                 }
+                
             } else {
                 window.location.href = 'profile.html';
             }
+            $("#d1").css({ "display": "none" });
         })
         .fail((err) => {
             //console.log(err);

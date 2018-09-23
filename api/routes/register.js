@@ -655,7 +655,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                                                         message: err
                                                                                     });
                                                                                 } else {
-                                                                                    let memberArray = req.body['teamMembers[]'];
+                                                                                    let memberArray = [];
                                                                                     memberArray.push(req.userData.email);
                                                                                     const newTeam = new teams({
                                                                                         _id: mongoose.Types.ObjectId(),
@@ -711,7 +711,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                                                         message: err
                                                                                     });
                                                                                 } else {
-                                                                                    let memberArray = req.body['teamMembers[]'];
+                                                                                    let memberArray = [];
                                                                                     memberArray.push(req.userData.email);
                                                                                     const newTeam = new teams({
                                                                                         _id: mongoose.Types.ObjectId(),
@@ -754,7 +754,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                                     message: err
                                                                 });
                                                             });
-
+                                                        
                                                     }
                                                 })
                                                 .catch(err => {
@@ -807,7 +807,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                                                         message: err
                                                                                     });
                                                                                 } else {
-                                                                                    let memberArray = req.body['teamMembers[]'];
+                                                                                    let memberArray = [];
                                                                                     memberArray.push(req.userData.email);
                                                                                     const newTeam = new teams({
                                                                                         _id: mongoose.Types.ObjectId(),
@@ -863,7 +863,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                                                         message: err
                                                                                     });
                                                                                 } else {
-                                                                                    let memberArray = req.body['teamMembers[]'];
+                                                                                    let memberArray = [];
                                                                                     memberArray.push(req.userData.email);
                                                                                     const newTeam = new teams({
                                                                                         _id: mongoose.Types.ObjectId(),
@@ -962,8 +962,8 @@ router.get('/acceptRequest/:teamN', checkAuth, (req, res, next) => {
         .then(teamSearchResult => {
             if(teamSearchResult === null || teamSearchResult.length < 1) {
                 lookups
-                    .update({
-                        email : req.userData.email
+                    .update({ 
+                        email : req.userData.email 
                     },{
                         $pull : { requests : teamRequestAccept }
                     })
@@ -1009,7 +1009,7 @@ router.get('/acceptRequest/:teamN', checkAuth, (req, res, next) => {
                                     console.log('Team updated.');
                                     res.status(200).json({
                                         status: 'success',
-                                        message: 'You are added to Team' + teamRequestAccept
+                                        message: 'You are added to Team ' + teamRequestAccept
                                     });
                                 })
                                 .catch((err) => {
@@ -1036,7 +1036,7 @@ router.get('/acceptRequest/:teamN', checkAuth, (req, res, next) => {
                 message: err
             });
         });
-
+    
 });
 
 router.get('/deleteRequest/:teamN', checkAuth, (req, res, next) => {
