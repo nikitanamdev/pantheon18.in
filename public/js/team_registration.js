@@ -16,7 +16,7 @@ $(document).ready(function () {
             window.location.href = 'index.html';
         }
     }).fail((err) => {
-        alert(res.message);
+        alert('Some error occured.Please try again.');
         window.location.href = 'index.html';
     });
 
@@ -73,8 +73,8 @@ $(document).ready(function () {
                 window.location.href = 'index.html';
             }
         }).fail((err) => {
-            alert(res.message);
+            alert('Some error occured.Please try again.');
             window.location.href = 'index.html';
         });
-    })
+    });
 });

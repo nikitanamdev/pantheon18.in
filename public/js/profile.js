@@ -13,12 +13,9 @@ $(document).ready(function () {
             localStorage.setItem('token','');
             alert("User successfully Deleted.");
             window.location.href = 'index.html';
-            //console.log(result);
-            // console.log('deleted');
         })
         .fail((err) => {
-            //console.log(err);
-            alert("Some error occured. Try Again later.")
+            alert('Some error occured.Please try again.');
             window.location.href = 'profile.html';
         });
     });
@@ -74,11 +71,10 @@ $(document).ready(function () {
             data: userDetails
         })
         .done((result) => {
-            //console.log('Updated');
             window.location.href = 'profile.html';
         })
         .fail((err) => {
-            alert("Some error occured. Try Again later.")
+            alert('Some error occured.Please try again.');
             window.location.href = 'profile.html';
         });
     });
@@ -124,7 +120,7 @@ $(document).ready(function () {
             }
         })
         .fail((err) => {
-            alert("Some error occured. Try Again later.")
+            alert('Some error occured.Please try again.');
             window.location.href = 'index.html';
         });
     });
@@ -151,8 +147,7 @@ $(document).ready(function () {
                      }
                  })
                  .fail((err) => {
-                     //console.log(err);
-                     alert("Some error occured. Try Again later.")
+                     alert('Some error occured.Please try again.');
                      window.location.href = 'profile.html';
                  });
         }
@@ -176,8 +171,7 @@ $(document).ready(function () {
                     }
                 })
                 .fail((err) => {
-                    //console.log(err);
-                    alert("Some error occured. Try Again later.")
+                    alert('Some error occured.Please try again.');
                     window.location.href = 'profile.html';
                 });
         }
@@ -201,12 +195,11 @@ $(document).ready(function () {
                     }
                 })
                 .fail((err) => {
-                    //console.log(err);
-                    alert("Some error occured. Try Again later.")
+                    alert('Some error occured.Please try again.');
                     window.location.href = 'profile.html';
                 });
         }
-        
+
     });
 
 
@@ -233,8 +226,6 @@ $(document).ready(function () {
                 $("#gradYear").val(result.user[0].gradYear);
                 $('#panID').val('PA' + result.user[0].panId);
                 $('#gender').val(result.user[0].gender.toUpperCase());
-                //console.log(result);
-                console.log(result);
                 if (result.isTeamLeader === 'yes') {
                     // Team Leader
                     $('#teamName').val(result.teamDetails[0].teamName);
@@ -265,8 +256,7 @@ $(document).ready(function () {
             }
         })
         .fail((err) => {
-            //console.log(err);
-            alert("Some error occured. Try Again later.")
+            alert('Some error occured.Please try again.');
             window.location.href = 'profile.html';
         });
 });
