@@ -1243,6 +1243,7 @@ router.post('/eventRegister', (req, res, next) => {
         });
 });
 
+
 module.exports = router;
 
 // router.post('/fetchTeam', checkAuth, (req, res, next) => {

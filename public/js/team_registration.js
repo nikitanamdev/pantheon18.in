@@ -13,11 +13,11 @@ $(document).ready(function () {
         }
         else{
             alert(res.message);
-            //window.location.href = 'team_registration.html';
+            window.location.href = 'team_registration.html';
         }
     }).fail((err) => {
-        console.log(err);
-        //window.location.href = 'team_registration.html';
+        alert(res.message);
+        window.location.href = 'team_registration.html';
     });
 
     $('.teambutton').click((e) => {
@@ -41,7 +41,6 @@ $(document).ready(function () {
             alert("Enter Unique Members.");
             return false;
         }
-        console.log(teamMembers);
         $.ajax({
             type: 'POST',
             url: requrl + '/api/teamRegister',
