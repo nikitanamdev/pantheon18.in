@@ -1244,7 +1244,7 @@ router.post('/eventRegister', (req, res, next) => {
             if (team === null || team.length < 1) {
                 res.status(200).json({
                     status: "fail",
-                    message: "No such Team present!"
+                    message: "No such Team Present! Register your Team First."
                 });
             } else {
                 bcrypt.compare(req.body.password, team[0].teamPassword, (err, result) => {
