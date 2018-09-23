@@ -18,7 +18,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Alice" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
 </head>
 
 <body>
@@ -132,6 +133,31 @@
         <input type="button" name="Delete" class="delete action-button" value="Delete"/>
     </div>
     </form>
+    <br><br>
+    <div class="jumbotron">
+        <div id="upper" class="jumbotron jumbotron-fluid">
+            <h1>Team Details</h1>
+        </div>
+        <div class="input-container">
+            <i class="fas fa-users icon" aria-hidden="true"></i>
+            <input type="text" name="teamName" class="input-field" id="teamName" placeholder="Team Name" disabled>
+            <div class='description'>Team Name</div>
+        </div>
+        <div class="input-container">
+            <i class="fa fa-chevron-right icon" aria-hidden="true"></i>
+            <input type="text" name="request" class="input-field" id="request" placeholder="Team Request" disabled>
+            <div class='description' id="request-check">Team Request</div>
+        </div>
+        <div class="input-container">
+            <i class="fa fa-chevron-right icon" aria-hidden="true"></i>
+            <input type="text" name="member" class="input-field" id="member" placeholder="Team Member" disabled>
+            <div class="description">
+                <span><i class="fas fa-check" style="padding-left:5%;padding-right: 15%;padding-top: 20%;" onclick="accept()"></i></span>
+                <span><i class="fas fa-times" style="padding-left:15%;padding-right: 5%;padding-top: 20%;" onclick="reject()"></i></span>
+            </div>
+        </div>
+        
+    </div>
     <!-- Footer -->
     <footer class="footer-distributed">
 

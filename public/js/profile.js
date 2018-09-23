@@ -97,6 +97,33 @@ $(document).ready(function () {
         $("#rollnum").removeAttr('disabled');
         $("#gradYear").removeAttr('disabled');
     });
+
+    function accept(teamName) {
+        $.ajax({
+            type: 'POST',
+            url: requrl + '/api/acceptRequest/'+ teamName,
+            headers: {
+                'token': localStorage.getItem('token')
+            }
+        })
+        .done((result) =>{
+            if(result.status === 'fail' ){
+                alert(result.message);
+                location.reload(true);
+            } else if(result.status === 'success' ){
+                alert(result.message);
+                location.reload(true);
+            } else {
+                window.location.href = 'index.html';
+            }
+        })
+        .fail((err) => {
+            //console.log(err);
+            alert("Some error occured. Try Again later.")
+            window.location.href = 'profile.html';
+        });
+    }
+
     $.ajax({
             type: 'GET',
             url: requrl + '/api/profile',
@@ -117,6 +144,23 @@ $(document).ready(function () {
             $('#panID').val('PA'+result.user[0].panId);
             $('#gender').val(result.user[0].gender.toUpperCase());
 
+
+            if(result.isTeamLeader === 'yes') {
+                // Team Leader
+                $('#teamName').val(result.teamDetails.teamName);
+                for(let i=0;i<result.teamDetails['teamMembers'].length;i++){
+                    $(".jumbotron").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="member' + (i + 1) + '" value="' + result.teamDetails['teamMembers'][i] + '" placeholder="' + result.teamDetails['teamMembers'][i] + '" disabled><div class="description"><span><i class="fas fa-times" style="padding-left:15%;padding-top: 20%;" onclick="deleteMember(' + result['teamRequests'][i] + ')"></i></span></div></div>');
+                }
+            } else if(result.isTeamLeader === 'no') {
+                if (result['teamRequests'].length === 0){
+                    $(".jumbotron").append('<h3 class="text-center">No Requests Recieved till now.</h3>')
+                }
+                for (let i = 0; i < result['teamRequests'].length; i++) {
+                    $(".jumbotron").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="request' + (i + 1) + '" value="' + result['teamRequests'][i] + '" placeholder="' + result['teamRequests'][i] + '" disabled><div class="description"><span><i class="fas fa-check" style="padding-left:5%;padding-right: 15%;padding-top: 20%;" onclick="accept(' + result['teamRequests'][i] + ')"></i></span><span><i class="fas fa-times" style="padding-left:15%;padding-right: 5%;padding-top: 20%;" onclick="reject(' + result['teamRequests'][i] + ')"></i></span></div></div>');
+                }
+            } else {
+                //window.location.href = 'profile.html';
+            }
         })
         .fail((err) => {
             //console.log(err);

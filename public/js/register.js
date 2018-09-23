@@ -142,9 +142,26 @@ $(".submit").click(function () {
     const clgstate = $("#clgstate").val();
     const rollnum = $("#rollnum").val();
     const gradYear = $("#gradYear").val();
+    if(clgname==="") {
+        alert("Enter College Name.");
+         return false;
+    }
+    if(clgcity==="") {
+        alert("Enter College City.");
+         return false;
+    }
+    if(clgstate==="") {
+        alert("Enter College State.");
+         return false;
+    }
+    if(rollnum==="") {
+        alert("Enter College Roll no.");
+        return false;
+    }
     if(gradYear < 1900 || gradYear > 2050){
         alert("Enter valid Year of Graduation.");
         $("#gradYear").val("");
+        return false;
     }
     const email = $("#emailbox").val();
     const gender = $("input[name='gender']:checked").val().toString();

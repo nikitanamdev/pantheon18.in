@@ -111,7 +111,7 @@ i::before{
 #forms input[type='button']:disabled:hover, #forms input[type='button']:disabled:focus {
     box-shadow: 0 0 0 2px #83858C, 0 0 0 3px #00385D;
 }
-#forms .input-container .description{
+.input-container .description{
     float: right;
     min-width: 100px;
     padding: 15px;
