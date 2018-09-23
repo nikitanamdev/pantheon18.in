@@ -77,8 +77,12 @@
     <form id="teamForm" method="POST">
         <div class="row">
             <div class="details col-12 col-md-6">
+                <h1>Team Details</h1>
+                <p>TEAM LEADER:</p>
                 <input type="email" name="leader" id ="leaderEmail" placeholder="Team Leader" disabled/>
+                <p>TEAM NAME:</p>
                 <input type="text" name="team" id ="team" placeholder="Team Name" required/>
+                <p>TEAM PASSWORD:</p>
                 <input type="password" name="pass" id="pass" placeholder="Password" maxlength="50" minlength="5" required />
                 <select id="count" onchange="dad()" required>
                     <option value="0">Select Team Size(including leader)
@@ -87,18 +91,24 @@
                     <option value="5">5
                     <option value="6">6
                     <option value="7">7
-                    <option value="7">8
+                    <option value="8">8
                 </select>
                 <div class="members"></div>
                 <input type="submit" name="teamRegister" class="teambutton" value="Make Team" id="makeTeam" />
             </div>
             <div class="info col-12 col-md-6">
+                <h1>Info</h1>
+                <p><strong>1. </strong>Team size allowed is 3-8 members</p>
+                <p><strong>2. </strong>You will be the team leader and only you can delete the team</p>
+                <p><strong>3. </strong>Team members provided here will be sent a request to their profiles</p>
+                <p><strong>4. </strong>Only after they accept your team request, they will be added to the team</p>
+                <p><strong>5. Caution : </strong>Choose your team members wisely as you cannot add more members once the team is made</p>
             </div>
         </div>
     </form>
     <script>
         function dad(){
-            console.log("d");
+            $('.members').empty();
             const op = $('#count').val();
             for(i=2;i<=op;i++){
                 $('.members').append("<input type='email' name='email' pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$' id ='member"+i+"' placeholder='Member "+i+"' required/>");

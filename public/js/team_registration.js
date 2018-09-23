@@ -13,11 +13,11 @@ $(document).ready(function () {
         }
         else{
             alert(res.message);
-            window.location.href = 'team_registration.html';
+            window.location.href = 'index.html';
         }
     }).fail((err) => {
         alert(res.message);
-        window.location.href = 'team_registration.html';
+        window.location.href = 'index.html';
     });
 
     $('.teambutton').click((e) => {
@@ -26,7 +26,6 @@ $(document).ready(function () {
         const teamPass = $('#pass').val();
         const teamSize = $('#count').val();
         var teamMembers = [], equity = 0;
-        //teamMembers.push($('#leaderEmail').val().trim());
         for(let i=2;i<=teamSize;i++){
             const newMemberValue = $('#member' + i).val().trim();
             for(let j=0;j<teamMembers.length;j++){
@@ -53,16 +52,16 @@ $(document).ready(function () {
                 teamMembers : teamMembers
             }
         }).done((res) => {
-            console.log(res);
             if(res.status === 'success'){
                 alert(res.message);
+                window.location.href = 'index.html';
             }
             else{
                 alert(res.message);
                 window.location.href = 'index.html';
             }
         }).fail((err) => {
-            console.log(err);
+            alert(res.message);
             window.location.href = 'index.html';
         });
     })

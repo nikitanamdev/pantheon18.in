@@ -1,4 +1,6 @@
 /* THe heading with the logo */
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+@import url('https://fonts.googleapis.com/css?family=Contrail+One');
 #headLogo {
     height: 25vh;
     display: flex;
@@ -24,50 +26,80 @@
     margin-left: 12.5vw;
     border: none;
 }
-.details,#count{
+.details{
+    text-align: center;
     height:auto;
-    background-color: white;
-    border: 0 none;
-    border-radius: 3px;
-    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    background-color: #424874;
+    border: none;
     padding: 20px 30px;
     box-sizing: border-box;
     width: auto;
 }
-#count::after{
-    width:50px;
-    box-shadow: none;
-    font-size: 1.5;
+.info{
+    text-align: center;
+    background-color: #4DAA57;
+}
+.info h1,.details h1{
+    font-family: 'Abril Fatface', cursive;
+    font-size: 30px;
+    text-decoration: underline;
+    padding: 10px;
+}
+.details h1{
+    color: #DDD92A;
+}
+.info h1{
+    color: #031926;
+}
+.info p{
+    font-family: 'Contrail One', cursive;
+    font-size: 15px;
+    color: #031926;
+    float: left;
     clear: both;
 }
-.info{
-    height:100px;
-    background-color: green;
+.details p {
+    float: left;
+    clear: both;
+    font-family: 'Contrail One', cursive;
+    font-size: 15px;
+    color: #DDD92A;
 }
 /*buttons*/
 .details .teambutton {
     width: 100px;
-    background: #27AE60;
+    background: #DDD92A;
     font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 1px;
+    color: #292808;
+    border: none;
+    border-radius: 3px;
     cursor: pointer;
     padding: 10px 5px;
     font-size: 1.5em;
+    margin-top: 10px;
 }
 
 .details .teambutton:hover,.details .teambutton:focus {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+    box-shadow: 0 0 0 2px #424874, 0 0 0 3px #DDD92A;
 }
-.details input{
+.details input,#count{
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 3px;
     width: 100%;
-    color: #2C3E50;
+    color: black;
     box-sizing: border-box;
-    color: #2C3E50;
     font-size: 13px;
     margin-bottom: 10px;
+}
+#count{
+    width:auto;
+}
+input[type="email"]:disabled{
+    opacity: 0.8;
+}
+@media (max-width:545px) {
+    .info p{
+        font-size: 13px;
+    }
 }

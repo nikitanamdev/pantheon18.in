@@ -132,6 +132,7 @@
         <input type="button" name="editProfile" class="editProfile action-button" value="Edit" />
         <input type="button" name="Save" class="save action-button" value="Save" disabled/>
         <input type="button" name="Delete" class="delete action-button" value="Delete"/>
+        <input type="button" name="logout" class="logout action-button" value="Logout" />
     </div>
     </form>
     <br><br>
@@ -141,23 +142,9 @@
         </div>
         <div class="input-container">
             <i class="fas fa-users icon" aria-hidden="true"></i>
-            <input type="text" name="teamName" class="input-field" id="teamName" placeholder="Team Name" disabled>
+            <input type="text" name="teamName" class="input-field" id="teamName" value = "No Team Name found." placeholder="No Team name Found." disabled>
             <div class='description'>Team Name</div>
         </div>
-        <!-- <div class="input-container">
-            <i class="fa fa-chevron-right icon" aria-hidden="true"></i>
-            <input type="text" name="request" class="input-field" id="request" placeholder="Team Request" disabled>
-            <div class='description' id="request-check">Team Request</div>
-        </div> -->
-        <div class="input-container">
-            <i class="fa fa-chevron-right icon" aria-hidden="true"></i>
-            <input type="text" name="member" class="input-field" id="member" placeholder="Team Member" disabled>
-            <div class="description">
-                <span><i class="fas fa-check" style="padding-left:5%;padding-right: 15%;padding-top: 20%;" onclick="accept()"></i></span>
-                <span><i class="fas fa-times" style="padding-left:15%;padding-right: 5%;padding-top: 20%;" onclick="reject()"></i></span>
-            </div>
-        </div>
-        
     </div>
     <!-- Footer -->
     <footer class="footer-distributed">
