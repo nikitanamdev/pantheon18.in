@@ -783,7 +783,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
             });
         });
 });
-router.patch('/deleteMember/:teamN/:ema',checkAuth,(req, res, next) => {
+router.get('/deleteMember/:teamN/:ema',checkAuth,(req, res, next) => {
     const teamEdit = req.params.teamN;
     const memberEmail = req.params.ema;
     teams
