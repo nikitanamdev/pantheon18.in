@@ -492,6 +492,7 @@ router.patch('/profile', checkAuth, (req, res, next) => {
 });
 
 router.delete('/profile', checkAuth, (req, res, next) => {
+    let deleteCount = 0;
     users
         .remove({email: req.userData.email})
         .exec()
@@ -500,6 +501,7 @@ router.delete('/profile', checkAuth, (req, res, next) => {
                 .findOneAndDelete({ email: req.userData.email })
                 .exec()
                 .then((look) => {
+                    console.log(look);
                     if(look === null) {
                         console.log('user deleted but no team only lookup.')
                         res.status(200).json({
@@ -509,9 +511,68 @@ router.delete('/profile', checkAuth, (req, res, next) => {
                     } else if (look.teamLeader === 'yes') {
                         const teamLeaderTeam = look.teamName;
                         teams
-                            .findOneAndDelete({  })
+                            .findOneAndDelete({ teamName : teamLeaderTeam })
                             .exec()
-                            .then()
+                            .then((deletedTeam) => {
+                                console.log(deletedTeam);
+                                for(let i=0;i<deletedTeam.teamMembers.length;i++){
+                                    if (deletedTeam.teamMembers[i] !== req.userData.email){
+                                        lookups
+                                            .findOneAndUpdate({
+                                                email: deletedTeam.teamMembers[i]
+                                            }, {
+                                                $set: {
+                                                    teamName : ""
+                                                }
+                                            }, {
+                                                new: true
+                                            })
+                                            .exec()
+                                            .then((updatedDoc) => {
+                                                console.log("updated" + deletedTeam.teamMembers[i]);
+                                                console.log(updatedDoc);
+                                                deleteCount = deleteCount+1;
+                                                if (deleteCount == deletedTeam.teamMembers.length - 1) {
+                                                    res.status(200).json({
+                                                        status: 'success',
+                                                        message: "User deleted Successfully"
+                                                    });
+                                                }
+                                            })
+                                            .catch((err) => {
+                                                res.status(500).json({
+                                                    status: 'fail',
+                                                    message: err
+                                                });
+                                            });
+                                    }
+                                }
+                            })
+                            .catch((err) => {
+                                res.status(500).json({
+                                    status: 'fail',
+                                    message: err
+                                });
+                            });
+                    } else if (look.teamLeader === 'no') {
+                        // Not a Team Leader
+                        console.log(look);
+                        teams
+                            .findOneAndUpdate({
+                                teamName: look.teamName
+                            }, {
+                                $pull: {
+                                    teamMembers: req.userData.email
+                                }
+                            })
+                            .exec()
+                            .then(result => {
+                                console.log("Updated");
+                                res.status(200).json({
+                                    status: "success",
+                                    message: "user deleted Successfully"
+                                });
+                            })
                             .catch((err) => {
                                 res.status(500).json({
                                     status: 'fail',
@@ -519,7 +580,10 @@ router.delete('/profile', checkAuth, (req, res, next) => {
                                 });
                             });
                     } else {
-                        // Not a Team Leader
+                        res.status(200).json({
+                            status: 'fail',
+                            message: 'Some Error Occured!'
+                        });
                     }
                 })
                 .catch((err) => {

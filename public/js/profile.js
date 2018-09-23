@@ -182,7 +182,6 @@ $(document).ready(function () {
                 });
         }
         else if(id[0]=='d'){
-            alert("sexy");
             $.ajax({
                     type: 'GET',
                     url: requrl + '/api/deleteMember/' + $('#teamName').val()+'/'+$('#member' + idd).val(),
@@ -219,45 +218,51 @@ $(document).ready(function () {
             }
         })
         .done((result) => {
-            $("#fName").val(result.user[0].name);
-            $("#email").val(result.user[0].email);
-            $("#contact").val(result.user[0].contact);
-            $("#dob").val(result.user[0].dob);
-            $("#clgname").val(result.user[0].collegeName);
-            $("#clgcity").val(result.user[0].collegeCity);
-            $("#clgstate").val(result.user[0].collegeState);
-            $("#rollnum").val(result.user[0].collegeId);
-            $("#gradYear").val(result.user[0].gradYear);
-            $('#panID').val('PA'+result.user[0].panId);
-            $('#gender').val(result.user[0].gender.toUpperCase());
-
-            //console.log(result);
-             console.log(result);  
-            if(result.isTeamLeader === 'yes') {
-                // Team Leader
-                $('#teamName').val(result.teamDetails[0].teamName);
-                for(let i=0;i<result.teamDetails[0].teamMembers.length;i++){
-                    $(".team-details").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="member' + (i + 1) + '" value="' + result.teamDetails[0].teamMembers[i] + '" placeholder="' + result.teamDetails[0].teamMembers[i] + '" disabled><div class="description"><span><i id="d' + (i + 1) + '" class="fas fa-times reqq" style="padding-left:15%;padding-top: 20%;"></i></span></div></div>');
-                }
-                $(".team-details").append('<input type="button" name="Delete-Team" class="delete-team action-button" value="Delete Team"/>');
-            } else if(result.isTeamLeader === 'no') {
-                if (result.teamDetails.length > 0) {
-                    $('#teamName').val(result.teamDetails[0].teamName);
-                    for (let i = 0; i < result.teamDetails[0]['teamMembers'].length; i++) {
-                        $(".team-details").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="member' + (i + 1) + '" value="' + result.teamDetails[0].teamMembers[i] + '" placeholder="' + result.teamDetails[0].teamMembers[i] + '" disabled><div class="description"></div></div>');
-                    }
-                }
-                if (result['teamRequests'].length === 0 && result.teamDetails.length < 0) {
-                    $(".team-details").append('<h3 class="text-center">No Requests Recieved till now.</h3>')
-                }
-                for (let i = 0; i < result['teamRequests'].length; i++) {
-                    $(".team-details").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="request' + (i + 1) + '" value="' + result['teamRequests'][i] + '" placeholder="' + result['teamRequests'][i] + '" disabled><div class="description"><span><i id="c' + (i + 1) + '" class="fas fa-check reqq" style="padding-left:5%;padding-right: 15%;padding-top: 20%;"></i></span><span><i id="w' + (i + 1) + '" class="fas fa-times reqq" style="padding-left:15%;padding-right: 5%;padding-top: 20%;"></i></span></div></div>');
-                }
-                
+            if(result.status === 'fail') {
+                alert(result.message);
+                window.location.href = "login.html";
             } else {
-                window.location.href = 'profile.html';
+                $("#fName").val(result.user[0].name);
+                $("#email").val(result.user[0].email);
+                $("#contact").val(result.user[0].contact);
+                $("#dob").val(result.user[0].dob);
+                $("#clgname").val(result.user[0].collegeName);
+                $("#clgcity").val(result.user[0].collegeCity);
+                $("#clgstate").val(result.user[0].collegeState);
+                $("#rollnum").val(result.user[0].collegeId);
+                $("#gradYear").val(result.user[0].gradYear);
+                $('#panID').val('PA' + result.user[0].panId);
+                $('#gender').val(result.user[0].gender.toUpperCase());
+                //console.log(result);
+                console.log(result);
+                if (result.isTeamLeader === 'yes') {
+                    // Team Leader
+                    $('#teamName').val(result.teamDetails[0].teamName);
+                    for (let i = 0; i < result.teamDetails[0].teamMembers.length; i++) {
+                        $(".team-details").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="member' + (i + 1) + '" value="' + result.teamDetails[0].teamMembers[i] + '" placeholder="' + result.teamDetails[0].teamMembers[i] + '" disabled><div class="description"><span><i id="d' + (i + 1) + '" class="fas fa-times reqq" style="padding-left:15%;padding-top: 20%;"></i></span></div></div>');
+                    }
+                    $(".team-details").append('<input type="button" name="Delete-Team" class="delete-team action-button" value="Delete Team"/>');
+                } else if (result.isTeamLeader === 'no') {
+                    if (result.teamDetails.length > 0) {
+                        $('#teamName').val(result.teamDetails[0].teamName);
+                        for (let i = 0; i < result.teamDetails[0]['teamMembers'].length; i++) {
+                            $(".team-details").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="member' + (i + 1) + '" value="' + result.teamDetails[0].teamMembers[i] + '" placeholder="' + result.teamDetails[0].teamMembers[i] + '" disabled><div class="description"></div></div>');
+                        }
+                    }
+                    if (result['teamRequests'].length === 0 && result.teamDetails.length < 0) {
+                        $(".team-details").append('<h3 class="text-center">No Requests Recieved till now.</h3>')
+                    }
+                    for (let i = 0; i < result['teamRequests'].length; i++) {
+                        $(".team-details").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="request' + (i + 1) + '" value="' + result['teamRequests'][i] + '" placeholder="' + result['teamRequests'][i] + '" disabled><div class="description"><span><i id="c' + (i + 1) + '" class="fas fa-check reqq" style="padding-left:5%;padding-right: 15%;padding-top: 20%;"></i></span><span><i id="w' + (i + 1) + '" class="fas fa-times reqq" style="padding-left:15%;padding-right: 5%;padding-top: 20%;"></i></span></div></div>');
+                    }
+
+                } else {
+                    window.location.href = 'profile.html';
+                }
+                $("#d1").css({
+                    "display": "none"
+                });
             }
-            $("#d1").css({ "display": "none" });
         })
         .fail((err) => {
             //console.log(err);

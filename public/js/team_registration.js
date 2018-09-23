@@ -23,8 +23,20 @@ $(document).ready(function () {
     $('.teambutton').click((e) => {
         e.preventDefault();
         const teamName = $('#team').val().trim();
+        if(teamName=== null || teamName.length < 1){
+            alert("Don't leave any field Empty.");
+            location.reload(true);
+        }
         const teamPass = $('#pass').val();
+        if (teamPass === null || teamPass.length < 1) {
+            alert("Don't leave any field Empty.");
+            location.reload(true);
+        }
         const teamSize = $('#count').val();
+        if (teamSize === null || teamSize.length < 1) {
+            alert("Don't leave any field Empty.");
+            location.reload(true);
+        }
         var teamMembers = [], equity = 0;
         //teamMembers.push($('#leaderEmail').val().trim());
         for(let i=2;i<=teamSize;i++){
