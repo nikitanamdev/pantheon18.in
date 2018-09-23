@@ -393,7 +393,7 @@ router.get('/profile', checkAuth, (req, res, next) => {
             if (doc===null || doc.length < 1) {
                 res.status(500).json({
                     status: 'fail',
-                    message: "User Not allowed"
+                    message: "User Not Found"
                 });
             } else {
                 lookups
@@ -401,21 +401,50 @@ router.get('/profile', checkAuth, (req, res, next) => {
                     .exec()
                     .then((lookupdoc) => {
                         if(lookupdoc===null || lookupdoc.length < 1){
-                            res.status(200).json({
-                                status: 'success',
-                                message: "User found",
-                                user: doc
-                            });
-                        } else {
-                            const isTeamLeader = lookupdoc.teamLeader;
-                            const memberList = lookupdoc.requests;
+                            console.log('User found,but no team.');
                             res.status(200).json({
                                 status: 'success',
                                 message: "User found",
                                 user: doc,
-                                isTeamLeader: isTeamLeader,
-                                memberArray : memberList
+                                teamDetails: [],
+                                teamRequests: [],
+                                isTeamLeader : "no"
                             });
+                        } else {
+                            if(lookupdoc[0].teamName.length>0){
+                                console.log('User found and team present.');
+                                teams
+                                    .find({teamName : lookupdoc[0].teamName})
+                                    .exec()
+                                    .then((team) => {
+                                        console.log('Team Leader.');
+                                        res.status(200).json({
+                                            status: 'success',
+                                            message: "User found",
+                                            user: doc,
+                                            teamDetails: team,
+                                            teamRequests: [],
+                                            isTeamLeader: lookupdoc.teamLeader
+                                        });
+                                    })
+                                    .catch((err) => {
+                                        res.status(500).json({
+                                            status: 'fail',
+                                            message: err
+                                        });
+                                    });
+                            }
+                            else{
+                                console.log('User found but no team');
+                                res.status(200).json({
+                                    status: 'success',
+                                    message: "User found",
+                                    user: doc,
+                                    teamDetails: [],
+                                    teamRequests: lookupdoc.requests,
+                                    isTeamLeader: "no"
+                                });
+                            }
                         }
                     })
                     .catch(err => {
@@ -464,17 +493,27 @@ router.patch('/profile', checkAuth, (req, res, next) => {
 
 router.delete('/profile', checkAuth, (req, res, next) => {
     users
-        .remove({
-            email: req.userData.email
-        })
+        .remove({email: req.userData.email})
         .exec()
         .then(result => {
-            res.status(200).json({
-                message: "User Deleted!"
-            });
+            lookups
+                .remove({email: req.userData.email})
+                .exec()
+                .then((look) => {
+                    res.status(200).json({
+                        message: "User Deleted!"
+                    });
+                })
+                .catch((err) => {
+                    res.status(500).json({
+                        status: 'fail',
+                        message: err
+                    });
+                });
         })
         .catch(err => {
             res.status(500).json({
+                status: 'fail',
                 message: err
             });
         });
@@ -485,7 +524,7 @@ router.get('/preTeamRegistration', checkAuth, (req, res, next) => {
         .find({ email: req.userData.email })
         .exec()
         .then((lookupResult)=>{
-            
+
             if(lookupResult===null || lookupResult.length < 1){
                 console.log("andar");
                 // user can make the team
@@ -868,7 +907,6 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                             }
                         })
                         .catch(err => {
-                            console.log("ghusa bdhhu");
                             console.log(err);
                             return res.status(500).json({
                                 status: 'fail',
@@ -891,14 +929,256 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
             });
         });
 });
+router.patch('/deleteMember/:teamN/:ema',checkAuth,(req, res, next) => {
+    const teamEdit = req.params.teamN;
+    const memberEmail = req.params.ema;
+    teams
+        .update(
+                {teamName : teamEdit},
+                {
+                    $pull : { teamMembers : memberEmail }
+                }
+        )
+        .exec()
+        .then((result) => {
+            console.log('Team edited');
+            lookups
+                .update(
+                    {email : memberEmail},
+                    {
+                        $set : {
+                                    teamName : "",
+                                    teamPoints : 0
+                                }
+                    }
+                )
+                .exec()
+                .then((look) => {
+                    console.log('Lookup edited');
+                    return res.status(200).json({
+                        status: 'success',
+                        message: "Team Member with email "+memberEmail+"has been removed."
+                    });
+                })
+                .catch((err) => {
+                    console.log(error);
+                    res.status(500).json({
+                        status: 'fail',
+                        message: error
+                    });
+                });
+        })
+        .catch((err) => {
+            console.log(error);
+            res.status(500).json({
+                status: 'fail',
+                message: error
+            });
+        });
+});
 
+router.patch('/deleteRequest/:teamN',checkAuth,(req, res, next) => {
+    const teamRequestRemove = req.params.teamN;
+    lookups
+        .update(
+            { email : req.userData.email },
+            {
+                $pull : { requests : teamRequestRemove }
+            }
+        )
+        .exec()
+        .then((result) => {
+            console.log('Request deleted.Lookup updated.');
+            return res.status(200).json({
+                status: 'success',
+                message: 'Request Deleted'
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: 'fail',
+                message: err
+            });
+        })
+});
+
+router.patch('/acceptRequest/:teamN',checkAuth,(req, res, next) => {
+    const teamRequestAccept = req.params.teamN;
+    lookups
+        .update(
+            { email : req.userData.email },
+            {
+                $set : {
+                    teamName : teamRequestAccept ,
+                    requests : []
+                }
+            }
+        )
+        .exec()
+        .then((result) => {
+            console.log('Request accepted.Lookup updated.');
+            teams
+                .update(
+                    {teamName : teamRequestAccept},
+                    {
+                        $addToSet : { teamMembers : req.userData.email }
+                    }
+                )
+                .then((team) => {
+                    console.log('Team updated.');
+                    return res.status(200).json({
+                        status: 'success',
+                        message: 'You are added to Team'+teamRequestAccept
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                    res.status(500).json({
+                        status: 'fail',
+                        message: err
+                    });
+                });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: 'fail',
+                message: err
+            });
+        })
+});
+
+router.post('/eventRegister', (req, res, next) => {
+        teams
+            .find({teamName : req.body.teamName})
+            .exec()
+            .then((team) => {
+                if(team === null || team.length < 1){
+                    res.status(200).json({
+                        status: "fail",
+                        message: "No such Team present!"
+                    });
+                }
+                else if(team[0].eventsRegistered % req.body.eventValue == 0){
+                    res.status(200).json({
+                        status: "fail",
+                        message: "Team is already registered in this event"
+                    });
+                }
+                else{
+                    bcrypt.compare(req.body.password, team[0].teamPassword, (err, result) => {
+                        if(err) {
+                            console.log(err);
+                            res.status(500).json({
+                                status: 'fail',
+                                message: err
+                            })
+                        } else{
+                            if (result) {
+                                teams
+                                    .update({
+                                        teamName : team[0].teamName
+                                    }, {
+                                        $mul:{
+                                            eventsRegistered : req.body.eventValue
+                                        }
+                                    })
+                                    .exec()
+                                    .then((teamResult) => {
+                                        console.log(teamResult);
+                                        res.status(200).json({
+                                            status: 'success',
+                                            message: "Team registered for event!"
+                                        });
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                        res.status(500).json({
+                                            status: 'fail',
+                                            message: error
+                                        });
+                                    });
+                            } else {
+                                return res.status(200).json({
+                                    status: 'fail',
+                                    message: 'Password Matching Error'
+                                });
+                            }
+                        }
+                    });
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json({
+                    status: "fail",
+                    message: err
+                });
+            });
+});
+
+router.delete('/deleteTeam/:teamN',checkAuth,(req, res, next) => {
+    const teamDelete = req.params.teamN;
+    teams
+        .findOneAndDelete({ teamName : teamDelete})
+        .exec()
+        .then((deletedDoc) => {
+            if(deletedDoc === null){
+                console.log('Team not present');
+                return res.status(200).json({
+                    status: 'fail',
+                    message: 'No team present by this name.'
+                });
+            }
+            console.log('Team Deleted.Now lookups will be updated');
+            for(let i=0;i<deletedDoc['teamMembers[]'].length;i++){
+                const teamMember = deletedDoc['teamMembers[]'][i];
+                lookups
+                    .update(
+                        { email : teamMember},
+                        {
+                            $set : {
+                                teamName : "",
+                                teamPoints : 0,
+                                teamLeader : "no"
+                            }
+                        }
+                    )
+                    .exec()
+                    .then((result) => {
+                        console.log('Member lookup updated');
+                        if(i === deletedDoc['teamMembers[]'].length -1){
+                            return res.status(200).json({
+                                status: 'success',
+                                message: 'Team Deleted successfully.'
+                            });
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        res.status(500).json({
+                            status: "fail",
+                            message: err
+                        });
+                    });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
 // router.post('/fetchTeam', checkAuth, (req, res, next) => {
 //     lookups
 //         .find({ email: req.userData.email })
 //         .exec()
 //         .then((result) => {
 //             if(result === null || result.length < 1){
-                    
+
 //                     users
 //                         .find({
 //                             email: result[0].email
@@ -925,7 +1205,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
 //                             });
 //                         });
 //             } else {
-                
+
 //                 teams
 //                     .find({ teamName: result[0].teamName })
 //                     .exec()
@@ -1032,56 +1312,5 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
 //                 message: err
 //             });
 //         });
-// });
-// router.post('/eventRegister', (req, res, next) => {
-//         teams
-//             .find({teamName : req.body.teamName})
-//             .exec()
-//             .then((team) => {
-//                 if(team === null || team.length < 1){
-//                     res.status(200).json({
-//                         status: "fail",
-//                         message: "No such Team present!"
-//                     });
-//                 }
-//                 else if(team[0].eventsRegistered % req.body.eventValue == 0){
-//                     res.status(200).json({
-//                         status: "fail",
-//                         message: "Team is already registered in this event"
-//                     });
-//                 }
-//                 else{
-//                     teams
-//                         .update({
-//                             teamName : team[0].teamName
-//                         }, {
-//                             $mul:{
-//                                 eventsRegistered : req.body.eventValue
-//                             }
-//                         })
-//                         .exec()
-//                         .then((result) => {
-//                             console.log(result);
-//                             res.status(200).json({
-//                                 status: 'success',
-//                                 message: "Team registered for event!"
-//                             });
-//                         })
-//                         .catch((error) => {
-//                             console.log(error);
-//                             res.status(500).json({
-//                                 status: 'fail',
-//                                 message: error
-//                             });
-//                         });
-//                 }
-//             })
-//             .catch((err) => {
-//                 console.log(err);
-//                 res.status(500).json({
-//                     status: "fail",
-//                     message: err
-//                 });
-//             });
 // });
 module.exports = router;
