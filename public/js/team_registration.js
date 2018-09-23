@@ -60,11 +60,11 @@ $(document).ready(function () {
             }
             else{
                 alert(res.message);
-                //window.location.href = 'team_registration.html';
+                window.location.href = 'index.html';
             }
         }).fail((err) => {
             console.log(err);
-            //window.location.href = 'team_registration.html';
+            window.location.href = 'index.html';
         });
     })
 });
