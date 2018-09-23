@@ -16,7 +16,6 @@ $(document).ready(function () {
             if(res.status === 'success'){
                 const token = 'bearer ' +  res.token;
                 localStorage.setItem('token', token);
-                //console.log(token);
                 window.location.href = 'profile.html'
             }
             else{
@@ -24,7 +23,7 @@ $(document).ready(function () {
                 window.location.href = 'login.html';
             }
         }).fail((err) => {
-            //console.log(err);
+            alert('Some error occured.Please try again.');
             window.location.href = 'login.html';
         });
     });

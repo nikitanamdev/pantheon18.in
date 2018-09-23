@@ -36,8 +36,12 @@
     width: auto;
 }
 .info{
-    text-align: center;
     background-color: #4DAA57;
+    border: none;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: auto;
+    height:auto;
 }
 .info h1,.details h1{
     font-family: 'Abril Fatface', cursive;
@@ -97,6 +101,22 @@
 }
 input[type="email"]:disabled{
     opacity: 0.8;
+}
+a:active{
+    text-decoration: none;
+    color:#DBD825;
+}
+a:hover{
+    text-decoration: none;
+    color:#DBD825;
+}
+a:visited{
+    text-decoration: none;
+    color:#DBD825;
+}
+a:default{
+    text-decoration: none;
+    color:#DBD825;
 }
 @media (max-width:545px) {
     .info p{

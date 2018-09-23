@@ -1,18 +1,5 @@
 const requrl = 'http://localhost:5000';
-$('.readmore').click(function () {
-    $('.content').toggleClass('full');
-    $('.header').toggleClass('collapse');
-    $('.readmore').toggle();
-});
-$('.closebttn').click(function () {
-    $('.content').removeClass('full');
-    $('.header').removeClass('collapse');
-    $('.readmore').toggle();
-});
 
-/**
- * Disables keypress events in this page
- */
 $('#msform').on('keyup keypress', function (e) {
     var keyCode = e.keyCode || e.which;
     if (keyCode === 13) {
@@ -36,7 +23,6 @@ function enableSubmit(){
 $(".next").click(function () {
 
     if(validate_form($(this).val())===false){
-        //console.log($(this).val());
         return;
     }
 
@@ -186,24 +172,21 @@ $(".submit").click(function () {
         url: requrl + "/api/submit",
         data: payload
     }).done((data) => {
-        //console.log(data);
         if (data.status === 'success') {
             alert("You have been successfully registered.")
-            // window redirect code
             location.reload(true);
         } else {
             alert(data.message);
         }
     }).fail((err) => {
-        //console.log(err);
-        alert("Something went wrong!! Please try again.")
+        alert('Some error occured.Please try again.');
+        location.reload(true);
     });
     return false;
 });
 
 function validate_form(valCheck) {
     if(valCheck==="Next") {
-        //console.log('good');
         var error=0;
         var pName=$("#fName").val();
 
@@ -268,13 +251,11 @@ function validate_form(valCheck) {
         }).done((data)=>{
             if(data.status === 'exists') {
                 alert(data.message);
-                // windows redirect code
                 location.reload(true);
             }
             return true;
         }).fail((err) => {
-            console.log(err);
-            alert("Some thing went wrong!!! PLease try again.");
+            alert('Some error occured.Please try again.');
             location.reload(true);
         });
     }
@@ -303,7 +284,6 @@ function validate_form(valCheck) {
             url: requrl + '/api/verify',
             data: payload
         }).done((data)=>{
-            //console.log(data);
             if(data.status === 'fail'){
                 $("#emailotp").val("");
                 $("#mobileotp").val("");
@@ -314,13 +294,11 @@ function validate_form(valCheck) {
             }
 
         }).fail((err) => {
-            //console.log(err);
-            alert("Some thing went wrong!!! PLease try again.");
+            alert('Some error occured.Please try again.');
             location.reload(true);
         });
     }
     else {
-        //window redirect code
         location.reload(true);
     }
 }
@@ -344,5 +322,3 @@ $("#clg2").click(function(){
     $("#clgcity").prop("disabled",false);
     $("#clgstate").prop("disabled",false);
 });
-/*
-*/
