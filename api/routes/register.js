@@ -295,7 +295,7 @@ router.post('/submit', (req, res, next) => {
                             .then((fresult) => {
                                 res.status(200).json({
                                     status: "success",
-                                    message: "Successfully Registered!!"
+                                    message: "Congratulations! You have been Successfully Registered!!"
                                 });
                             })
                             .catch((err) => {

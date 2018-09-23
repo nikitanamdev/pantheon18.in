@@ -68,7 +68,10 @@ body, html{
   color:#fff;
   padding:20px;
 }
-
+.bb {
+  background-color: #000;
+  padding: 20px;
+}
 .ptext .border.trans{
   background-color:transparent;
 }
@@ -77,4 +80,25 @@ body, html{
   .pimg1, .pimg2, .pimg3, .pimg4{
     background-attachment:scroll;
   }
+}
+
+.input-box {
+  margin-top: 1.5vh;
+  margin-bottom: 1.5vh;
+  width: 300px;
+  padding : 10px;
+  font-size:13px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.register-button {
+  width:100px;
+  color:white;
+  background-color: #FC4502;
+  border:none;
+  padding:10px;
+  border-radius:3px;
+  font-weight: bold;
 }
