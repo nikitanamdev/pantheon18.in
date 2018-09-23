@@ -98,10 +98,17 @@ i::before{
 #forms .delete{
     background: #FC1F1B;
 }
+#forms .logout {
+    background: #135d99e3;
+}
 #forms .action-button:hover, #forms .action-button:focus {
     box-shadow: 0 0 0 2px #83858C,
     0 0 0 3px #52E814;
 }
+#forms .logout:hover, #forms .logout:focus {
+    box-shadow: 0 0 0 2px #83858C, 0 0 0 3px #135d99e3;
+}
+
 #forms .delete:hover, #forms .delete:focus {
     box-shadow: 0 0 0 2px #83858C, 0 0 0 3px #FC1F1B;
 }
@@ -122,4 +129,19 @@ i::before{
     font-family:'Montserrat', sans-serif;
     background-color: #001011;
     color: white;
+}
+.delete-team {
+    background: #FC1F1B;
+    width: 100px;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin-top: 20px;
+    box-shadow: none;
+}
+.delete-team:hover, .delete-team:focus {
+    box-shadow: 0 0 0 2px #83858C, 0 0 0 3px #FC1F1B;
 }

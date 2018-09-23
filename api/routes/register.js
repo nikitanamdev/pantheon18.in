@@ -507,22 +507,19 @@ router.delete('/profile', checkAuth, (req, res, next) => {
                             message: "User Deleted"
                         });
                     } else if (look.teamLeader === 'yes') {
+                        const teamLeaderTeam = look.teamName;
                         teams
-                            .findOneAndDelete({ teamName: look.teamName })
+                            .findOneAndDelete({  })
                             .exec()
-                            .then((deleteddoc) => {
-                                console.log('user deleted with team and lookup.');
-                                res.status(200).json({
-                                    status: 'success',
-                                    message: "User Deleted"
-                                });
-                            })
+                            .then()
                             .catch((err) => {
                                 res.status(500).json({
                                     status: 'fail',
                                     message: err
                                 });
                             });
+                    } else {
+                        // Not a Team Leader
                     }
                 })
                 .catch((err) => {
@@ -582,7 +579,7 @@ router.get('/preTeamRegistration', checkAuth, (req, res, next) => {
                     // user can't make team
                     res.status(200).json({
                         status: 'fail',
-                        message: "User can't make team."
+                        message: "You are already in a Team."
                     });
                 }
             }
@@ -1128,8 +1125,9 @@ router.delete('/deleteTeam/:teamN', checkAuth, (req, res, next) => {
                 });
             } else {
                 console.log('Team Deleted.Now lookups will be updated');
-                for (let i = 0; i < deletedDoc['teamMembers[]'].length; i++) {
-                    const teamMember = deletedDoc['teamMembers[]'][i];
+                console.log(deletedDoc);
+                for (let i = 0; i < deletedDoc['teamMembers'].length; i++) {
+                    const teamMember = deletedDoc['teamMembers'][i];
                     lookups
                         .update({
                             email: teamMember
@@ -1144,7 +1142,7 @@ router.delete('/deleteTeam/:teamN', checkAuth, (req, res, next) => {
                         .then((result) => {
                             console.log('Member lookup updated');
                             countUpdates = countUpdates + 1;
-                            if (i === deletedDoc['teamMembers[]'].length - 1 || countUpdates === deletedDoc['teamMembers[]'].length) {
+                            if (i === deletedDoc['teamMembers'].length - 1 || countUpdates === deletedDoc['teamMembers'].length) {
                                 return res.status(200).json({
                                     status: 'success',
                                     message: 'Team Deleted successfully.'

@@ -11,6 +11,7 @@ $(document).ready(function () {
         })
         .done((result) => {
             localStorage.setItem('token','');
+            alert("User successfully Deleted.");
             window.location.href = 'index.html';
             //console.log(result);
             // console.log('deleted');
@@ -96,6 +97,36 @@ $(document).ready(function () {
         $("#clgstate").removeAttr('disabled');
         $("#rollnum").removeAttr('disabled');
         $("#gradYear").removeAttr('disabled');
+    });
+    $(".logout").click((e)=>{
+        e.preventDefault();
+        localStorage.setItem('token', '');
+        alert("User has been successfully Logged Out.");
+        window.location.href = "index.html";
+    });
+
+    $(document).on("click",".delete-team",function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'DELETE',
+            url: requrl + '/api/deleteTeam/' + $('#teamName').val(),
+            headers: {
+                'token': localStorage.getItem('token')
+            }
+        })
+        .done((result) => {
+            if(result.status === 'success'){
+                alert(result.message);
+                window.location.href = 'profile.html';
+            } else {
+                alert(result.message);
+                window.location.href = 'profile.html';
+            }
+        })
+        .fail((err) => {
+            alert("Some error occured. Try Again later.")
+            window.location.href = 'index.html';
+        });
     });
     $(document).on("click" ,'.reqq', function(){
         const id= this.id;
@@ -200,14 +231,15 @@ $(document).ready(function () {
             $('#panID').val('PA'+result.user[0].panId);
             $('#gender').val(result.user[0].gender.toUpperCase());
 
-            console.log(result);
-            // console.log(result.teamDetails[0].teamMembers[0]);  
+            //console.log(result);
+             console.log(result);  
             if(result.isTeamLeader === 'yes') {
                 // Team Leader
                 $('#teamName').val(result.teamDetails[0].teamName);
                 for(let i=0;i<result.teamDetails[0].teamMembers.length;i++){
                     $(".team-details").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="member' + (i + 1) + '" value="' + result.teamDetails[0].teamMembers[i] + '" placeholder="' + result.teamDetails[0].teamMembers[i] + '" disabled><div class="description"><span><i id="d' + (i + 1) + '" class="fas fa-times reqq" style="padding-left:15%;padding-top: 20%;"></i></span></div></div>');
                 }
+                $(".team-details").append('<input type="button" name="Delete-Team" class="delete-team action-button" value="Delete Team"/>');
             } else if(result.isTeamLeader === 'no') {
                 if (result.teamDetails.length > 0) {
                     $('#teamName').val(result.teamDetails[0].teamName);

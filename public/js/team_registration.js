@@ -17,7 +17,7 @@ $(document).ready(function () {
         }
     }).fail((err) => {
         console.log(err);
-        //window.location.href = 'team_registration.html';
+        window.location.href = 'team_registration.html';
     });
 
     $('.teambutton').click((e) => {
