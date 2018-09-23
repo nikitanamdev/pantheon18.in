@@ -97,86 +97,62 @@ $(document).ready(function () {
         $("#rollnum").removeAttr('disabled');
         $("#gradYear").removeAttr('disabled');
     });
+    $(document).on("click" ,'.reqq', function(){
+        const id= this.id;
+        const idd = id.substring(1,id.length);
+        if(id[0]=='c'){
+             $.ajax({
+                     type: 'GET',
+                     url: requrl + '/api/acceptRequest/' + $('#request'+idd).val(),
+                     headers: {
+                         'token': localStorage.getItem('token')
+                     }
+                 })
+                 .done((result) => {
+                     if (result.status === 'fail') {
+                         alert(result.message);
+                         location.reload(true);
+                     } else if (result.status === 'success') {
+                         alert(result.message);
+                         location.reload(true);
+                     } else {
+                         window.location.href = 'index.html';
+                     }
+                 })
+                 .fail((err) => {
+                     //console.log(err);
+                     alert("Some error occured. Try Again later.")
+                     window.location.href = 'profile.html';
+                 });
+        }
+        else{
+            $.ajax({
+                    type: 'GET',
+                    url: requrl + '/api/deleteRequest/' + $('#request' + idd).val(),
+                    headers: {
+                        'token': localStorage.getItem('token')
+                    }
+                })
+                .done((result) => {
+                    if (result.status === 'fail') {
+                        alert(result.message);
+                        location.reload(true);
+                    } else if (result.status === 'success') {
+                        alert(result.message);
+                        location.reload(true);
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                })
+                .fail((err) => {
+                    //console.log(err);
+                    alert("Some error occured. Try Again later.")
+                    window.location.href = 'profile.html';
+                });
+        }
+        
+    });
 
-    function accept(teamName) {
-        $.ajax({
-            type: 'GET',
-            url: requrl + '/api/acceptRequest/'+ teamName,
-            headers: {
-                'token': localStorage.getItem('token')
-            }
-        })
-        .done((result) =>{
-            if(result.status === 'fail' ){
-                alert(result.message);
-                location.reload(true);
-            } else if(result.status === 'success' ){
-                alert(result.message);
-                location.reload(true);
-            } else {
-                window.location.href = 'index.html';
-            }
-        })
-        .fail((err) => {
-            //console.log(err);
-            alert("Some error occured. Try Again later.")
-            window.location.href = 'profile.html';
-        });
-    }
-
-    function reject(teamName) {
-        $.ajax({
-                type: 'GET',
-                url: requrl + '/api/deleteRequest/' + teamName,
-                headers: {
-                    'token': localStorage.getItem('token')
-                }
-            })
-            .done((result) => {
-                if (result.status === 'fail') {
-                    alert(result.message);
-                    location.reload(true);
-                } else if (result.status === 'success') {
-                    alert(result.message);
-                    location.reload(true);
-                } else {
-                    window.location.href = 'index.html';
-                }
-            })
-            .fail((err) => {
-                //console.log(err);
-                alert("Some error occured. Try Again later.")
-                window.location.href = 'profile.html';
-            });
-    }
-
-    // function reject(teamName) {
-    //     $.ajax({
-    //             type: 'PATCH',
-    //             url: requrl + '/api/deleteRequest/' + teamName,
-    //             headers: {
-    //                 'token': localStorage.getItem('token')
-    //             }
-    //         })
-    //         .done((result) => {
-    //             if (result.status === 'fail') {
-    //                 alert(result.message);
-    //                 location.reload(true);
-    //             } else if (result.status === 'success') {
-    //                 alert(result.message);
-    //                 location.reload(true);
-    //             } else {
-    //                 window.location.href = 'index.html';
-    //             }
-    //         })
-    //         .fail((err) => {
-    //             //console.log(err);
-    //             alert("Some error occured. Try Again later.")
-    //             window.location.href = 'profile.html';
-    //         });
-    // }
-
-    
 
     $.ajax({
             type: 'GET',
@@ -210,7 +186,7 @@ $(document).ready(function () {
                     $(".jumbotron").append('<h3 class="text-center">No Requests Recieved till now.</h3>')
                 }
                 for (let i = 0; i < result['teamRequests'].length; i++) {
-                    $(".jumbotron").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="request' + (i + 1) + '" value="' + result['teamRequests'][i] + '" placeholder="' + result['teamRequests'][i] + '" disabled><div class="description"><span><i class="fas fa-check" style="padding-left:5%;padding-right: 15%;padding-top: 20%;" onclick="accept(' + result['teamRequests'][i] + ')"></i></span><span><i class="fas fa-times" style="padding-left:15%;padding-right: 5%;padding-top: 20%;" onclick="reject(' + result['teamRequests'][i] + ')"></i></span></div></div>');
+                    $(".jumbotron").append('<div class="input-container"><i class="fa fa-chevron-right icon" aria-hidden="true"></i><input type="text" name="member" class="input-field" id="request' + (i + 1) + '" value="' + result['teamRequests'][i] + '" placeholder="' + result['teamRequests'][i] + '" disabled><div class="description"><span><i id="c' + (i + 1) + '" class="fas fa-check reqq" style="padding-left:5%;padding-right: 15%;padding-top: 20%;"></i></span><span><i id="w' + (i + 1) + '" class="fas fa-times reqq" style="padding-left:15%;padding-right: 5%;padding-top: 20%;"></i></span></div></div>');
                 }
             } else {
                 window.location.href = 'profile.html';

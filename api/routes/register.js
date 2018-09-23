@@ -717,7 +717,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                                                         _id: mongoose.Types.ObjectId(),
                                                                                         teamName: req.body.teamName,
                                                                                         teamPassword: hash,
-                                                                                        teamMembers: [],
+                                                                                        teamMembers: memberArray,
                                                                                     });
                                                                                     newTeam
                                                                                         .save()
@@ -813,7 +813,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                                                         _id: mongoose.Types.ObjectId(),
                                                                                         teamName: req.body.teamName,
                                                                                         teamPassword: hash,
-                                                                                        teamMembers: [],
+                                                                                        teamMembers: memberArray,
                                                                                     });
                                                                                     newTeam
                                                                                         .save()
