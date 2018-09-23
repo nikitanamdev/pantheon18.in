@@ -13,11 +13,11 @@ $(document).ready(function () {
         }
         else{
             alert(res.message);
-            //window.location.href = 'team_registration.html';
+            window.location.href = 'index.html';
         }
     }).fail((err) => {
-        console.log(err);
-        window.location.href = 'team_registration.html';
+        alert(res.message);
+        window.location.href = 'index.html';
     });
 
     $('.teambutton').click((e) => {
@@ -38,7 +38,6 @@ $(document).ready(function () {
             location.reload(true);
         }
         var teamMembers = [], equity = 0;
-        //teamMembers.push($('#leaderEmail').val().trim());
         for(let i=2;i<=teamSize;i++){
             const newMemberValue = $('#member' + i).val().trim();
             for(let j=0;j<teamMembers.length;j++){
@@ -53,7 +52,6 @@ $(document).ready(function () {
             alert("Enter Unique Members.");
             return false;
         }
-        console.log(teamMembers);
         $.ajax({
             type: 'POST',
             url: requrl + '/api/teamRegister',
@@ -66,7 +64,6 @@ $(document).ready(function () {
                 teamMembers : teamMembers
             }
         }).done((res) => {
-            console.log(res);
             if(res.status === 'success'){
                 alert(res.message);
                 window.location.href = 'index.html';
@@ -76,7 +73,7 @@ $(document).ready(function () {
                 window.location.href = 'index.html';
             }
         }).fail((err) => {
-            console.log(err);
+            alert(res.message);
             window.location.href = 'index.html';
         });
     })
