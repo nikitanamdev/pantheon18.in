@@ -1,4 +1,4 @@
-const requrl = 'http://localhost:5000';
+const requrl = "https://www.pantheon18.in";
 
 $('#msform').on('keyup keypress', function (e) {
     var keyCode = e.keyCode || e.which;

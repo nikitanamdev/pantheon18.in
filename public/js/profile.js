@@ -1,4 +1,4 @@
-const requrl = 'http://localhost:5000';
+const requrl = "https://www.pantheon18.in";
 $(document).ready(function () {
     $('.delete').click((e) => {
         e.preventDefault();
