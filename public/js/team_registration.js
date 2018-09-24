@@ -38,7 +38,7 @@ $(document).ready(function () {
             location.reload(true);
         }
         var teamMembers = [], equity = 0;
-        for(let i=2;i<=teamSize;i++){
+        for(let i=1;i<=teamSize;i++){
             const newMemberValue = $('#member' + i).val().trim();
             for(let j=0;j<teamMembers.length;j++){
                 if(newMemberValue === teamMembers[j]){
