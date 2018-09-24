@@ -73,7 +73,7 @@ i::before{
     background: rgba(232, 232, 232, 0.6);
 }
 .jumbotron{
-    width: 800px;
+    width: 80vw;
     height:auto;
     margin:auto;
     background-color:#83858C !important;
