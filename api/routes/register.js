@@ -259,7 +259,7 @@ router.post('/submit', (req, res, next) => {
             if(doc===null || doc.length<1){
                 res.status(500).json({
                     status: 'fail',
-                    msg: 'Some Error Occured'
+                    msg: 'You have not been registered. Please try again.'
                 });
             } else {
                 console.log(doc);
