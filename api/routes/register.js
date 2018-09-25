@@ -663,7 +663,8 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
         .then((teamSearchResult)=>{
             if(teamSearchResult===null || teamSearchResult.length < 1){
                 console.log(req.body);
-                if (req.body['teamMembers[]'][0] === "flag") {
+                if (req.body['teamMembers[]'].length == 1) {
+                    console.log(req.body);
                     lookups
                         .find({
                             email: req.userData.email
