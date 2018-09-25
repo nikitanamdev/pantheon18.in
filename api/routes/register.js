@@ -11,7 +11,7 @@ const config = require('../config.json');
 const counter = require('./../models/counters.js');
 const lookups = require('./../models/lookups');
 const teams = require('./../models/teams');
-
+const Events = require('./../events.json');
 
 router.post('/register', (req, res, next) => {
     //captcha response
@@ -1305,6 +1305,23 @@ router.post('/eventRegister', (req, res, next) => {
         });
 });
 
+router.get('/events', (req, res, next) => {
+    res.status(200).json({
+        status: 'success',
+        message: "Events Data retrieval successful",
+        events: Events
+    });
+});
+
+router.get('/events/:eventName', (req, res, next) => {
+    const event = req.params.eventName;
+    const eventData = Events[event];
+    res.status(200).json({
+        status: "success",
+        message: "Event " + event + " fetched successfully",
+        event: eventData
+    });
+});
 
 module.exports = router;
 
