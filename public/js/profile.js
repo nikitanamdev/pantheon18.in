@@ -105,7 +105,7 @@ $(document).ready(function () {
         e.preventDefault();
         $.ajax({
             type: 'DELETE',
-            url: requrl + '/api/deleteTeam/' + $('#teamName').val(),
+            url: requrl + '/api/deleteTeam/' + $('#teamName').val().trim(),
             headers: {
                 'token': localStorage.getItem('token')
             }
@@ -127,6 +127,7 @@ $(document).ready(function () {
     $(document).on("click" ,'.reqq', function(){
         const id= this.id;
         const idd = id.substring(1,id.length);
+        console.log(requrl + '/api/acceptRequest/' + $('#request' + idd).val().trim());
         if(id[0]=='c'){
              $.ajax({
                      type: 'GET',
