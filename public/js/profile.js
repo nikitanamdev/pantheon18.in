@@ -127,7 +127,7 @@ $(document).ready(function () {
     $(document).on("click" ,'.reqq', function(){
         const id= this.id;
         const idd = id.substring(1,id.length);
-        console.log(requrl + '/api/acceptRequest/' + $('#request' + idd).val().trim());
+        //console.log(requrl + '/api/acceptRequest/' + $('#request' + idd).val().trim());
         if(id[0]=='c'){
              $.ajax({
                      type: 'GET',
