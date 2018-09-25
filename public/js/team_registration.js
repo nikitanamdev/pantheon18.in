@@ -33,6 +33,7 @@ $(document).ready(function () {
             location.reload(true);
         }
         const teamSize = $('#count').val();
+        console.log(teamSize);
         if (teamSize === null || teamSize.length < 1) {
             alert("Don't leave any field Empty.");
             location.reload(true);
@@ -52,9 +53,9 @@ $(document).ready(function () {
             alert("Enter Unique Members.");
             return false;
         }
-        //console.log(teamMembers);
-        if(teamSize === 1) {
-            teamMembers = ["flag"];
+        console.log(teamMembers);
+        if(teamSize == 1) {
+            teamMembers.push("flag");
         }
         $.ajax({
             type: 'POST',
