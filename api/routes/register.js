@@ -661,11 +661,9 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
         .find({ teamName: req.body.teamName })
         .exec()
         .then((teamSearchResult)=>{
-            if(teamSearchResult===null || teamSearchResult.length < 1){
-                console.log(req.body['teamMembers[]']);
-                
+            if ((teamSearchResult === null || teamSearchResult.length < 1) && req.body['teamMembers[]'].length == 1) {
+                console.log(req.body['teamMembers[]']); 
                 console.log(req.body['teamMembers[]'].length);
-                if (req.body['teamMembers[]'].length == 1) {
                     console.log(req.body);
                     lookups
                         .find({
@@ -792,9 +790,10 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                 message: err
                             });
                         });
-                } else {
-                    for (let i = 0; i < req.body['teamMembers[]'].length; i++) {
+                } else if (teamSearchResult === null || teamSearchResult.length < 1) {
+                    for (let i = 0; i < req.body['teamMembers[]'].length-1; i++) {
                         const participant = req.body['teamMembers[]'][i];
+                        console.log(participant);
                         users
                             .find({
                                 email: participant
@@ -826,7 +825,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                     .save()
                                                     .then((lookupUpdate) => {
                                                         console.log("Lookup updated. Request sent to user : " + participant);
-                                                        if (i === req.body['teamMembers[]'].length - 1) {
+                                                        if (i === req.body['teamMembers[]'].length - 2) {
                                                             lookups
                                                                 .find({
                                                                     email: participant
@@ -978,7 +977,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                                     .exec()
                                                     .then((requestuser) => {
                                                         console.log("request sent to user : " + participant);
-                                                        if (i === req.body['teamMembers[]'].length - 1) {
+                                                        if (i === req.body['teamMembers[]'].length - 2) {
                                                             lookups
                                                                 .find({
                                                                     email: participant
@@ -1133,7 +1132,6 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                 });
                             });
                     }
-                }
                 
             } else {
                 return res.status(200).json({

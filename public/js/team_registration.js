@@ -33,7 +33,6 @@ $(document).ready(function () {
             location.reload(true);
         }
         const teamSize = $('#count').val();
-        console.log(teamSize);
         if (teamSize === null || teamSize.length < 1) {
             alert("Don't leave any field Empty.");
             location.reload(true);
@@ -56,7 +55,9 @@ $(document).ready(function () {
         if(teamSize == 1) {
             teamMembers.push("f");
         }
-        console.log(teamMembers);
+        else{
+            teamMembers.push("qwerty");
+        }
         $.ajax({
             type: 'POST',
             url: requrl + '/api/teamRegister',
