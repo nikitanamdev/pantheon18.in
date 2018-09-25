@@ -147,6 +147,7 @@ $(document).ready(function () {
                      }
                  })
                  .fail((err) => {
+                     console.log(err);
                      alert('Some error occured.Please try again.');
                      window.location.href = 'profile.html';
                  });
