@@ -53,10 +53,10 @@ $(document).ready(function () {
             alert("Enter Unique Members.");
             return false;
         }
-        console.log(teamMembers);
         if(teamSize == 1) {
             teamMembers.push("flag");
         }
+        console.log(teamMembers);
         $.ajax({
             type: 'POST',
             url: requrl + '/api/teamRegister',
