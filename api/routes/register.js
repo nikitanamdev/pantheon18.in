@@ -11,7 +11,7 @@ const config = require('../config.json');
 const counter = require('./../models/counters.js');
 const lookups = require('./../models/lookups');
 const teams = require('./../models/teams');
-const Events = require('./../events.json');
+//const Events = require('./../events.json');
 
 router.post('/register', (req, res, next) => {
     //captcha response
