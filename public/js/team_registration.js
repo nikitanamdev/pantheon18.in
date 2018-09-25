@@ -52,6 +52,7 @@ $(document).ready(function () {
             alert("Enter Unique Members.");
             return false;
         }
+        console.log(teamMembers);
         $.ajax({
             type: 'POST',
             url: requrl + '/api/teamRegister',
