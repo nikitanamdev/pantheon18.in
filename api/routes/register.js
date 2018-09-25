@@ -663,322 +663,115 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
         .then((teamSearchResult)=>{
             if(teamSearchResult===null || teamSearchResult.length < 1){
                 console.log(req.body);
-                for (let i = 0; i < req.body['teamMembers[]'].length; i++) {
-                    const participant = req.body['teamMembers[]'][i];
-                    users
-                        .find({ email : participant })
+                if (req.body['teamMembers[]'].length<2 && req.body['teamMembers[]'][0] === 'flag') {
+                    lookups
+                        .find({
+                            email: req.userData.email
+                        })
                         .exec()
-                        .then((userResult)=>{
-                            if(userResult===null || userResult.length < 1){
-                                return res.status(200).json({
-                                    status: 'fail',
-                                    message: "The user: " + participant + " doesn't exists"
+                        .then(foundOne => {
+                            if (foundOne === null || foundOne.length < 1) {
+                                // save the lookup
+                                const teamLeaderLookup = new lookups({
+                                    _id: mongoose.Types.ObjectId(),
+                                    email: req.userData.email,
+                                    teamName: req.body.teamName,
+                                    teamLeader: "yes",
+                                    requests: []
                                 });
-                            }else {
-                                // update the lookup table
+                                teamLeaderLookup
+                                    .save()
+                                    .then((savedResult) => {
+                                        bcrypt.hash(req.body.teamPass, 10, (err, hash) => {
+                                            if (err) {
+                                                console.log(err);
+                                                return res.status(500).json({
+                                                    status: 'fail',
+                                                    message: err
+                                                });
+                                            } else {
+                                                let memberArray = [];
+                                                memberArray.push(req.userData.email);
+                                                const newTeam = new teams({
+                                                    _id: mongoose.Types.ObjectId(),
+                                                    teamName: req.body.teamName,
+                                                    teamPassword: hash,
+                                                    teamMembers: memberArray,
+                                                });
+                                                newTeam
+                                                    .save()
+                                                    .then(teamSaveResult => {
+                                                        return res.status(200).json({
+                                                            status: 'success',
+                                                            message: 'Team Successfully registered.All users verified. A request has been sent to all the members. Further details can be viewed in your profile.'
+                                                        });
+                                                    })
+                                                    .catch(err => {
+                                                        console.log(err);
+                                                        return res.status(500).json({
+                                                            status: 'fail',
+                                                            message: err
+                                                        })
+                                                    });
+                                            }
+                                        });
+
+                                    })
+                                    .catch(err => {
+                                        console.log(err);
+                                        return res.status(500).json({
+                                            status: 'fail',
+                                            message: err
+                                        });
+                                    });
+                            } else {
+                                // update the lookup
                                 lookups
-                                    .find({ email: participant})
-                                    .exec()
-                                    .then(resultLookup => {
-                                        if(resultLookup===null || resultLookup.length < 1){
-                                            var requestArray = [];
-                                            requestArray.push(req.body.teamName);
-                                            const newuserLookup = new lookups({
-                                                _id: mongoose.Types.ObjectId(),
-                                                email : participant,
-                                                requests: requestArray
-                                            });
-                                            newuserLookup
-                                                .save()
-                                                .then((lookupUpdate) => {
-                                                    console.log("Lookup updated. Request sent to user : " + participant);
-                                                    if (i === req.body['teamMembers[]'].length - 1) {
-                                                        lookups
-                                                            .find({ email: participant })
-                                                            .exec()
-                                                            .then(foundOne => {
-                                                                if(foundOne === null || foundOne.length < 1) {
-                                                                    // save the lookup
-                                                                    const teamLeaderLookup = new lookups({
-                                                                        _id: mongoose.Types.ObjectId(),
-                                                                        email: req.userData.email,
-                                                                        teamName: req.body.teamName,
-                                                                        teamLeader: "yes",
-                                                                        requests: []
-                                                                    });
-                                                                    teamLeaderLookup
-                                                                        .save()
-                                                                        .then((savedResult) => {
-                                                                            bcrypt.hash(req.body.password, 10, (err, hash) => {
-                                                                                if (err) {
-                                                                                    console.log(err);
-                                                                                    return res.status(500).json({
-                                                                                        status: 'fail',
-                                                                                        message: err
-                                                                                    });
-                                                                                } else {
-                                                                                    let memberArray = [];
-                                                                                    memberArray.push(req.userData.email);
-                                                                                    const newTeam = new teams({
-                                                                                        _id: mongoose.Types.ObjectId(),
-                                                                                        teamName: req.body.teamName,
-                                                                                        teamPassword: hash,
-                                                                                        teamMembers: memberArray,
-                                                                                    });
-                                                                                    newTeam
-                                                                                        .save()
-                                                                                        .then(teamSaveResult => {
-                                                                                            return res.status(200).json({
-                                                                                                status: 'success',
-                                                                                                message: 'Team Successfully registered.All users verified. A request has been sent to all the members. Further details can be viewed in your profile.'
-                                                                                            });
-                                                                                        })
-                                                                                        .catch(err => {
-                                                                                            console.log(err);
-                                                                                            return res.status(500).json({
-                                                                                                status: 'fail',
-                                                                                                message: err
-                                                                                            })
-                                                                                        });
-                                                                                }
-                                                                            });
-
-                                                                        })
-                                                                        .catch(err => {
-                                                                            console.log(err);
-                                                                            return res.status(500).json({
-                                                                                status: 'fail',
-                                                                                message: err
-                                                                            });
-                                                                        });
-                                                                } else {
-                                                                    // update the lookup
-                                                                    lookups
-                                                                        .update({
-                                                                            email: req.userData.email
-                                                                        }, {
-                                                                            $set : {
-                                                                                //email: req.userData.email,
-                                                                                teamName: req.body.teamName,
-                                                                                teamLeader: "yes",
-                                                                                requests: []
-                                                                            }
-                                                                        })
-                                                                        .then((savedResult) => {
-                                                                            bcrypt.hash(req.body.teamPass, 10, (err, hash) => {
-                                                                                if (err) {
-                                                                                    console.log(err);
-                                                                                    return res.status(500).json({
-                                                                                        status: 'fail',
-                                                                                        message: err
-                                                                                    });
-                                                                                } else {
-                                                                                    let memberArray = [];
-                                                                                    memberArray.push(req.userData.email);
-                                                                                    const newTeam = new teams({
-                                                                                        _id: mongoose.Types.ObjectId(),
-                                                                                        teamName: req.body.teamName,
-                                                                                        teamPassword: hash,
-                                                                                        teamMembers: memberArray,
-                                                                                    });
-                                                                                    newTeam
-                                                                                        .save()
-                                                                                        .then(teamSaveResult => {
-                                                                                            return res.status(200).json({
-                                                                                                status: 'success',
-                                                                                                message: 'Team Successfully registered.All users verified. A request has been sent to all the members. Further details can be viewed in your profile.'
-                                                                                            });
-                                                                                        })
-                                                                                        .catch(err => {
-                                                                                            console.log(err);
-                                                                                            return res.status(500).json({
-                                                                                                status: 'fail',
-                                                                                                message: err
-                                                                                            })
-                                                                                        });
-                                                                                }
-                                                                            });
-
-                                                                        })
-                                                                        .catch(err => {
-                                                                            console.log(err);
-                                                                            return res.status(500).json({
-                                                                                status: 'fail',
-                                                                                message: err
-                                                                            });
-                                                                        });
-                                                                }
-                                                            })
-                                                            .catch(err => {
-                                                                console.log(err);
-                                                                res.status(500).json({
-                                                                    status: 'fail',
-                                                                    message: err
-                                                                });
-                                                            });
-                                                        
-                                                    }
-                                                })
-                                                .catch(err => {
-                                                    console.log('sds');
-                                                    console.log(err);
-                                                    return res.status(500).json({
-                                                        status: 'fail',
-                                                        message: err
-                                                    });
-                                                });
-                                        } else {
-                                            lookups
-                                                .update({
-                                                    email: participant
-                                                }, {
-                                                    $set: {
-                                                        teamName: "",
-                                                    },
-                                                    $addToSet: {
-                                                        requests: req.body.teamName
-                                                    }
-                                                })
-                                                .exec()
-                                                .then((requestuser) => {
-                                                    console.log("request sent to user : " + participant);
-                                                    if (i === req.body['teamMembers[]'].length - 1) {
-                                                        lookups
-                                                            .find({
-                                                                email: participant
-                                                            })
-                                                            .exec()
-                                                            .then(foundOne => {
-                                                                if (foundOne === null || foundOne.length < 1) {
-                                                                    // save the lookup
-                                                                    const teamLeaderLookup = new lookups({
-                                                                        _id: mongoose.Types.ObjectId(),
-                                                                        email: req.userData.email,
-                                                                        teamName: req.body.teamName,
-                                                                        teamLeader: "yes",
-                                                                        requests: []
-                                                                    });
-                                                                    teamLeaderLookup
-                                                                        .save()
-                                                                        .then((savedResult) => {
-                                                                            bcrypt.hash(req.body.teamPass, 10, (err, hash) => {
-                                                                                if (err) {
-                                                                                    console.log(err);
-                                                                                    return res.status(500).json({
-                                                                                        status: 'fail',
-                                                                                        message: err
-                                                                                    });
-                                                                                } else {
-                                                                                    let memberArray = [];
-                                                                                    memberArray.push(req.userData.email);
-                                                                                    const newTeam = new teams({
-                                                                                        _id: mongoose.Types.ObjectId(),
-                                                                                        teamName: req.body.teamName,
-                                                                                        teamPassword: hash,
-                                                                                        teamMembers: memberArray,
-                                                                                    });
-                                                                                    newTeam
-                                                                                        .save()
-                                                                                        .then(teamSaveResult => {
-                                                                                            return res.status(200).json({
-                                                                                                status: 'success',
-                                                                                                message: 'Team Successfully registered.All users verified. A request has been sent to all the members. Further details can be viewed in your profile.'
-                                                                                            });
-                                                                                        })
-                                                                                        .catch(err => {
-                                                                                            console.log(err);
-                                                                                            return res.status(500).json({
-                                                                                                status: 'fail',
-                                                                                                message: err
-                                                                                            })
-                                                                                        });
-                                                                                }
-                                                                            });
-
-                                                                        })
-                                                                        .catch(err => {
-                                                                            console.log(err);
-                                                                            return res.status(500).json({
-                                                                                status: 'fail',
-                                                                                message: err
-                                                                            });
-                                                                        });
-                                                                } else {
-                                                                    // update the lookup
-                                                                    lookups
-                                                                        .update({
-                                                                            email: req.userData.email
-                                                                        }, {
-                                                                            $set: {
-                                                                                //email: req.userData.email,
-                                                                                teamName: req.body.teamName,
-                                                                                teamLeader: "yes",
-                                                                                requests: []
-                                                                            }
-                                                                        })
-                                                                        .then((savedResult) => {
-                                                                            bcrypt.hash(req.body.teamPass, 10, (err, hash) => {
-                                                                                if (err) {
-                                                                                    console.log(err);
-                                                                                    return res.status(500).json({
-                                                                                        status: 'fail',
-                                                                                        message: err
-                                                                                    });
-                                                                                } else {
-                                                                                    let memberArray = [];
-                                                                                    memberArray.push(req.userData.email);
-                                                                                    const newTeam = new teams({
-                                                                                        _id: mongoose.Types.ObjectId(),
-                                                                                        teamName: req.body.teamName,
-                                                                                        teamPassword: hash,
-                                                                                        teamMembers: memberArray,
-                                                                                    });
-                                                                                    newTeam
-                                                                                        .save()
-                                                                                        .then(teamSaveResult => {
-                                                                                            return res.status(200).json({
-                                                                                                status: 'success',
-                                                                                                message: 'Team Successfully registered.All users verified. A request has been sent to all the members. Further details can be viewed in your profile.'
-                                                                                            });
-                                                                                        })
-                                                                                        .catch(err => {
-                                                                                            console.log(err);
-                                                                                            return res.status(500).json({
-                                                                                                status: 'fail',
-                                                                                                message: err
-                                                                                            })
-                                                                                        });
-                                                                                }
-                                                                            });
-
-                                                                        })
-                                                                        .catch(err => {
-                                                                            console.log(err);
-                                                                            return res.status(500).json({
-                                                                                status: 'fail',
-                                                                                message: err
-                                                                            });
-                                                                        });
-                                                                }
-                                                            })
-                                                            .catch(err => {
-                                                                console.log(err);
-                                                                res.status(500).json({
-                                                                    status: 'fail',
-                                                                    message: err
-                                                                });
-                                                            });
-
-                                                    }
-                                                })
-                                                .catch(err => {
-                                                    console.log(err);
-                                                    return res.status(500).json({
-                                                        status: 'fail',
-                                                        message: err
-                                                    });
-                                                });
+                                    .update({
+                                        email: req.userData.email
+                                    }, {
+                                        $set: {
+                                            //email: req.userData.email,
+                                            teamName: req.body.teamName,
+                                            teamLeader: "yes",
+                                            requests: []
                                         }
+                                    })
+                                    .then((savedResult) => {
+                                        bcrypt.hash(req.body.teamPass, 10, (err, hash) => {
+                                            if (err) {
+                                                console.log(err);
+                                                return res.status(500).json({
+                                                    status: 'fail',
+                                                    message: err
+                                                });
+                                            } else {
+                                                let memberArray = [];
+                                                memberArray.push(req.userData.email);
+                                                const newTeam = new teams({
+                                                    _id: mongoose.Types.ObjectId(),
+                                                    teamName: req.body.teamName,
+                                                    teamPassword: hash,
+                                                    teamMembers: memberArray,
+                                                });
+                                                newTeam
+                                                    .save()
+                                                    .then(teamSaveResult => {
+                                                        return res.status(200).json({
+                                                            status: 'success',
+                                                            message: 'Team Successfully registered.All users verified. A request has been sent to all the members. Further details can be viewed in your profile.'
+                                                        });
+                                                    })
+                                                    .catch(err => {
+                                                        console.log(err);
+                                                        return res.status(500).json({
+                                                            status: 'fail',
+                                                            message: err
+                                                        })
+                                                    });
+                                            }
+                                        });
+
                                     })
                                     .catch(err => {
                                         console.log(err);
@@ -991,12 +784,354 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                         })
                         .catch(err => {
                             console.log(err);
-                            return res.status(500).json({
+                            res.status(500).json({
                                 status: 'fail',
                                 message: err
                             });
                         });
+                } else {
+                    for (let i = 0; i < req.body['teamMembers[]'].length; i++) {
+                        const participant = req.body['teamMembers[]'][i];
+                        users
+                            .find({
+                                email: participant
+                            })
+                            .exec()
+                            .then((userResult) => {
+                                if (userResult === null || userResult.length < 1) {
+                                    return res.status(200).json({
+                                        status: 'fail',
+                                        message: "The user: " + participant + " doesn't exists"
+                                    });
+                                } else {
+                                    // update the lookup table
+                                    lookups
+                                        .find({
+                                            email: participant
+                                        })
+                                        .exec()
+                                        .then(resultLookup => {
+                                            if (resultLookup === null || resultLookup.length < 1) {
+                                                var requestArray = [];
+                                                requestArray.push(req.body.teamName);
+                                                const newuserLookup = new lookups({
+                                                    _id: mongoose.Types.ObjectId(),
+                                                    email: participant,
+                                                    requests: requestArray
+                                                });
+                                                newuserLookup
+                                                    .save()
+                                                    .then((lookupUpdate) => {
+                                                        console.log("Lookup updated. Request sent to user : " + participant);
+                                                        if (i === req.body['teamMembers[]'].length - 1) {
+                                                            lookups
+                                                                .find({
+                                                                    email: participant
+                                                                })
+                                                                .exec()
+                                                                .then(foundOne => {
+                                                                    if (foundOne === null || foundOne.length < 1) {
+                                                                        // save the lookup
+                                                                        const teamLeaderLookup = new lookups({
+                                                                            _id: mongoose.Types.ObjectId(),
+                                                                            email: req.userData.email,
+                                                                            teamName: req.body.teamName,
+                                                                            teamLeader: "yes",
+                                                                            requests: []
+                                                                        });
+                                                                        teamLeaderLookup
+                                                                            .save()
+                                                                            .then((savedResult) => {
+                                                                                bcrypt.hash(req.body.teamPass, 10, (err, hash) => {
+                                                                                    if (err) {
+                                                                                        console.log(err);
+                                                                                        return res.status(500).json({
+                                                                                            status: 'fail',
+                                                                                            message: err
+                                                                                        });
+                                                                                    } else {
+                                                                                        let memberArray = [];
+                                                                                        memberArray.push(req.userData.email);
+                                                                                        const newTeam = new teams({
+                                                                                            _id: mongoose.Types.ObjectId(),
+                                                                                            teamName: req.body.teamName,
+                                                                                            teamPassword: hash,
+                                                                                            teamMembers: memberArray,
+                                                                                        });
+                                                                                        newTeam
+                                                                                            .save()
+                                                                                            .then(teamSaveResult => {
+                                                                                                return res.status(200).json({
+                                                                                                    status: 'success',
+                                                                                                    message: 'Team Successfully registered.All users verified. A request has been sent to all the members. Further details can be viewed in your profile.'
+                                                                                                });
+                                                                                            })
+                                                                                            .catch(err => {
+                                                                                                console.log(err);
+                                                                                                return res.status(500).json({
+                                                                                                    status: 'fail',
+                                                                                                    message: err
+                                                                                                })
+                                                                                            });
+                                                                                    }
+                                                                                });
+
+                                                                            })
+                                                                            .catch(err => {
+                                                                                console.log(err);
+                                                                                return res.status(500).json({
+                                                                                    status: 'fail',
+                                                                                    message: err
+                                                                                });
+                                                                            });
+                                                                    } else {
+                                                                        // update the lookup
+                                                                        lookups
+                                                                            .update({
+                                                                                email: req.userData.email
+                                                                            }, {
+                                                                                $set: {
+                                                                                    //email: req.userData.email,
+                                                                                    teamName: req.body.teamName,
+                                                                                    teamLeader: "yes",
+                                                                                    requests: []
+                                                                                }
+                                                                            })
+                                                                            .then((savedResult) => {
+                                                                                bcrypt.hash(req.body.teamPass, 10, (err, hash) => {
+                                                                                    if (err) {
+                                                                                        console.log(err);
+                                                                                        return res.status(500).json({
+                                                                                            status: 'fail',
+                                                                                            message: err
+                                                                                        });
+                                                                                    } else {
+                                                                                        let memberArray = [];
+                                                                                        memberArray.push(req.userData.email);
+                                                                                        const newTeam = new teams({
+                                                                                            _id: mongoose.Types.ObjectId(),
+                                                                                            teamName: req.body.teamName,
+                                                                                            teamPassword: hash,
+                                                                                            teamMembers: memberArray,
+                                                                                        });
+                                                                                        newTeam
+                                                                                            .save()
+                                                                                            .then(teamSaveResult => {
+                                                                                                return res.status(200).json({
+                                                                                                    status: 'success',
+                                                                                                    message: 'Team Successfully registered.All users verified. A request has been sent to all the members. Further details can be viewed in your profile.'
+                                                                                                });
+                                                                                            })
+                                                                                            .catch(err => {
+                                                                                                console.log(err);
+                                                                                                return res.status(500).json({
+                                                                                                    status: 'fail',
+                                                                                                    message: err
+                                                                                                })
+                                                                                            });
+                                                                                    }
+                                                                                });
+
+                                                                            })
+                                                                            .catch(err => {
+                                                                                console.log(err);
+                                                                                return res.status(500).json({
+                                                                                    status: 'fail',
+                                                                                    message: err
+                                                                                });
+                                                                            });
+                                                                    }
+                                                                })
+                                                                .catch(err => {
+                                                                    console.log(err);
+                                                                    res.status(500).json({
+                                                                        status: 'fail',
+                                                                        message: err
+                                                                    });
+                                                                });
+
+                                                        }
+                                                    })
+                                                    .catch(err => {
+                                                        console.log('sds');
+                                                        console.log(err);
+                                                        return res.status(500).json({
+                                                            status: 'fail',
+                                                            message: err
+                                                        });
+                                                    });
+                                            } else {
+                                                lookups
+                                                    .update({
+                                                        email: participant
+                                                    }, {
+                                                        $set: {
+                                                            teamName: "",
+                                                        },
+                                                        $addToSet: {
+                                                            requests: req.body.teamName
+                                                        }
+                                                    })
+                                                    .exec()
+                                                    .then((requestuser) => {
+                                                        console.log("request sent to user : " + participant);
+                                                        if (i === req.body['teamMembers[]'].length - 1) {
+                                                            lookups
+                                                                .find({
+                                                                    email: participant
+                                                                })
+                                                                .exec()
+                                                                .then(foundOne => {
+                                                                    if (foundOne === null || foundOne.length < 1) {
+                                                                        // save the lookup
+                                                                        const teamLeaderLookup = new lookups({
+                                                                            _id: mongoose.Types.ObjectId(),
+                                                                            email: req.userData.email,
+                                                                            teamName: req.body.teamName,
+                                                                            teamLeader: "yes",
+                                                                            requests: []
+                                                                        });
+                                                                        teamLeaderLookup
+                                                                            .save()
+                                                                            .then((savedResult) => {
+                                                                                bcrypt.hash(req.body.teamPass, 10, (err, hash) => {
+                                                                                    if (err) {
+                                                                                        console.log(err);
+                                                                                        return res.status(500).json({
+                                                                                            status: 'fail',
+                                                                                            message: err
+                                                                                        });
+                                                                                    } else {
+                                                                                        let memberArray = [];
+                                                                                        memberArray.push(req.userData.email);
+                                                                                        const newTeam = new teams({
+                                                                                            _id: mongoose.Types.ObjectId(),
+                                                                                            teamName: req.body.teamName,
+                                                                                            teamPassword: hash,
+                                                                                            teamMembers: memberArray,
+                                                                                        });
+                                                                                        newTeam
+                                                                                            .save()
+                                                                                            .then(teamSaveResult => {
+                                                                                                return res.status(200).json({
+                                                                                                    status: 'success',
+                                                                                                    message: 'Team Successfully registered.All users verified. A request has been sent to all the members. Further details can be viewed in your profile.'
+                                                                                                });
+                                                                                            })
+                                                                                            .catch(err => {
+                                                                                                console.log(err);
+                                                                                                return res.status(500).json({
+                                                                                                    status: 'fail',
+                                                                                                    message: err
+                                                                                                })
+                                                                                            });
+                                                                                    }
+                                                                                });
+
+                                                                            })
+                                                                            .catch(err => {
+                                                                                console.log(err);
+                                                                                return res.status(500).json({
+                                                                                    status: 'fail',
+                                                                                    message: err
+                                                                                });
+                                                                            });
+                                                                    } else {
+                                                                        // update the lookup
+                                                                        lookups
+                                                                            .update({
+                                                                                email: req.userData.email
+                                                                            }, {
+                                                                                $set: {
+                                                                                    //email: req.userData.email,
+                                                                                    teamName: req.body.teamName,
+                                                                                    teamLeader: "yes",
+                                                                                    requests: []
+                                                                                }
+                                                                            })
+                                                                            .then((savedResult) => {
+                                                                                bcrypt.hash(req.body.teamPass, 10, (err, hash) => {
+                                                                                    if (err) {
+                                                                                        console.log(err);
+                                                                                        return res.status(500).json({
+                                                                                            status: 'fail',
+                                                                                            message: err
+                                                                                        });
+                                                                                    } else {
+                                                                                        let memberArray = [];
+                                                                                        memberArray.push(req.userData.email);
+                                                                                        const newTeam = new teams({
+                                                                                            _id: mongoose.Types.ObjectId(),
+                                                                                            teamName: req.body.teamName,
+                                                                                            teamPassword: hash,
+                                                                                            teamMembers: memberArray,
+                                                                                        });
+                                                                                        newTeam
+                                                                                            .save()
+                                                                                            .then(teamSaveResult => {
+                                                                                                return res.status(200).json({
+                                                                                                    status: 'success',
+                                                                                                    message: 'Team Successfully registered.All users verified. A request has been sent to all the members. Further details can be viewed in your profile.'
+                                                                                                });
+                                                                                            })
+                                                                                            .catch(err => {
+                                                                                                console.log(err);
+                                                                                                return res.status(500).json({
+                                                                                                    status: 'fail',
+                                                                                                    message: err
+                                                                                                })
+                                                                                            });
+                                                                                    }
+                                                                                });
+
+                                                                            })
+                                                                            .catch(err => {
+                                                                                console.log(err);
+                                                                                return res.status(500).json({
+                                                                                    status: 'fail',
+                                                                                    message: err
+                                                                                });
+                                                                            });
+                                                                    }
+                                                                })
+                                                                .catch(err => {
+                                                                    console.log(err);
+                                                                    res.status(500).json({
+                                                                        status: 'fail',
+                                                                        message: err
+                                                                    });
+                                                                });
+
+                                                        }
+                                                    })
+                                                    .catch(err => {
+                                                        console.log(err);
+                                                        return res.status(500).json({
+                                                            status: 'fail',
+                                                            message: err
+                                                        });
+                                                    });
+                                            }
+                                        })
+                                        .catch(err => {
+                                            console.log(err);
+                                            return res.status(500).json({
+                                                status: 'fail',
+                                                message: err
+                                            });
+                                        });
+                                }
+                            })
+                            .catch(err => {
+                                console.log(err);
+                                return res.status(500).json({
+                                    status: 'fail',
+                                    message: err
+                                });
+                            });
+                    }
                 }
+                
             } else {
                 return res.status(200).json({
                     status: 'fail',
