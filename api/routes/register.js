@@ -662,7 +662,9 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
         .exec()
         .then((teamSearchResult)=>{
             if(teamSearchResult===null || teamSearchResult.length < 1){
-                console.log(req.body);
+                console.log(req.body['teamMembers[]']);
+                
+                console.log(req.body['teamMembers[]'].length);
                 if (req.body['teamMembers[]'].length == 1) {
                     console.log(req.body);
                     lookups
