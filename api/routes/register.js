@@ -662,6 +662,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
         .exec()
         .then((teamSearchResult)=>{
             if(teamSearchResult===null || teamSearchResult.length < 1){
+                console.log(req.body);
                 for (let i = 0; i < req.body['teamMembers[]'].length; i++) {
                     const participant = req.body['teamMembers[]'][i];
                     users
