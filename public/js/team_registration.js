@@ -54,7 +54,7 @@ $(document).ready(function () {
             return false;
         }
         if(teamSize == 1) {
-            teamMembers.push("flag");
+            teamMembers.push("f");
         }
         console.log(teamMembers);
         $.ajax({
