@@ -130,7 +130,7 @@ $(document).ready(function () {
         if(id[0]=='c'){
              $.ajax({
                      type: 'GET',
-                     url: requrl + '/api/acceptRequest/' + $('#request'+idd).val(),
+                     url: requrl + '/api/acceptRequest/' + $('#request'+idd).val().trim(),
                      headers: {
                          'token': localStorage.getItem('token')
                      }
