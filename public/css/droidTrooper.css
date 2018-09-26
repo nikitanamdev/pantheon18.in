@@ -22,22 +22,22 @@ html {
 }
 
 .pimg1 {
-    background-image: url('../images/codezilla2.jpg');
+    background-image: url('../images/droid.jpg');
     min-height: 100%;
 }
 
 .pimg2 {
-    background-image: url('../images/codezilla.jpg');
+    background-image: url('../images/droid2.jpg');
     min-height: 400px;
 }
 
 .pimg3 {
-    background-image: url('../images/codezilla2.jpg');
+    background-image: url('../images/droid.jpg');
     min-height: 400px;
 }
 
 .pimg4 {
-    background-image: url('../images/codezilla.jpg');
+    background-image: url('../images/droid2.jpg');
     min-height: 100%;
 }
 
@@ -107,6 +107,16 @@ html {
     width: 100px;
     color: white;
     background-color: #FC4502;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.rulebook-button {
+    width: 100px;
+    color: white;
+    background-color: rgb(66, 180, 224);
     border: none;
     padding: 10px;
     border-radius: 3px;
