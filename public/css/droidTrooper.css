@@ -22,22 +22,22 @@ html {
 }
 
 .pimg1 {
-    background-image: url('../images/droid.jpg');
+    background-image: url('../images/droid.JPG');
     min-height: 100%;
 }
 
 .pimg2 {
-    background-image: url('../images/droid2.jpg');
+    background-image: url('../images/droid2.JPG');
     min-height: 400px;
 }
 
 .pimg3 {
-    background-image: url('../images/droid.jpg');
+    background-image: url('../images/droid.JPG');
     min-height: 400px;
 }
 
 .pimg4 {
-    background-image: url('../images/droid2.jpg');
+    background-image: url('../images/droid2.JPG');
     min-height: 100%;
 }
 
