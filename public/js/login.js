@@ -3,7 +3,7 @@ const requrl = "https://www.pantheon18.in";
 $(document).ready(function () {
     $('#login').click((e) => {
         e.preventDefault();
-        const email = $('#email').val();
+        const email = $('#email').val().trim();
         const password = $('#pass').val();
         $.ajax({
             type: 'POST',

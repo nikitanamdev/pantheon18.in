@@ -27,7 +27,7 @@ $(".next").click(function () {
     }
 
     pName=$("#fName").val();
-    pEmail=$("#email").val();
+    pEmail=$("#email").val().trim();
     pPass=$("#pass").val();
     pCpass=$("#cpass").val();
     pContact=$("#contact").val();
@@ -149,7 +149,7 @@ $(".submit").click(function () {
         $("#gradYear").val("");
         return false;
     }
-    const email = $("#emailbox").val();
+    const email = $("#emailbox").val().trim();
     const gender = $("input[name='gender']:checked").val().toString();
     const collegeSelect = $("input[name='collg']:checked").val();
     let sapId = "-1";
@@ -196,7 +196,7 @@ function validate_form(valCheck) {
             return false;
         }
 
-        const mail = $("#email").val();
+        const mail = $("#email").val().trim();
         $("#emailbox").val(mail);
         const regmail = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         if(mail==="") {
@@ -273,7 +273,7 @@ function validate_form(valCheck) {
             $("#mobileotp").val("");
             return false;
         }
-        const email = $("#emailbox").val();
+        const email = $("#emailbox").val().trim();
         const payload = {
             email: email,
             emailotp: emailotp,
