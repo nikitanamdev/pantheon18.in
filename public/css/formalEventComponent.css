@@ -259,8 +259,7 @@ p.dummy-text:nth-child(3) {
 }
 
 .dummy-img {
-	height: 400px;
-	background-color: #ddd;
+	background-color: white;
 	margin: 30px auto;
 }
 
