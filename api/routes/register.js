@@ -1453,7 +1453,7 @@ router.post('/eventRegister', (req, res, next) => {
 // });
 
 /* Teams points update route */
-router.get('/pointUpdate', (req, res, next) => {
+router.get('/pointUpdate',checkAuth2, (req, res, next) => {
     let countUpdates = 0;
     teams
         .findOneAndUpdate(
