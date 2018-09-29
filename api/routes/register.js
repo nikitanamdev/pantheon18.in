@@ -1509,7 +1509,80 @@ router.get('/pointUpdate',checkAuth2, (req, res, next) => {
             });
         })
 });
+/* Verification of Team Members*/
+router.get('/teamVerify',checkAuth2, (req, res, next) => {
+    teams
+        .find({teamName : req.body.teamName})
+        .exec()
+        .then((team) => {
+            if(team === null || team.length < 1){
+                return res.status(200).json({
+                    status: 'fail',
+                    message: "No such team, get'em registered now!"
+                });
+            }
+            else{
+                res.status(200).json({
+                    status: "success",
+                    message: "Team Found.",
+                    teamMembers : team[0].teamMembers
+                });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
 
+/* Verification of users to set 'status' field true */
+router.get('/verifyMember',checkAuth2,(req, res, next) => {
+    users
+        .find({email : req.body.email})
+        .exec()
+        .then((user) => {
+            if(user === null || user.length < 1){
+                return res.status(200).json({
+                    status: 'fail',
+                    message: "No such user, get him registered now!"
+                });
+            }
+            else{
+                users
+                    .update({
+                        email : req.body.email
+                    },{
+                        $set : {
+                            status : true
+                        }
+                    })
+                    .exec()
+                    .then((result) => {
+                        res.status(200).json({
+                            status: "success",
+                            message: "User Found!"
+                        });
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        res.status(500).json({
+                            status: "fail",
+                            message: err
+                        });
+                    });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
 module.exports = router;
 
 // router.post('/fetchTeam', checkAuth, (req, res, next) => {
