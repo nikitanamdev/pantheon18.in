@@ -662,7 +662,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
         .exec()
         .then((teamSearchResult)=>{
             if ((teamSearchResult === null || teamSearchResult.length < 1) && req.body['teamMembers[]'].length == 1) {
-                console.log(req.body['teamMembers[]']); 
+                console.log(req.body['teamMembers[]']);
                 console.log(req.body['teamMembers[]'].length);
                     console.log(req.body);
                     lookups
@@ -1132,7 +1132,7 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                 });
                             });
                     }
-                
+
             } else {
                 return res.status(200).json({
                     status: 'fail',
@@ -1160,8 +1160,8 @@ router.get('/acceptRequest/:teamN', checkAuth, (req, res, next) => {
         .then(teamSearchResult => {
             if(teamSearchResult === null || teamSearchResult.length < 1) {
                 lookups
-                    .update({ 
-                        email : req.userData.email 
+                    .update({
+                        email : req.userData.email
                     },{
                         $pull : { requests : teamRequestAccept }
                     })
@@ -1234,7 +1234,7 @@ router.get('/acceptRequest/:teamN', checkAuth, (req, res, next) => {
                 message: err
             });
         });
-    
+
 });
 
 router.get('/deleteRequest/:teamN', checkAuth, (req, res, next) => {
@@ -1441,15 +1441,7 @@ router.post('/eventRegister', (req, res, next) => {
             });
         });
 });
-
-// router.get('/events', (req, res, next) => {
-//     res.status(200).json({
-//         status: 'success',
-//         message: "Events Data retrieval successful",
-//         events: Events
-//     });
-// });
-
+/* Event route for App */
 // router.get('/events/:eventName', (req, res, next) => {
 //     const event = req.params.eventName;
 //     const eventData = Events[event];
@@ -1459,6 +1451,64 @@ router.post('/eventRegister', (req, res, next) => {
 //         event: eventData
 //     });
 // });
+
+/* Teams points update route */
+router.get('/pointUpdate', (req, res, next) => {
+    let countUpdates = 0;
+    teams
+        .findOneAndUpdate(
+            {
+                teamName : req.body.teamName
+            },
+            {
+                $inc : {
+                        points : req.body.points
+                }
+            }
+        )
+        .exec()
+        .then((result) => {
+            console.log(result);
+            for (let i = 0; i < result['teamMembers'].length; i++) {
+                const teamMember = result['teamMembers'][i];
+                lookups
+                    .update({
+                        email: teamMember
+                    }, {
+                        $inc: {
+                            teamPoints: req.body.points
+                        }
+                    })
+                    .exec()
+                    .then((result) => {
+                        console.log('Points updated');
+                        countUpdates = countUpdates + 1;
+                        if (i === result['teamMembers'].length - 1 || countUpdates === result['teamMembers'].length) {
+                            return res.status(200).json({
+                                status: 'success',
+                                message: "Team points updated!"
+                            });
+                        } else {
+                            console.log("Team is still being edited!");
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        res.status(500).json({
+                            status: "fail",
+                            message: err
+                        });
+                    });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        })
+});
 
 module.exports = router;
 
