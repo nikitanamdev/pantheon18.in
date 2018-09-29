@@ -1539,7 +1539,7 @@ router.get('/searchTeam',checkAuth2, (req, res, next) => {
 });
 
 /* Verification of team members step2*/
-router.get('/verifyTeam',checkAuth2, (req, res, next) => {
+router.post('/verifyTeam',checkAuth2, (req, res, next) => {
     let countUpdates =0;
     teams
         .find({teamName : req.body.teamName})
