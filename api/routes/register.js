@@ -1509,8 +1509,8 @@ router.get('/pointUpdate',checkAuth2, (req, res, next) => {
             });
         })
 });
-/* Verification of Team Members*/
-router.get('/teamVerify',checkAuth2, (req, res, next) => {
+/* Search of Team Members step1*/
+router.get('/searchTeam',checkAuth2, (req, res, next) => {
     teams
         .find({teamName : req.body.teamName})
         .exec()
@@ -1538,10 +1538,66 @@ router.get('/teamVerify',checkAuth2, (req, res, next) => {
         });
 });
 
-/* Verification of users to set 'status' field true */
-router.get('/verifyMember',checkAuth2,(req, res, next) => {
+/* Verification of team members step2*/
+router.get('/verifyTeam',checkAuth2, (req, res, next) => {
+    let countUpdates =0;
+    teams
+        .find({teamName : req.body.teamName})
+        .exec()
+        .then((team) => {
+            if(team === null || team.length < 1){
+                return res.status(200).json({
+                    status: 'fail',
+                    message: "No such team, get'em registered now!"
+                });
+            }
+            else{
+                var result = team[0];
+                for (let i = 0; i < result['teamMembers'].length; i++) {
+                    const teamMember = result['teamMembers'][i];
+                    users
+                        .update({
+                            email: teamMember
+                        }, {
+                            $set: {
+                                status: true
+                            }
+                        })
+                        .exec()
+                        .then((result) => {
+                            countUpdates = countUpdates + 1;
+                            if (i === result['teamMembers'].length - 1 || countUpdates === result['teamMembers'].length) {
+                                return res.status(200).json({
+                                    status: 'success',
+                                    message: "Team verified!"
+                                });
+                            } else {
+                                console.log("Team is still being verified!");
+                            }
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            res.status(500).json({
+                                status: "fail",
+                                message: err
+                            });
+                        });
+                }
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
+
+/* Search of users step1 */
+router.get('/searchUser',checkAuth2,(req, res, next) => {
     users
-        .find({email : req.body.email})
+        .find({panId : req.body.panId})
         .exec()
         .then((user) => {
             if(user === null || user.length < 1){
@@ -1551,28 +1607,65 @@ router.get('/verifyMember',checkAuth2,(req, res, next) => {
                 });
             }
             else{
-                users
-                    .update({
-                        email : req.body.email
-                    },{
-                        $set : {
-                            status : true
-                        }
-                    })
-                    .exec()
-                    .then((result) => {
-                        res.status(200).json({
-                            status: "success",
-                            message: "User Found!"
-                        });
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                        res.status(500).json({
-                            status: "fail",
-                            message: err
-                        });
-                    });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
+/* Verification of user step2 */
+router.get('/verifyMember',checkAuth2,(req, res, next) => {
+    users
+        .update({
+                panId : req.body.panId
+        },{
+            $set : {
+                    status : true
+            }
+        })
+        .exec()
+        .then((result) => {
+            res.status(200).json({
+                status: "success",
+                message: "User Found!"
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
+
+/* Event verification of teams */
+router.get('/eventVerify' , checkAuth2 , (req, res, next) => {
+    teams
+        .find({
+            teamName: req.body.teamName
+        })
+        .exec()
+        .then((team) => {
+            if (team === null || team.length < 1) {
+                res.status(200).json({
+                    status: "fail",
+                    message: "No such Team Present!"
+                });
+            } else if(team[0].eventsRegistered % req.body.eventValue == 0){
+                res.status(200).json({
+                    status: "success",
+                    message: "Yes,team is registered in this event."
+                });
+            } else {
+                res.status(200).json({
+                    status: "fail",
+                    message: "No,team is not registered in this event."
+                });
             }
         })
         .catch((err) => {
