@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Formal Events | Pantheon'18</title>
+		<link rel="stylesheet" type="text/css" href="./public/vendor/normalizemin.css" />
+		<link rel="stylesheet" type="text/css" href="./public/css/formalEventDemo.css" />
+		<link rel="stylesheet" type="text/css" href="./public/css/formalEventComponent.css" />
+		<link rel="stylesheet" href="./public/vendor/animatemin.css">
+		<script src="./public/js/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<section class="grid3d vertical" id="grid3d">
+				<div class="grid-wrap">
+					<div class="grid">
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/5.jpg" alt="img05"/></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/8.jpg" alt="img08"/></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/2.jpg" alt="img02"/></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/4.jpg" alt="img04"/></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/3.jpg" alt="img03"/></figure>
+					</div>
+				</div><!-- /grid-wrap -->
+				<div class="content">
+					<!-- Content can be recieved by seperate XHR request and adding ineer html acccordingly-->
+
+					<div><div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'></div><p class='dummy-text'>stars.</p><p class='dummy-text'>spiders across the stars.</p><p class='dummy-text'>Hello world</p></div>
+					<div><div class='dummy-img'><img src='./public/images/formalEvent/5.jpg'></div><p class='dummy-text'>stars.</p><p class='dummy-text'>spiders across the stars.</p><p class='dummy-text'>Hello world</p></div>
+					<div><div class='dummy-img'><img src='./public/images/formalEvent/8.jpg'></div><p class='dummy-text'>stars.</p><p class='dummy-text'>spiders across the stars.</p><p class='dummy-text'>Hello world</p></div>
+					<div><div class='dummy-img'><img src='./public/images/formalEvent/2.jpg'></div><p class='dummy-text'>stars.</p><p class='dummy-text'>spiders across the stars.</p><p class='dummy-text'>Hello world</p></div>
+					<div><div class='dummy-img'><img src='./public/images/formalEvent/4.jpg'></div><p class='dummy-text'>stars.</p><p class='dummy-text'>spiders across the stars.</p><p class='dummy-text'>Hello world</p></div>
+					<div><div class='dummy-img'><img src='./public/images/formalEvent/3.jpg'></div><p class='dummy-text'>stars.</p><p class='dummy-text'>spiders across the stars.</p><p class='dummy-text'>Hello world</p></div>
+					<span class="loading"></span>
+					<span class="icon close-content"></span>
+				</div>
+			</section>
+		</div><!-- /container -->
+		<script src="./public/js/classie.js"></script>
+		<script src="./public/js/helper.js"></script>
+		<script src="./public/js/grid3d.js"></script>
+		<script>
+			new grid3D( document.getElementById( 'grid3d' ) );
+		</script>
+	</body>
+</html>

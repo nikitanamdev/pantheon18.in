@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -133,3 +134,141 @@
 </body>
 
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pantheon'18 | Birla Institute of Technology, Mesra</title>
+    <link rel="icon" href="./favicon.png">
+    <link rel="stylesheet" href="./public/vendor/normalizemin.css">
+    <link rel="stylesheet" href="./public/vendor/animatemin.css">
+    <link rel="stylesheet" href="./public/css/nav.css">
+    <link rel="stylesheet" href="./public/css/style.css">
+    <link rel="stylesheet" href="./public/css/preloader.css">
+    <link rel="stylesheet" href="./public/css/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="./public/css/team_registration.css">
+    <link href="https://fonts.googleapis.com/css?family=Alice" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</head>
+
+<body style="background: url('public/images/blackBack.jpg');background-size: cover;background-repeat: no-repeat;">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+
+    <nav class="Navbar" style="z-index: 5;">
+        <div class="navbar-header">
+        <a href="#" id="toggle" class="Toggle Navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+            <span></span>
+        </a>
+    </div>
+
+        <div id="navbarCollapse" class="Navbar-menu">
+            <ul class="Navbar-menu-major">
+                <li>
+                    <a href="./index.html" .html>Home</a>
+                </li>
+                <li>
+                    <a href="./about.html">About Us</a>
+                </li>
+                <li>
+                    <a href="./theme.html">Theme</a>
+                </li>
+                <li>
+                    <a href="./flagship.html">Flagship Events</a>
+                </li>
+                <li>
+                    <a href="./register.html">Register</a>
+                </li>
+                <li>
+                    <a href="./login.html">Login</a>
+                </li>
+                <li>
+                    <a href="./profile.html">Profile</a>
+                </li>
+                <li>
+					<a href="./team_registration.html">Team Registration</a>
+				</li>
+                <li>
+                    <a href="./contact.html">Our Team</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="headLogo">
+        <span style="display: inline-block; padding-right: 1vw; position: relative; z-index: -1; visibility: visible; animation-duration: 2s; animation-name: fadeInUp;"
+            class="wow fadeInDown" data-wow-duration="2s">
+            <img src="./public/images/logo.png" title="logo">
+        </span>
+        <span style="animation-duration: 2s; animation-name: fadeInUp;" class="wow fadeInUp">Team Registration</span>
+    </div>
+
+    <!-- Form -->
+    <form id="teamForm" method="POST">
+        <div class="row">
+            <div class="details col-12 col-md-6">
+                <h1>Team Details</h1>
+                <p>TEAM LEADER:</p>
+                <input type="email" name="leader" id ="leaderEmail" placeholder="Team Leader" disabled/>
+                <p>TEAM NAME:</p>
+                <input type="text" name="team" id ="team" placeholder="Team Name" required/>
+                <p>TEAM PASSWORD:</p>
+                <input type="password" name="pass" id="pass" placeholder="Password" maxlength="50" minlength="5" required />
+                <select id="count" onchange="dad()" required>
+                    <option value="0">Select Team Size(including leader)
+                    <option value="1">1
+                    <option value="2">2
+                    <option value="3">3
+                    <option value="4">4
+                    <option value="5">5
+                    <option value="6">6
+                    <option value="7">7
+                    <option value="8">8
+                </select>
+                <div class="members"></div>
+                <input type="submit" name="teamRegister" class="teambutton" value="Make Team" id="makeTeam" />
+            </div>
+            <div class="info col-12 col-md-6">
+                <h1>Info</h1>
+                <p><strong>1. </strong>Team size allowed is 1-8 members</p>
+                <p><strong>2. </strong>You will be the team leader and only you can delete the team</p>
+                <p><strong>3. </strong>Team members provided here will be sent a request to their profiles</p>
+                <p><strong>4. </strong>Only after they accept your team request, they will be added to the team</p>
+                <p><strong>5. Caution : </strong>Choose your team members wisely as you cannot add more members once the team is made</p>
+                <p><strong>6. </strong>This Team Password will allow you to register in <a href="https://www.pantheon18.in/flagship.html">flagship events.</a></p>
+                <p><strong>7. </strong>Make sure the team name doesn't starts with any special character(/ , #, \ , $, % , @, ', ", ^, (, ), {, }, ).</p>
+                <p><strong>8. </strong>To add a member to your team enter their Email Id</p>
+            </div>
+        </div>
+    </form>
+    <script>
+        function dad(){
+            $('.members').empty();
+            const op = $('#count').val();
+            for(i=2;i<=op;i++){
+                $('.members').append("<input type='email' name='email' pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$' id ='member"+i+"' placeholder='Member "+i+"' required/>");
+            }
+        }
+    </script>
+    <script src="./public/vendor/jquery.js"></script>
+    <script src='./public/vendor/wowmin.js'></script>
+    <script>
+        new WOW().init();
+    </script>
+    <script src="./public/js/nav.js"></script>
+    <script src="./public/js/preloader.js"></script>
+    <script src="./public/js/team_registration.js"></script>
+</body>
+
+</html>
+>>>>>>> d489e4b25436779f4b41768cb4f9369cc7640f2a
