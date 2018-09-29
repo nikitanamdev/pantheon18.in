@@ -1442,15 +1442,15 @@ router.post('/eventRegister', (req, res, next) => {
         });
 });
 /* Event route for App */
-router.get('/events/:eventName', (req, res, next) => {
-    const event = req.params.eventName;
-    const eventData = Events[event];
-    res.status(200).json({
-        status: "success",
-        message: "Event " + event + " fetched successfully",
-        event: eventData
-    });
-});
+// router.get('/events/:eventName', (req, res, next) => {
+//     const event = req.params.eventName;
+//     const eventData = Events[event];
+//     res.status(200).json({
+//         status: "success",
+//         message: "Event " + event + " fetched successfully",
+//         event: eventData
+//     });
+// });
 
 /* Teams points update route */
 router.get('/pointUpdate', (req, res, next) => {
