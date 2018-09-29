@@ -11,6 +11,7 @@ const config = require('../config.json');
 const counter = require('./../models/counters.js');
 const lookups = require('./../models/lookups');
 const teams = require('./../models/teams');
+const adminAuth = require('./../middleware/adminAuth.js');
 //const Events = require('./../events.json');
 
 router.post('/register', (req, res, next) => {
@@ -1453,7 +1454,7 @@ router.post('/eventRegister', (req, res, next) => {
 // });
 
 /* Teams points update route */
-router.get('/pointUpdate',checkAuth2, (req, res, next) => {
+router.get('/pointUpdate', (req, res, next) => {
     let countUpdates = 0;
     teams
         .findOneAndUpdate(
@@ -1509,8 +1510,18 @@ router.get('/pointUpdate',checkAuth2, (req, res, next) => {
             });
         })
 });
+
+/**
+ * Get Admin permission
+ */
+router.get('/adminRights', adminAuth, (req, res, next)=>{
+    res.status(200).json({
+        status: "success",
+        message: "Successfully Logged In"
+    });
+});
 /* Search of Team Members step1*/
-router.get('/searchTeam',checkAuth2, (req, res, next) => {
+router.post('/searchTeam', adminAuth, (req, res, next) => {
     teams
         .find({teamName : req.body.teamName})
         .exec()
@@ -1522,11 +1533,47 @@ router.get('/searchTeam',checkAuth2, (req, res, next) => {
                 });
             }
             else{
-                res.status(200).json({
-                    status: "success",
-                    message: "Team Found.",
-                    teamMembers : team[0].teamMembers
-                });
+                console.log(team[0].teamMembers.length);
+                const teamSize = team[0].teamMembers.length;
+                let count = 0;
+                let memberList = [];
+                for(let i=0;i<teamSize;i++){
+                    users
+                        .find({ email : team[0].teamMembers[i] })
+                        .exec()
+                        .then((doc) => {
+                            if(doc===null || doc.length < 1){
+                                res.status(200).json({
+                                    status: "fail",
+                                    message: "The Users got Corrupted!! User not found"
+                                });
+                            } else {
+                                count = count + 1;
+                                const memberData = {
+                                    email: team[0].teamMembers[i],
+                                    panId: doc[0].panId,
+                                    name: doc[0].name,
+                                    collegeId: doc[0].collegeId
+                                }
+                                memberList.push(memberData);
+                                if(count == teamSize){
+                                    res.status(200).json({
+                                        status: "success",
+                                        message: "Team Found.",
+                                        teamMembers: memberList,
+                                        count: teamSize
+                                    });
+                                }
+                            }
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            res.status(500).json({
+                                status: "fail",
+                                message: err
+                            });
+                        });
+                }
             }
         })
         .catch((err) => {
@@ -1539,8 +1586,7 @@ router.get('/searchTeam',checkAuth2, (req, res, next) => {
 });
 
 /* Verification of team members step2*/
-router.post('/verifyTeam',checkAuth2, (req, res, next) => {
-    let countUpdates =0;
+router.post('/verifyTeam', adminAuth, (req, res, next) => {
     teams
         .find({teamName : req.body.teamName})
         .exec()
@@ -1553,8 +1599,11 @@ router.post('/verifyTeam',checkAuth2, (req, res, next) => {
             }
             else{
                 var result = team[0];
-                for (let i = 0; i < result['teamMembers'].length; i++) {
-                    const teamMember = result['teamMembers'][i];
+                const teamSize = result.teamMembers.length;
+                let countUpdates = 0;
+                console.log(result.teamMembers);
+                for (let i = 0; i < teamSize; i++) {
+                    const teamMember = result.teamMembers[i];
                     users
                         .update({
                             email: teamMember
@@ -1566,10 +1615,10 @@ router.post('/verifyTeam',checkAuth2, (req, res, next) => {
                         .exec()
                         .then((result) => {
                             countUpdates = countUpdates + 1;
-                            if (i === result['teamMembers'].length - 1 || countUpdates === result['teamMembers'].length) {
+                            if (i == teamSize - 1 || countUpdates == teamSize) {
                                 return res.status(200).json({
                                     status: 'success',
-                                    message: "Team verified!"
+                                    message: "All Team Members verified Onsite!"
                                 });
                             } else {
                                 console.log("Team is still being verified!");
@@ -1595,7 +1644,7 @@ router.post('/verifyTeam',checkAuth2, (req, res, next) => {
 });
 
 /* Search of users step1 */
-router.get('/searchUser',checkAuth2,(req, res, next) => {
+router.post('/searchUser', adminAuth, (req, res, next) => {
     users
         .find({panId : req.body.panId})
         .exec()
@@ -1605,8 +1654,25 @@ router.get('/searchUser',checkAuth2,(req, res, next) => {
                     status: 'fail',
                     message: "No such user, get him registered now!"
                 });
+            } else if(user[0].status == true) {
+                return res.status(200).json({
+                    status: 'fail',
+                    message: "User Already Verified Onsite."
+                });
             }
             else{
+                const payload = {
+                    name: user[0].name,
+                    panId: user[0].panId,
+                    collegeName: user[0].collegeName,
+                    collegeId: user[0].collegeId,
+                    email : user[0].email
+                };
+                return res.status(200).json({
+                    status: "success",
+                    message: "User Details Found",
+                    data: payload
+                });
             }
         })
         .catch((err) => {
@@ -1618,7 +1684,7 @@ router.get('/searchUser',checkAuth2,(req, res, next) => {
         });
 });
 /* Verification of user step2 */
-router.get('/verifyMember',checkAuth2,(req, res, next) => {
+router.post('/verifyUser', adminAuth, (req, res, next) => {
     users
         .update({
                 panId : req.body.panId
@@ -1631,7 +1697,7 @@ router.get('/verifyMember',checkAuth2,(req, res, next) => {
         .then((result) => {
             res.status(200).json({
                 status: "success",
-                message: "User Found!"
+                message: "User Verified Onsite!"
             });
         })
         .catch((err) => {
@@ -1643,40 +1709,42 @@ router.get('/verifyMember',checkAuth2,(req, res, next) => {
         });
 });
 
-/* Event verification of teams */
-router.get('/eventVerify' , checkAuth2 , (req, res, next) => {
-    teams
-        .find({
-            teamName: req.body.teamName
-        })
-        .exec()
-        .then((team) => {
-            if (team === null || team.length < 1) {
-                res.status(200).json({
-                    status: "fail",
-                    message: "No such Team Present!"
-                });
-            } else if(team[0].eventsRegistered % req.body.eventValue == 0){
-                res.status(200).json({
-                    status: "success",
-                    message: "Yes,team is registered in this event."
-                });
-            } else {
-                res.status(200).json({
-                    status: "fail",
-                    message: "No,team is not registered in this event."
-                });
-            }
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json({
-                status: "fail",
-                message: err
-            });
-        });
-});
+
 module.exports = router;
+
+/* Event verification of teams */
+// router.get('/eventVerify' , (req, res, next) => {
+//     teams
+//         .find({
+//             teamName: req.body.teamName
+//         })
+//         .exec()
+//         .then((team) => {
+//             if (team === null || team.length < 1) {
+//                 res.status(200).json({
+//                     status: "fail",
+//                     message: "No such Team Present!"
+//                 });
+//             } else if(team[0].eventsRegistered % req.body.eventValue == 0){
+//                 res.status(200).json({
+//                     status: "success",
+//                     message: "Yes,team is registered in this event."
+//                 });
+//             } else {
+//                 res.status(200).json({
+//                     status: "fail",
+//                     message: "No,team is not registered in this event."
+//                 });
+//             }
+//         })
+//         .catch((err) => {
+//             console.log(err);
+//             res.status(500).json({
+//                 status: "fail",
+//                 message: err
+//             });
+//         });
+// });
 
 // router.post('/fetchTeam', checkAuth, (req, res, next) => {
 //     lookups

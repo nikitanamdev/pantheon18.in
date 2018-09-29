@@ -12,10 +12,32 @@
 
 <body style="background: url('public/images/blackBack.jpg');background-size: cover;background-repeat: no-repeat;">
     <center>
-        <h1>Team Verification</h1><br>
+        <!-- Team Verification -->
+        <h1 style="color: #FFF;">Team Verification</h1><br>
         <input type="text" id = "teamName" placeholder="Enter Team Name">
-        <input type="button" id="teamVerifyButton" value="Verify">
+        <br><br>
+        <input type="button" id="teamDetailsButton" value="Get Team Details">
+        <br><br>
+        <table border="5" id="listTeamData" style="color:#FFF;">
+            
+        </table>
+        <br><br>
+        <input type="button" id="teamVerifyButton" value="Verify Team">
+
+        <!-- Participant Verification -->
+        <h1 style="color: #FFF;">Team Verification</h1><br>
+        <input type="text" id = "panid" placeholder="Enter Participant PANID">
+        <br><br>
+        <input type="button" id="userDetailsButton" value="Get Participant Details">
+        <br><br>
+        <table border="5" id="listUserData" style="color:#FFF;">
+            
+        </table>
+        <br><br>
+        <input type="button" id="userVerifyButton" value="Verify User">
+
     </center>
+<script src="./public/vendor/jquery2.1.3.js"></script>
 <script src="./public/js/preloader.js"></script>
 <script src="./public/js/admin.js"></script>
 </body>
