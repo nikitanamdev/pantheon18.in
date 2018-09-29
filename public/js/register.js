@@ -241,7 +241,7 @@ function validate_form(valCheck) {
             pass: password,
             cpass: confirmPassword,
             contact: phone,
-            "g-recaptcha-response": grecaptcha.getResponse()
+            //"g-recaptcha-response": grecaptcha.getResponse()
         };
         // AJAX request code
         $.ajax({
