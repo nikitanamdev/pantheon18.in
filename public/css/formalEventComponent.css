@@ -164,7 +164,7 @@ body {
 
 .content > div.show {
 	height: auto;
-	opacity: 1;	
+	opacity: 1;
 	-webkit-transition: opacity 0.6s;
 	transition: opacity 0.6s;
 }
@@ -267,7 +267,7 @@ p.dummy-text:nth-child(3) {
 	text-align: left;
 	margin: 0 auto;
 	padding: 10px 0;
-	color: #ddd;
+	color: #000;
 	font-size: 1em;
 	font-family: 'Blokk', Arial, serif;
 }
@@ -302,7 +302,7 @@ p.dummy-text:nth-child(3) {
 .no-csstransitions .dummy-img,
 .no-csstransitions .dummy-text,
 .no-csstransforms3d .dummy-img,
-.no-csstransforms3d .dummy-text, 
+.no-csstransforms3d .dummy-text,
 .no-pointerevents .dummy-img,
 .no-pointerevents .dummy-text {
 	display: block !important;
