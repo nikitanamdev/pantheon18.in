@@ -1133,7 +1133,6 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                 });
                             });
                     }
-
             } else {
                 return res.status(200).json({
                     status: 'fail',
@@ -1235,7 +1234,6 @@ router.get('/acceptRequest/:teamN', checkAuth, (req, res, next) => {
                 message: err
             });
         });
-
 });
 
 router.get('/deleteRequest/:teamN', checkAuth, (req, res, next) => {
