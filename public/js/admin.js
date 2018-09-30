@@ -126,5 +126,30 @@ $(document).ready(function () {
             window.location.href = 'admin.html';
         });
     });
+
+    $("#verifyTeamEvent").click((e) => {
+        e.preventDefault();
+        const teamName = $("#teamName").val().trim();
+        const eventCode = $("#event").val();
+        $.ajax({
+            type: 'POST',
+            url: requrl + '/api/eventTeamVerify',
+            data: {
+                teamName: teamName,
+                eventValue : eventCode                
+            },
+            headers: {
+                'token': localStorage.getItem('token')
+            }
+        })
+        .done((result) => {
+            alert(result.message);
+            location.reload(true);
+        })
+        .fail((err) => {
+            alert('Some error occured.Please try again.');
+            window.location.href = 'admin.html';
+        });
+    });
     
 });

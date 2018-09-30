@@ -1707,42 +1707,43 @@ router.post('/verifyUser', adminAuth, (req, res, next) => {
         });
 });
 
+/* Event verification of teams */
+router.get('/eventVerify' , (req, res, next) => {
+    teams
+        .find({
+            teamName: req.body.teamName
+        })
+        .exec()
+        .then((team) => {
+            if (team === null || team.length < 1) {
+                res.status(200).json({
+                    status: "fail",
+                    message: "No such Team Present!"
+                });
+            } else if(team[0].eventsRegistered % req.body.eventValue == 0){
+                res.status(200).json({
+                    status: "success",
+                    message: "Yes,team is registered in this event."
+                });
+            } else {
+                res.status(200).json({
+                    status: "fail",
+                    message: "No,team is not registered in this event."
+                });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
+
 
 module.exports = router;
 
-/* Event verification of teams */
-// router.get('/eventVerify' , (req, res, next) => {
-//     teams
-//         .find({
-//             teamName: req.body.teamName
-//         })
-//         .exec()
-//         .then((team) => {
-//             if (team === null || team.length < 1) {
-//                 res.status(200).json({
-//                     status: "fail",
-//                     message: "No such Team Present!"
-//                 });
-//             } else if(team[0].eventsRegistered % req.body.eventValue == 0){
-//                 res.status(200).json({
-//                     status: "success",
-//                     message: "Yes,team is registered in this event."
-//                 });
-//             } else {
-//                 res.status(200).json({
-//                     status: "fail",
-//                     message: "No,team is not registered in this event."
-//                 });
-//             }
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//             res.status(500).json({
-//                 status: "fail",
-//                 message: err
-//             });
-//         });
-// });
 
 // router.post('/fetchTeam', checkAuth, (req, res, next) => {
 //     lookups
