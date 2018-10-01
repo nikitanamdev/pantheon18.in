@@ -20,18 +20,20 @@ $(document).ready(function () {
     
     $("#updatePoints").click((e) => {
         e.preventDefault();
-        const TeamName = $("#teamName").val().trim();
-        const Points = $("#points").val();
+        const TeamName1 = $("#teamName1").val().trim();
+        const Points1 = $("#points1").val();
+        const TeamName2 = $("#teamName2").val().trim();
+        const Points2 = $("#points2").val();
+        const TeamName3 = $("#teamName3").val().trim();
+        const Points3 = $("#points3").val();
+        // make the payload
         $.ajax({
             type: "POST",
             url : requrl + "/api/pointUpdate",
             headers: {
                 'token' : localStorage.getItem('token')
             },
-            data: {
-                teamName: TeamName,
-                points: Points
-            }
+            data: payload
         })
         .done((result) => {
             alert(result.message);
