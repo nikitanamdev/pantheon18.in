@@ -12,6 +12,7 @@ const counter = require('./../models/counters.js');
 const lookups = require('./../models/lookups');
 const teams = require('./../models/teams');
 const adminAuth = require('./../middleware/adminAuth.js');
+const manishAuth = require('./../middleware/manishAuth.js');
 //const Events = require('./../events.json');
 
 router.post('/register', (req, res, next) => {
@@ -1452,64 +1453,6 @@ router.post('/eventRegister', (req, res, next) => {
 //     });
 // });
 
-/* Teams points update route */
-router.get('/pointUpdate', (req, res, next) => {
-    let countUpdates = 0;
-    teams
-        .findOneAndUpdate(
-            {
-                teamName : req.body.teamName
-            },
-            {
-                $inc : {
-                        points : req.body.points
-                }
-            }
-        )
-        .exec()
-        .then((result) => {
-            console.log(result);
-            for (let i = 0; i < result['teamMembers'].length; i++) {
-                const teamMember = result['teamMembers'][i];
-                lookups
-                    .update({
-                        email: teamMember
-                    }, {
-                        $inc: {
-                            teamPoints: req.body.points
-                        }
-                    })
-                    .exec()
-                    .then((result) => {
-                        console.log('Points updated');
-                        countUpdates = countUpdates + 1;
-                        if (i === result['teamMembers'].length - 1 || countUpdates === result['teamMembers'].length) {
-                            return res.status(200).json({
-                                status: 'success',
-                                message: "Team points updated!"
-                            });
-                        } else {
-                            console.log("Team is still being edited!");
-                        }
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                        res.status(500).json({
-                            status: "fail",
-                            message: err
-                        });
-                    });
-            }
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json({
-                status: "fail",
-                message: err
-            });
-        })
-});
-
 /**
  * Get Admin permission
  */
@@ -1742,7 +1685,98 @@ router.get('/eventVerify' , (req, res, next) => {
         });
 });
 
+/**
+ * Get Manish permission
+ */
+router.get('/manishRights', manishAuth, (req, res, next)=>{
+    res.status(200).json({
+        status: "success",
+        message: "Successfully Logged In"
+    });
+});
 
+/* Teams points update route */
+router.post('/pointUpdate', manishAuth, (req, res, next) => {
+    let countUpdates = 0;
+    teams
+        .findOneAndUpdate(
+            {
+                teamName : req.body.teamName
+            },
+            {
+                $inc : {
+                    points : req.body.points
+                }
+            }
+        )
+        .exec()
+        .then((result) => {
+            console.log(result);
+            for (let i = 0; i < result.teamMembers.length; i++) {
+                const teamMember = result.teamMembers[i];
+                lookups
+                    .update({
+                        email: teamMember
+                    }, {
+                        $inc: {
+                            teamPoints: req.body.points
+                        }
+                    })
+                    .exec()
+                    .then((result) => {
+                        console.log('Points updated');
+                        countUpdates = countUpdates + 1;
+                        if (i == result.teamMembers.length - 1 || countUpdates == result.teamMembers.length) {
+                            return res.status(200).json({
+                                status: 'success',
+                                message: "Team points updated!"
+                            });
+                        } else {
+                            console.log("Team is still being edited!");
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        res.status(500).json({
+                            status: "fail",
+                            message: err
+                        });
+                    });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        })
+});
+
+
+/**
+ * LeaderBoard
+ */
+router.get('/leaderboard', (Req, res, next) => {
+    teams
+        .find({})
+        .sort({ points: -1 })
+        .exec()
+        .then((board) => {
+            res.status(200).json({
+                status: 'success',
+                message: 'LeaderBoard retrieved successfully',
+                data: board
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
 module.exports = router;
 
 
