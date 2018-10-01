@@ -5,47 +5,84 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Pantheon'18 | Birla Institute of Technology, Mesra</title>
+		<link rel="icon" href="./favicon.png">
 		<link rel="stylesheet" type="text/css" href="./public/vendor/normalizemin.css" />
 		<link rel="stylesheet" type="text/css" href="./public/css/formalEventDemo.css" />
 		<link rel="stylesheet" type="text/css" href="./public/css/formalEventComponent.css" />
+		<link rel="stylesheet" href="./public/css/preloader.css">
+    	<link rel="stylesheet" href="./public/css/scrollbar.css">
 		<link rel="stylesheet" href="./public/vendor/animatemin.css">
+		<style>
+			#headLogo {
+				height: 25vh;
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+			}
+
+			#headLogo img {
+				max-height: 80%;
+				max-width: 80%;
+			}
+
+			#headLogo span {
+				margin: auto 0;
+				color: white;
+				font-size: 48px;
+				font-family: 'Alice', serif;
+			}
+		</style>
 		<script src="./public/js/modernizr.custom.js"></script>
 	</head>
-	<body>
+	<body style="background: url('public/images/blackBack.jpg');background-size: cover;background-repeat: no-repeat;">
+
+		<!-- Preloader -->
+		<div id="preloader">
+			<div id="status">&nbsp;</div>
+		</div>
+
+		<div id="headLogo">
+			<span style="display: inline-block; padding-right: 1vw; position: relative; z-index: -1; visibility: visible; animation-duration: 2s; animation-name: fadeInUp;"
+					class="wow fadeInDown" data-wow-duration="2s">
+				<img src="./public/images/logo.png" title="logo">
+			</span>
+			<span style="animation-duration: 2s; animation-name: fadeInUp;" class="wow fadeInUp">Formal Events</span>
+		</div>
+
 		<div class="container">
 			<section class="grid3d vertical" id="grid3d">
 				<div class="grid-wrap">
 					<div class="grid">
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/cashflow.jpg" alt="img01"/><h3>Cashflow</h3></figure>
 						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/5.jpg" alt="img05"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/8.jpg" alt="img08"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/2.jpg" alt="img02"/></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/techniq.jpg" alt="img08"/><h3>Techniq</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/facts_and_furious.jpg" alt="img02"/><h3>Facts And Furious</h3></figure>
 						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/4.jpg" alt="img04"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/3.jpg" alt="img03"/></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/technosight.jpg" alt="img03"/><h3>Technosight</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/the_uncertainity_conundrum.jpg" alt="img01"/><h3>The The Uncertainity Conundrum</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/c-wiz.jpg" alt="img01"/><h3>C-wiz</h3></figure>
 						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
 						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
 						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
 						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
 						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
 						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/circuit_chasers.jpg" alt="img01"/><h3>Circuit Chasers</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/bit_cryptic.jpg" alt="img01"/><h3>Bit Cryptic</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/enigma.jpg" alt="img01"/><h3>Enigma</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/green_avengers.jpg" alt="img01"/><h3>Green Avengers</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/save_the_egg.jpg" alt="img01"/><h3>Save the Egg</h3></figure>
 						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
 						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
 						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
 						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/wiki_wars.jpg" alt="img01"/><h3>Wiki Wars</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/flash_time_paradox.jpg" alt="img01"/><h3>Flash Time Paradox</h3></figure>
 						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/biz_tech_quiz.jpg" alt="img01"/><h3>Biz Tech Quiz</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/lone_survivor.jpg" alt="img01"/><h3>Lone Wolf Quiz</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/tech_debate.jpg" alt="img01"/><h3>Tech Debate</h3></figure>
 						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
 						</div>
 				</div><!-- /grid-wrap -->
@@ -53,7 +90,7 @@
 					<!-- Content can be recieved by seperate XHR request and adding ineer html acccordingly-->
 
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/cashflow.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Cash Flow</p>
 						<p class='dummy-text'>Team Size: 2</p>
@@ -87,7 +124,7 @@ to present their approach and survive the questions put up by the judges.</p>
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/techniq.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Techniq</p>
 						<p class='dummy-text'>Team Size: 4</p>
@@ -100,7 +137,7 @@ round is an aptitude round with tricky questions, out of which 4 teams proceed t
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/facts_and_furious.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Facts and Furious</p>
 						<p class='dummy-text'>Team Size: 3</p>
@@ -127,7 +164,7 @@ invite all those Quizzing aficionados to attend this event which covers anything
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/technosight.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Technosight</p>
 						<p class='dummy-text'>Team Size: 2</p>
@@ -141,7 +178,7 @@ will have to assist his/her partner in solving the maze.</p>
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/the_uncertainity_conundrum.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : The Uncertainty Conundrum</p>
 						<p class='dummy-text'>Team Size: 3</p>
@@ -155,7 +192,7 @@ will have to assist his/her partner in solving the maze.</p>
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/c-wiz.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : C-Wiz</p>
 						<p class='dummy-text'>Team Size: 2</p>
@@ -262,7 +299,7 @@ they define.</p>
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/circuit_chasers.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Circuit Chasers</p>
 						<p class='dummy-text'>Team Size: 2</p>
@@ -277,7 +314,7 @@ interconnected to form a circuit.</p>
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/bit_cryptic.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : BIT Cryptic</p>
 						<p class='dummy-text'>Team Size: 3</p>
@@ -323,7 +360,7 @@ details from the organizers but his team stands at a penalty of -10 points.</p>
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/enigma.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Enigma</p>
 						<p class='dummy-text'>Team Size: 2-3</p>
@@ -349,7 +386,7 @@ Same marking scheme.</p>
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/green_avengers.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Green Avengers</p>
 						<p class='dummy-text'>Team Size: 2</p>
@@ -363,7 +400,7 @@ judged upon creativity/idea, feasibility, presentation etc.</p>
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/save_the_egg.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Save the egg</p>
 						<p class='dummy-text'>Team Size: 2</p>
@@ -437,7 +474,7 @@ panels present there.</p>
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/wiki_wars.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Wiki Wars</p>
 						<p class='dummy-text'>Team Size: 1</p>
@@ -470,7 +507,7 @@ of articles it takes to get to Adolf Hitler. The person who gets there with the 
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/flash_time_paradox.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Flash Time Paradox</p>
 						<p class='dummy-text'>Team Size: 3</p>
@@ -500,7 +537,7 @@ to drive the car through the obstacles. The team taking minimum time to complete
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/biz_tech_quiz.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Biz Tech Quiz</p>
 						<p class='dummy-text'>Team Size: 3</p>
@@ -513,7 +550,7 @@ buzzer rounds, centrally themed on Technology and Business. Participation is in 
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/lone_survivor.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Lone Wolf Quiz</p>
 						<p class='dummy-text'>Team Size: 1</p>
@@ -524,7 +561,7 @@ buzzer rounds, centrally themed on Technology and Business. Participation is in 
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/tech_debate.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Tech Debate</p>
 						<p class='dummy-text'>Team Size: 1</p>
@@ -556,6 +593,8 @@ Languages - C/C++, Java, Python and 3 more surprises.</p>
 				</div>
 			</section>
 		</div><!-- /container -->
+		<script src="./public/vendor/jquery2.1.3.js"></script>
+		<script src="./public/js/preloader.js"></script>
 		<script src="./public/js/classie.js"></script>
 		<script src="./public/js/helper.js"></script>
 		<script src="./public/js/grid3d.js"></script>

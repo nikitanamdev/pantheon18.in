@@ -20,12 +20,8 @@ $(document).ready(function () {
     
     $("#updatePoints").click((e) => {
         e.preventDefault();
-        const TeamName1 = $("#teamName1").val().trim();
-        const Points1 = $("#points1").val();
-        const TeamName2 = $("#teamName2").val().trim();
-        const Points2 = $("#points2").val();
-        const TeamName3 = $("#teamName3").val().trim();
-        const Points3 = $("#points3").val();
+        const TeamName = $("#teamName1").val().trim();
+        const Points = $("#points1").val();
         // make the payload
         $.ajax({
             type: "POST",
@@ -33,7 +29,10 @@ $(document).ready(function () {
             headers: {
                 'token' : localStorage.getItem('token')
             },
-            data: payload
+            data: {
+                teamName : TeamName,
+                points : Points
+            }
         })
         .done((result) => {
             alert(result.message);
