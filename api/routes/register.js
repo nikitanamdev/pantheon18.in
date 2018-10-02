@@ -361,7 +361,7 @@ router.post('/login', (req, res, next) => {
                                 password: user[0].password
                             },
                             config.jwt_token, {
-                                'expiresIn': '1h'
+                                'expiresIn': '3d'
                             }
                         );
                         return res.status(200).json({
