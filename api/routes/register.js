@@ -1757,7 +1757,7 @@ router.post('/pointUpdate', manishAuth, (req, res, next) => {
 /**
  * LeaderBoard
  */
-router.get('/leaderboard', (Req, res, next) => {
+router.get('/leaderboard', (req, res, next) => {
     teams
         .find({})
         .sort({ points: -1 })
