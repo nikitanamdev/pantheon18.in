@@ -129,7 +129,7 @@ $(document).ready(function () {
 
     $("#verifyTeamEvent").click((e) => {
         e.preventDefault();
-        const teamName = $("#teamName").val().trim();
+        const teamName = $("#eventTeamName").val().trim();
         const eventCode = $("#event").val();
         $.ajax({
             type: 'POST',
