@@ -1653,7 +1653,7 @@ router.post('/verifyUser', adminAuth, (req, res, next) => {
 });
 
 /* Event verification of teams */
-router.get('/eventTeamVerify' , (req, res, next) => {
+router.post('/eventTeamVerify', adminAuth, (req, res, next) => {
     teams
         .find({
             teamName: req.body.teamName
