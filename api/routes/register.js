@@ -13,6 +13,7 @@ const lookups = require('./../models/lookups');
 const teams = require('./../models/teams');
 const adminAuth = require('./../middleware/adminAuth.js');
 const manishAuth = require('./../middleware/manishAuth.js');
+const notifs = require('./../models/notifications.js');
 //const Events = require('./../events.json');
 
 router.post('/register', (req, res, next) => {
@@ -1652,7 +1653,7 @@ router.post('/verifyUser', adminAuth, (req, res, next) => {
 });
 
 /* Event verification of teams */
-router.get('/eventVerify' , (req, res, next) => {
+router.get('/eventTeamVerify' , (req, res, next) => {
     teams
         .find({
             teamName: req.body.teamName
@@ -1777,6 +1778,57 @@ router.get('/leaderboard', (req, res, next) => {
             });
         });
 });
+
+/**
+ * Save Notifications
+ */
+router.post('/saveNotifications', manishAuth, (req, res, next) => {
+    const notif = new notifs({
+        messageTitle: req.body.messageTitle,
+        messageBody: req.body.messageBody
+    });
+
+    notif
+        .save()
+        .then((result) => {
+            res.status(200).json({
+                status: "success",
+                message: "Message saved successfully"
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
+
+/**
+ * Get the notifications
+ */
+router.get('/notifications', (req, res, next) => {
+    notifs
+        .find({})
+        .sort({ createdAt: -1 })
+        .exec()
+        .then((result) => {
+            res.status(200).json({
+                status: 'success',
+                message: 'notifications sent successfully',
+                notifs: result
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
+
 module.exports = router;
 
 

@@ -43,4 +43,30 @@ $(document).ready(function () {
             window.location.href = 'login.html';
         })
     });
+
+    $("#push").click((e) => {
+        e.preventDefault();
+        const msgtitle = $("#title").val().trim();
+        const msgbody = $("#message").val().trim();
+        // make the payload
+        $.ajax({
+            type: "POST",
+            url : requrl + "/api/saveNotifications",
+            headers: {
+                'token' : localStorage.getItem('token')
+            },
+            data: {
+                messageTitle: msgtitle,
+                messageBody: msgbody
+            }
+        })
+        .done((result) => {
+            alert(result.message);
+            location.reload(true);
+        })
+        .fail((err) => {
+            alert('Some error occured.Please try again.');
+            window.location.href = 'login.html';
+        })
+    });
 });

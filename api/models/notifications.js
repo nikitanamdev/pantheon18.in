@@ -10,6 +10,10 @@ const notifsSchema = new mongoose.Schema({
         type: String,
         default: "Default Text"
     },
+    createdAt : {
+        type: Date,
+        default: new Date()
+    },
     Buffer : {
         type: String,
         default: ""
