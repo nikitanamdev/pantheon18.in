@@ -1784,6 +1784,7 @@ router.get('/leaderboard', (req, res, next) => {
  */
 router.post('/saveNotifications', manishAuth, (req, res, next) => {
     const notif = new notifs({
+        _id: mongoose.Types.ObjectId(), 
         messageTitle: req.body.messageTitle,
         messageBody: req.body.messageBody
     });
