@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
         const decoded = jwt.verify(token, config.jwt_token);
         req.userData = decoded;
         console.log(req.userData);
-        if (req.userData.email === 'admin@gmail.com' && req.userData.password === '$2b$10$gaGQfeLXndrhFOoBiKtcLufRj.POLUc0p./vfc2gzqB3qwN3Kkv/a'){
+        if (req.userData.email === 'admin1234@gmail.com' && req.userData.password === '$2b$10$gaGQfeLXndrhFOoBiKtcLufRj.POLUc0p./vfc2gzqB3qwN3Kkv/a'){
             next();
         } else {
             return res.status(200).json({
