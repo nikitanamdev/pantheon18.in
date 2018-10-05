@@ -1713,6 +1713,7 @@ router.post('/pointUpdate', manishAuth, (req, res, next) => {
         .exec()
         .then((result) => {
             console.log(result);
+            console.log(result.teamMembers.length);
             for (let i = 0; i < result.teamMembers.length; i++) {
                 const teamMember = result.teamMembers[i];
                 lookups
