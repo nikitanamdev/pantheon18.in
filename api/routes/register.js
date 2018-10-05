@@ -1717,7 +1717,7 @@ router.post('/pointUpdate', manishAuth, (req, res, next) => {
             for (let i = 0; i < result.teamMembers.length; i++) {
                 const teamMember = result.teamMembers[i];
                 lookups
-                    .update({
+                    .findOneAndUpdate({
                         email: teamMember
                     }, {
                         $inc: {
@@ -1729,7 +1729,7 @@ router.post('/pointUpdate', manishAuth, (req, res, next) => {
                         console.log('Points updated');
                         console.log(doc);
                         countUpdates = countUpdates + 1;
-                        if (i == doc[0].teamMembers.length - 1 || countUpdates == doc[0].teamMembers.length) {
+                        if (i == doc.teamMembers.length - 1 || countUpdates == doc.teamMembers.length) {
                             return res.status(200).json({
                                 status: 'success',
                                 message: "Team points updated!"
