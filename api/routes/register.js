@@ -1699,6 +1699,7 @@ router.get('/manishRights', manishAuth, (req, res, next)=>{
 /* Teams points update route */
 router.post('/pointUpdate', manishAuth, (req, res, next) => {
     let countUpdates = 0;
+    const nos = 0;
     teams
         .findOneAndUpdate(
             {
@@ -1713,7 +1714,7 @@ router.post('/pointUpdate', manishAuth, (req, res, next) => {
         .exec()
         .then((result) => {
             console.log(result);
-            console.log(result.teamMembers.length);
+            nos = result.teamMembers.length;
             for (let i = 0; i < result.teamMembers.length; i++) {
                 const teamMember = result.teamMembers[i];
                 lookups
@@ -1729,7 +1730,7 @@ router.post('/pointUpdate', manishAuth, (req, res, next) => {
                         console.log('Points updated');
                         console.log(doc);
                         countUpdates = countUpdates + 1;
-                        if (i == doc.teamMembers.length - 1 || countUpdates == doc.teamMembers.length) {
+                        if (i == result.teamMembers.length - 1 || countUpdates == result.teamMembers.length) {
                             return res.status(200).json({
                                 status: 'success',
                                 message: "Team points updated!"
