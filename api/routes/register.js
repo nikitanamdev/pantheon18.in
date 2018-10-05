@@ -1727,6 +1727,7 @@ router.post('/pointUpdate', manishAuth, (req, res, next) => {
                     .exec()
                     .then((doc) => {
                         console.log('Points updated');
+                        console.log(doc);
                         countUpdates = countUpdates + 1;
                         if (i == doc[0].teamMembers.length - 1 || countUpdates == doc[0].teamMembers.length) {
                             return res.status(200).json({
