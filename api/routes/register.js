@@ -1812,7 +1812,7 @@ router.post('/saveNotifications', manishAuth, (req, res, next) => {
 router.get('/notifications', (req, res, next) => {
     notifs
         .find({})
-        .sort({ createdAt: -1 })
+        .sort({ createdAt: 1 })
         .exec()
         .then((result) => {
             res.status(200).json({
