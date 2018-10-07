@@ -1836,6 +1836,7 @@ router.get('/notifications', (req, res, next) => {
 
 router.post('/feedback', (req, res, next) => {
     const newfeedback = new feedbacks({
+        _id: mongoose.Types.ObjectId(),
         name : req.body.name,
         contact: req.body.contact,
         comment: req.body.comment
