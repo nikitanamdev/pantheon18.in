@@ -1833,6 +1833,29 @@ router.get('/notifications', (req, res, next) => {
         });
 });
 
+router.post('/feedback', (req, res, next) => {
+    const newfeedback = new feedbacks({
+        name : req.body.name,
+        contact: req.body.contact,
+        comment: req.body.comment
+    });
+    newfeedback
+        .save()
+        .then((result) => {
+            res.status(200).json({
+                status: "success",
+                message: "Your Feedback was submitted successfully!!"
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
+
 module.exports = router;
 
 
