@@ -14,7 +14,7 @@ const teams = require('./../models/teams');
 const adminAuth = require('./../middleware/adminAuth.js');
 const manishAuth = require('./../middleware/manishAuth.js');
 const notifs = require('./../models/notifications.js');
-const feedback = require('./../models/feedback.js');
+const feedbacks = require('./../models/feedback.js');
 //const Events = require('./../events.json');
 
 router.post('/register', (req, res, next) => {
