@@ -53,8 +53,8 @@ router.post('/register', (req, res, next) => {
                         port: 25,
                         secureConnection: false,
                         auth: {
-                            user: 'web@pantheon18.in',
-                            pass: 'Manish@123'
+                            user: '<YOUR WEB MAIL>',
+                            pass: '<YOUR PASSWORD>'
                         }
                     });
 
@@ -79,7 +79,7 @@ router.post('/register', (req, res, next) => {
                              * sending phone otp
                              */
 
-                            let otpurl = `http://sms.digimiles.in/bulksms/bulksms?username=di78-bitmesra&password=digimile&type=0&dlr=1&destination=${req.body.contact}&source=PANTHN&message=Hi ${req.body.name}, Your OTP for Pantheon'18 is: ${otp.mobileOTPsent}`
+                            let otpurl = '<YOUR SMS SERVICE>'
                             request(otpurl, (error, response, body) => {
                                 if (error) {
                                     console.log(error);

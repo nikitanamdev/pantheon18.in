@@ -8,7 +8,7 @@ const cors = require("cors");
 /**
  * Database connectivity
  */
-const vpsurl = "mongodb://localhost:43928/pantheon";
+const vpsurl = "<Your Database>";
 const localurl = "mongodb://127.0.0.1/pantheon"
 mongoose
     .connect(vpsurl, { useNewUrlParser: true }, (err, db) =>{
