@@ -12,8 +12,13 @@ $(document).ready(function () {
             $('#leaderEmail').val(leaderEmail);
         }
         else{
-            alert(res.message);
-            window.location.href = 'index.html';
+            if(res.status === 'fail' && res.message === 'Authentication Failed.Please Log In.'){
+                alert(res.message);
+                window.location.href = "login.html";
+            } else {
+                alert(res.message);
+                window.location.href = 'index.html';
+            }   
         }
     }).fail((err) => {
         alert('Some error occured.Please try again.');

@@ -27,27 +27,20 @@
 }
 
 /* Background Image */
-body {
+/* body {
     background-image: url("./../images/main-background.jpg");
     background-size: 100vw;
     /* background-repeat: repeat-y;   */
     background-repeat: repeat-y;
-}
+} */
 
 /* Our Team
 -------------------------------------------------------*/
 
-<<<<<<< HEAD
-.our-team .team-row {
-    margin-left: -40px;
-    margin-right: -40px;
-}
-=======
 /* .our-team .team-row {
     margin-left: -40px;
     margin-right: -40px;
 } */
->>>>>>> 004eca232b57bb0a1e606f9561318c39ef170bcc
 
 .our-team .team-wrap {
     padding: 0 40px;

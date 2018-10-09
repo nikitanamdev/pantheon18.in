@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<head>
   <meta charset="UTF-8">
   <title>Pantheon'18 | Birla Institute of Technology, Mesra</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,13 +10,210 @@
   <link rel="stylesheet" href="./public/css/nav.css">
   <link rel="stylesheet" href="./public/css/preloader.css">
   <link rel="stylesheet" type="text/css" href="./public/css/sponsors.css">
-  <link rel="stylesheet" type="text/css" href="./public/css/style.css">
+  <!-- <link rel="stylesheet" type="text/css" href="./public/css/style.css"> -->
   <link rel="stylesheet" href="./public/css/scrollbar.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Alice" rel="stylesheet">
-  </head>
+  <style>
+    .footer-distributed{
+  margin-left: 6rem;
+	background-color: #292c2f;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+  width: 95%;
+	text-align: left;
+	font: bold 16px sans-serif;
+	padding: 55px 50px;
+}
 
-<body style="background: url('public/images/blackBack.jpg');background-size: cover;background-repeat: no-repeat;">
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right{
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left{
+	width: 40%;
+}
+
+.footer-distributed .footer-left img{
+  display: block;
+  margin-left: 30%;
+}
+
+/* The company logo */
+
+.footer-distributed h3{
+	color:  #ffffff;
+	font: normal 36px 'Cookie', cursive;
+	margin: 0;
+}
+
+.footer-distributed h3 span{
+	color:  #5383d3;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links{
+	color:  #ffffff;
+	margin: 20px 0 12px;
+	padding: 0;
+}
+
+.footer-distributed .footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+	text-decoration: none;
+	color:  inherit;
+}
+
+.footer-distributed .footer-company-name{
+	color:  #8f9296;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0 0 0 30%;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center{
+	width: 35%;
+}
+
+.footer-distributed .footer-center i{
+	background-color:  #33383b;
+	color: #ffffff;
+	font-size: 25px;
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 42px;
+	margin: 10px 15px;
+	vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope{
+	font-size: 17px;
+	line-height: 38px;
+}
+
+.footer-distributed .footer-center p{
+	display: inline-block;
+	color: #ffffff;
+	vertical-align: middle;
+	margin:0;
+}
+
+.footer-distributed .footer-center p span{
+	display:block;
+	font-weight: normal;
+	font-size:14px;
+	line-height:2;
+}
+
+.footer-distributed .footer-center p a{
+	color:  #5383d3;
+	text-decoration: none;;
+}
+
+
+/* Footer Right */
+
+.footer-distributed .footer-right{
+	width: 20%;
+}
+
+.footer-distributed .footer-company-about{
+	line-height: 20px;
+	color:  #92999f;
+	font-size: 13px;
+	font-weight: normal;
+	margin: 0;
+}
+
+.footer-distributed .footer-company-about span{
+	display: block;
+	color:  #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons{
+	margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+
+	margin-right: 3px;
+	margin-bottom: 5px;
+}
+@media (max-width: 880px) {
+
+	.footer-distributed{
+		font: bold 14px sans-serif;
+	}
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-center,
+	.footer-distributed .footer-right{
+		display: block;
+		width: 100%;
+		margin-bottom: 20px;
+		text-align: center !important;
+  }
+
+  .footer-distributed .footer-left .footer-company-name {
+    text-align: center;
+    margin: 0;
+  }
+
+  .footer-distributed .footer-left img {
+    margin: 0 auto;
+  }
+
+
+  .footer-distributed .footer-right {
+    display: none;
+  }
+	.footer-distributed .footer-center i{
+		margin-left: 0;
+	}
+}
+@media screen and (max-width: 545px) {
+  .footer-distributed {
+    margin-left: 0;
+    width: 100%;
+  }
+  .logo-line{
+      margin-top:3.8em;
+  }
+  .giflogo{
+      margin-top:4em;
+  }
+  .face{
+      display: none;
+  }
+}
+
+  </style>  
+</head>
+
+<body style="background-color: #FFF !important;">
 
   <!-- Preloader -->
   <div id="preloader">
@@ -38,6 +235,9 @@
           </li>
           <li>
               <a href="./theme.html">Theme</a>
+          </li>
+          <li>
+              <a href="./events.html">Events</a>
           </li>
           <li>
             <a href="./flagship.html">Flagship Events</a>
@@ -66,7 +266,7 @@
       class="wow fadeInDown" data-wow-duration="2s">
       <img src="./public/images/logo.png" title="logo">
     </span>
-    <span style="animation-duration: 2s; animation-name: fadeInUp;" class="wow fadeInUp">OUR SPONSORS</span>
+    <span style="animation-duration: 2s; animation-name: fadeInUp;color: #000;" class="wow fadeInUp">OUR SPONSORS</span>
   </div>
 
 
@@ -78,7 +278,372 @@
     <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
       <div class="team-member text-center">
         <div class="team-img">
-          <img src="./public/images/cii.jpg" alt="" class="img-responsive">
+          <img src="./public/images/tequip" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>To be updated</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width:100%;" src="./public/images/cii.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+            <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width:100%;" src="./public/images/madeeasy.png" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Gate Coaching Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width:60%;margin-left:20%;" src="./public/images/jetbrains.png" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Coding Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img src="./public/images/zebronics.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Coding Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width:250px;margin-left:30%;" src="./public/images/marketing mind.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img src="./public/images/du_beat.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width:250px;margin-left:30%;" src="./public/images/cocacola.png" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width:250px;margin-left:30%;" src="./public/images/RVCJ LOGO.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+        <div class="team-member text-center">
+          <div class="team-img">
+            <img style="height:250px;width:100%;" src="./public/images/inversion.jpg" alt="" class="img-responsive">
+            <div class="overlay">
+              <div class="team-details text-center">
+                <!-- <h2>Coding Partner</h2> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width:100%;" src="./public/images/Novelty.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Coding Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img src="./public/images/winkies.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width:100%;" src="./public/images/kareem.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width:100%;" src="./public/images/The-souled-store.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+      <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+        <div class="team-member text-center">
+          <div class="team-img">
+            <img style="height:250px;width: 100%;" src="./public/images/radio_dhoom.jpg" alt="" class="img-responsive">
+            <div class="overlay">
+              <div class="team-details text-center">
+                <!-- <h2>Food Partner</h2> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end team member -->
+
+      <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+          <div class="team-member text-center">
+            <div class="team-img">
+              <img src="./public/images/trickyscribe.png" alt="" class="img-responsive">
+              <div class="overlay">
+                <div class="team-details text-center">
+                  <!-- <h2>Food Partner</h2> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end team member -->
+      
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width:250px;margin-left:30%;" src="./public/images/thancos.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width: 100%;" src="./public/images/corasalon.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width:100%;" src="./public/images/Buzz-On-Earth.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width: 100%;" src="./public/images/sensex tea.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width: 100%;" src="./public/images/Chanakya_IAS.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width:100%;" src="./public/images/RoboManiax.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width: 100%;" src="./public/images/baba-min.jpeg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width: 100%;" src="./public/images/zindagi_milegi_dobara.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width:100%;" src="./public/images/swadesh.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Official Savings Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img style="height:250px;width:100%;" src="./public/images/Kasha.jpg" alt="" class="img-responsive">
+          <div class="overlay">
+            <div class="team-details text-center">
+              <!-- <h2>Food Partner</h2> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end team member -->
+
+    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="team-member text-center">
+        <div class="team-img">
+          <img src="./public/images/mobface.jpg" alt="" class="img-responsive">
           <div class="overlay">
             <div class="team-details text-center">
               <h2></h2>
@@ -92,10 +657,10 @@
     <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
       <div class="team-member text-center">
         <div class="team-img">
-          <img src="./public/images/baba-min.jpeg" alt="" class="img-responsive">
+          <img style="height:250px;width:100%;" src="./public/images/avmode-page.jpg" alt="" class="img-responsive">
           <div class="overlay">
             <div class="team-details text-center">
-            <h2>Food Partner</h2>
+              <!-- <h2>Coding Partner</h2> -->
             </div>
           </div>
         </div>
@@ -106,10 +671,10 @@
     <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
       <div class="team-member text-center">
         <div class="team-img">
-          <img src="./public/images/jetbrains.png" alt="" class="img-responsive">
+          <img style="height:250px;width:100%;" src="./public/images/wisekart-page.jpg" alt="" class="img-responsive">
           <div class="overlay">
             <div class="team-details text-center">
-              <h2>Coding Partner</h2>
+              <!-- <h2>Coding Partner</h2> -->
             </div>
           </div>
         </div>
@@ -117,41 +682,27 @@
     </div>
     <!-- end team member -->
 
-
     <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
       <div class="team-member text-center">
         <div class="team-img">
-          <img src="./public/images/GrabOn.png" alt="" class="img-responsive">
+          <img style="height:250px;width:100%;" src="./public/images/chatarpatar.jpg" alt="" class="img-responsive">
           <div class="overlay">
             <div class="team-details text-center">
-              <h2>Official Savings Partner</h2>
+              <!-- <h2>Food Partner</h2> -->
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- end team member -->
-    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
-      <div class="team-member text-center">
-        <div class="team-img">
-          <img src="./public/images/kareem.jpg" alt="" class="img-responsive">
-          <div class="overlay">
-            <div class="team-details text-center">
-              <h2>Food Partner</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
 
     <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
         <div class="team-member text-center">
           <div class="team-img">
-            <img src="./public/images/adiefashion.jpg" alt class="img-responsive">
+            <img style="height:250px;width:100%;" src="./public/images/adiefashion.jpg" alt class="img-responsive">
             <div class="overlay">
               <div class="team-details text-center">
-                <h2>Fashion Partner</h2>
+                <!-- <h2>Fashion Partner</h2> -->
               </div>
             </div>
           </div>
@@ -160,38 +711,23 @@
     <!-- end team member -->
 
     <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
-      <div class="team-member text-center">
-        <div class="team-img">
-          <img src="./public/images/thancos.jpg" alt="" class="img-responsive">
-          <div class="overlay">
-            <div class="team-details text-center">
-              <h2>Food Partner</h2>
+        <div class="team-member text-center">
+          <div class="team-img">
+            <img style="height:250px;width:100%;" src="./public/images/suneja.jpg" alt="" class="img-responsive">
+            <div class="overlay">
+              <div class="team-details text-center">
+                <h2></h2>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- end team member -->
+      <!-- end team member -->
 
-    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
-      <div class="team-member text-center">
-        <div class="team-img">
-          <img src="./public/images/madeeasy.png" alt="" class="img-responsive">
-          <div class="overlay">
-            <div class="team-details text-center">
-              <h2>Gate Coaching Partner</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-        <!-- end team member -->
-
-        <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+      <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
           <div class="team-member text-center">
             <div class="team-img">
-              <img src="./public/images/indianpreneur.png" alt="" class="img-responsive">
+              <img src="./public/images/grabon.png" alt="" class="img-responsive">
               <div class="overlay">
                 <div class="team-details text-center">
                   <h2></h2>
@@ -200,23 +736,39 @@
             </div>
           </div>
         </div>
+        <!-- end team member -->
 
-
-            <!-- end team member -->
-
-    <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
-      <div class="team-member text-center">
-        <div class="team-img">
-          <img src="./public/images/suneja.jpg" alt="" class="img-responsive">
-          <div class="overlay">
-            <div class="team-details text-center">
-              <h2></h2>
+        <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+          <div class="team-member text-center">
+            <div class="team-img">
+              <img src="./public/images/prabhat_khabar.jpg" alt="" class="img-responsive">
+              <div class="overlay">
+                <div class="team-details text-center">
+                  <h2></h2>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- end team member -->
+        <!-- end team member -->
+        
+        <div class="col-md-6 col-sm-12 col-xs-12 team-wrap">
+            <div class="team-member text-center">
+              <div class="team-img">
+                <img style="height:250px;width:100%;" src="./public/images/indianpreneur.png" alt="" class="img-responsive">
+                <div class="overlay">
+                  <div class="team-details text-center">
+                    <h2></h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end team member -->    
+    
+        
+
+    
 
   </div>
 </div>

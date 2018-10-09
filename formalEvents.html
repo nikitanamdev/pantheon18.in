@@ -4,40 +4,587 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Formal Events | Pantheon'18</title>
+		<title>Pantheon'18 | Birla Institute of Technology, Mesra</title>
+		<link rel="icon" href="./favicon.png">
 		<link rel="stylesheet" type="text/css" href="./public/vendor/normalizemin.css" />
 		<link rel="stylesheet" type="text/css" href="./public/css/formalEventDemo.css" />
 		<link rel="stylesheet" type="text/css" href="./public/css/formalEventComponent.css" />
+		<link rel="stylesheet" href="./public/css/preloader.css">
+    	<link rel="stylesheet" href="./public/css/scrollbar.css">
 		<link rel="stylesheet" href="./public/vendor/animatemin.css">
+		<style>
+			#headLogo {
+				height: 25vh;
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+			}
+
+			#headLogo img {
+				max-height: 80%;
+				max-width: 80%;
+			}
+
+			#headLogo span {
+				margin: auto 0;
+				color: white;
+				font-size: 48px;
+				font-family: 'Alice', serif;
+			}
+		</style>
 		<script src="./public/js/modernizr.custom.js"></script>
 	</head>
-	<body>
+	<body style="background: url('public/images/blackBack.jpg');background-size: cover;background-repeat: no-repeat;">
+
+		<!-- Preloader -->
+		<div id="preloader">
+			<div id="status">&nbsp;</div>
+		</div>
+
+		<div id="headLogo">
+			<span style="display: inline-block; padding-right: 1vw; position: relative; z-index: -1; visibility: visible; animation-duration: 2s; animation-name: fadeInUp;"
+					class="wow fadeInDown" data-wow-duration="2s">
+				<img src="./public/images/logo.png" title="logo">
+			</span>
+			<span style="animation-duration: 2s; animation-name: fadeInUp;" class="wow fadeInUp">Formal Events</span>
+		</div>
+
 		<div class="container">
 			<section class="grid3d vertical" id="grid3d">
 				<div class="grid-wrap">
 					<div class="grid">
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/5.jpg" alt="img05"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/8.jpg" alt="img08"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/2.jpg" alt="img02"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/4.jpg" alt="img04"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/3.jpg" alt="img03"/></figure>
-					</div>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/cashflow.jpg" alt="img01"/><h3>Cashflow</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/robotivate.jpg" alt="img05"/><h3>Robotivate</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/techniq.jpg" alt="img08"/><h3>Techniq</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/facts_and_furious.jpg" alt="img02"/><h3>Facts And Furious</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/qrius.jpg" alt="img04"/><h3>Qrius</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/technosight.jpg" alt="img03"/><h3>Technosight</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/the_uncertainity_conundrum.jpg" alt="img01"/><h4>The Uncertainity Conundrum</h4></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/c-wiz.jpg" alt="img01"/><h3>C-wiz</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/code_it_blind.jpg" alt="img01"/><h3>Code It Blind</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/game_of_shadows.jpg" alt="img01"/><h3>Game of Shadows</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/dcrypt.jpg" alt="img01"/><h3>DCrypt</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/claystation.jpg" alt="img01"/><h3>Claystation</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/rap_the_scrap.jpg" alt="img01"/><h3>Rap The Scrap</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/deep_learning.jpg" alt="img01"/><h5>Machine Learning cum Deep Learning</h5></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/circuit_chasers.jpg" alt="img01"/><h3>Circuit Chasers</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/bit_cryptic.jpg" alt="img01"/><h3>Bit Cryptic</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/electriche.jpg" alt="img01"/><h3>Electriche</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/enigma.jpg" alt="img01"/><h3>Enigma</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/green_avengers.jpg" alt="img01"/><h3>Green Avengers</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/save_the_egg.jpg" alt="img01"/><h3>Save the Egg</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/fly_your_plane.jpg" alt="img01"/><h3>Fly your plane</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/sold.jpg" alt="img01"/><h3>1-2-3 Sold</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/rapidough.jpg" alt="img01"/><h3>Rapidough</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/neural_dust.jpg" alt="img01"/><h3>Neural Dust</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/wiki_wars.jpg" alt="img01"/><h3>Wiki Wars</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/flash_time_paradox.jpg" alt="img01"/><h3>Flash Time Paradox</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/partner_drive.jpg" alt="img01"/><h3>Partner in Drive</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/biz_tech_quiz.jpg" alt="img01"/><h3>Biz Tech Quiz</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/lone_survivor.jpg" alt="img01"/><h3>Lone Wolf Quiz</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/tech_debate.jpg" alt="img01"/><h3>Tech Debate</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/bug_hunt.jpg" alt="img01"/><h3>Bug Hunt</h3></figure>
+						</div>
 				</div><!-- /grid-wrap -->
 				<div class="content">
 					<!-- Content can be recieved by seperate XHR request and adding ineer html acccordingly-->
 
-					<div><div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'></div><p class='dummy-text'>stars.</p><p class='dummy-text'>spiders across the stars.</p><p class='dummy-text'>Hello world</p></div>
-					<div><div class='dummy-img'><img src='./public/images/formalEvent/5.jpg'></div><p class='dummy-text'>stars.</p><p class='dummy-text'>spiders across the stars.</p><p class='dummy-text'>Hello world</p></div>
-					<div><div class='dummy-img'><img src='./public/images/formalEvent/8.jpg'></div><p class='dummy-text'>stars.</p><p class='dummy-text'>spiders across the stars.</p><p class='dummy-text'>Hello world</p></div>
-					<div><div class='dummy-img'><img src='./public/images/formalEvent/2.jpg'></div><p class='dummy-text'>stars.</p><p class='dummy-text'>spiders across the stars.</p><p class='dummy-text'>Hello world</p></div>
-					<div><div class='dummy-img'><img src='./public/images/formalEvent/4.jpg'></div><p class='dummy-text'>stars.</p><p class='dummy-text'>spiders across the stars.</p><p class='dummy-text'>Hello world</p></div>
-					<div><div class='dummy-img'><img src='./public/images/formalEvent/3.jpg'></div><p class='dummy-text'>stars.</p><p class='dummy-text'>spiders across the stars.</p><p class='dummy-text'>Hello world</p></div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/cashflow.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Cash Flow</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : How does it feel to be a part of a virtual world where you decide your own fortunes based on
+some flashy headlines? All biz geeks are invited here! Dive into the world of stocks, assets and liabilities and
+maximise your profit.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Ruchika- 9308079198</li>
+							<li>Rashi- 9931850027</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/robotivate.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Robotivate</p>
+						<p class='dummy-text'>Team Size: 2-4</p>
+						<p class='dummy-text'>Event Description : The event will commence with the declaration of a robotics\automation problem. Every team
+participating in the event has to think over the problem and come up with technical solutions that will help in
+overcoming the problem. The participants should brush up their knowledge regarding basic robotics concepts and
+sensors. The event will comprise of two rounds:
+1st round will be pen and paper based where the teams have to jot down their ideas on paper giving proper
+explanation about their approach and explaining the concepts used.
+Teams will be selected on the basis of presentation of their ideas in the pen and paper round.
+The teams qualifying the first round will move to 2nd round which will be an interview round where the teams have
+to present their approach and survive the questions put up by the judges.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Mohit Bihany- 8579822297</li>
+							<li>Soumen Das- 9031725245</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/techniq.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Techniq</p>
+						<p class='dummy-text'>Team Size: 4</p>
+						<p class='dummy-text'>Event Description : Techniq is an event that combines mental ability with knowledge and craftsmanship. The first
+round is an aptitude round with tricky questions, out of which 4 teams proceed to the finals.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Aayush Gupta- 8830355538</li>
+							<li>Ayushi Saraf- 9905573484</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/facts_and_furious.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Facts and Furious</p>
+						<p class='dummy-text'>Team Size: 3</p>
+						<p class='dummy-text'>Event Description :</p>
+						<p class='dummy-text'>Round 1: A memory game based on videos showing technology and innovation will be conducted.</p>
+						<p class='dummy-text'>Round 2: Group discussion on topic related to Artificial intelligence.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Sonu Singh- 7992305239</li>
+							<li>Saharsh Poddar- 7033167254</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/qrius.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : QriUS</p>
+						<p class='dummy-text'>Team Size: 3</p>
+						<p class='dummy-text'>Event Description : Does quizzing get on your nerves? Do you spend your nights and days cramming information? We
+invite all those Quizzing aficionados to attend this event which covers anything and everything under the sun. Witness a novel quiz where we add our own quirks, making it more interesting and fun to take part in.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Shivam– 8976648824</li>
+							<li>Aayush – 9934657093</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/technosight.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Technosight</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : One of the two members will be blind-folded. A maze will be in front of the participants. A
+small car will have to trace the maze and solve it while the blind folded person has the remote. The second person
+will have to assist his/her partner in solving the maze.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Atandra Pal-7295093837</li>
+							<li>Shiwani-7484898086</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/the_uncertainity_conundrum.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : The Uncertainty Conundrum</p>
+						<p class='dummy-text'>Team Size: 3</p>
+						<p class='dummy-text'>Event Description :</p>
+						<p class='dummy-text'>Round 1: Crossword and puzzle solving round.</p>
+						<p class='dummy-text'>Round 2: A treasure hunt having riddles related to electronic and electrical items around the campus.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Harshit Singh-6200388968</li>
+							<li>Divya Jain-9939336578</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/c-wiz.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : C-Wiz</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : Knowledge is always the precursor of understanding. The event C-Wiz is a general aptitude in civil
+engineering quiz dedicated to expansion of knowledge. C-Wiz is a quizzing event that will be held in two rounds.
+Participants compete in teams of two. The first round will have questions related to civil engineering and business.
+The top 6 teams qualify for the second round, which will be a buzzer round.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Aayush Gupta-8830355538</li>
+							<li>Ayushi Saraf -9905573484</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/code_it_blind.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Code It Blind</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : Do you think you have what it takes to be a proficient coder? Can you write a simple program
+with the only catch being that you are blind-folded? If you think you have what it takes to solve this puzzle then you
+are welcome here! Come and be a part of this event as you compete through three intriguing and spellbinding
+rounds to emerge as the final winner!</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Deepak Hirawat- 8328582728</li>
+							<li>Yashodeep Mahapatra- 9652309308</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/game_of_shadows.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : A Game of Shadows</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : Can you solve the riddles and the mysteries to find the killer before it’s too late? Get ready to
+solve this mind-boggling case as you play the Sherlock while working as a team to solve the puzzle before time runs
+out.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Shambhavi Srivastava- 7759041739</li>
+							<li>Isha Mishra- 7319939565</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/dcrypt.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : DCrypt</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : Do you think you are good at surfing the Internet? Are you smart enough to break the
+decryptions? Get ready to use your grey matter to take you to the next level. Make sure you are familiar
+with language(s).</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Kalpit Jain- 7632002054</li>
+							<li>Yash Modi- 9709019782</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/claystation.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Claystation</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : Each participant team will be provided with the resources and they have to make something
+creative out of it as per the theme. The event will take place in 2 rounds - Prelims and Final.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Akash Anshu – 8294289183.</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/rap_the_scrap.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Rap the Scrap</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : Remember the plot of American Science Fiction, Wall-E ? This movie showed the importance of
+robotics in cleaning the garbage. With the growing demand of Robotics, it is not surprising to see robots for efficient
+waste management. So, we are here with an event in which participants have to bring their own robot that can pick
+and place the waste at a specific location.</p>
+<p class='dummy-text'>The waste is a rectangular block of dimensions 3.5cm*5cm.</p>
+<p class='dummy-text'>The basic components that would be required for building a bot are-</p>
+<p class='dummy-text'>Microcontroller</p>
+<p class='dummy-text'>Chassis</p>
+<p class='dummy-text'>Wheels</p>
+<p class='dummy-text'>Motors</p>
+<p class='dummy-text'>Robotic Arm( handmade preferred )</p>
+<p class='dummy-text'>Team with the best implementation will be considered as the winner.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Mansi-9199167697</li>
+							<li>Pooja-7000337882</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/deep_learning.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Machine Learning cum Deep Learning Brainstormer</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : Tired of just hearing people spout buzzwords like Machine Learning, Artificial intelligence? Fret
+no more , for we shall provide you with a proper walk-through to understanding these terms and the technologies
+they define.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Shivam- 8976648824</li>
+							<li>Mudit- 8276902647</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/circuit_chasers.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Circuit Chasers</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : The event comprises of two rounds viz Prelims & Final round. In the prelims round, each team
+comprising of 3 members will have to go through a technical challenge. In the final round, the contestants will be
+provided with clues regarding electronic & electrical components which have to be decoded and then
+interconnected to form a circuit.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Pawan- 8051780422</li>
+							<li>Rohit- 8539078246</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/bit_cryptic.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : BIT Cryptic</p>
+						<p class='dummy-text'>Team Size: 3</p>
+						<p class='dummy-text'>Event Description : In a team of 3, the participants will have to face quizzing questions about latest tech
+developments in the first round. In the next & final round, cryptic crosswords related to technology would have to
+be finished.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Aditi- 7549025002</li>
+							<li>Prerit- 9006948935</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/electriche.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Electriche</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : </p>
+						<p class='dummy-text'>Round 1: Each team will have to solve some technical and aptitude questions that can be structured in the form of either a crossword puzzle or just a simple questionnaire. The 7 teams who score the highest will move to the second round.</p>
+<p class='dummy-text'>Round 2: The top 7 teams will then have to compete against each other in a quizzing round where they have to either identify the image shown to them or solve the visual puzzle. The rules for this quizzing round will be as follows:</p>
+<p class='dummy-text'>1) The first  team gets a question which if they answer are awarded with +10 points and +0 if unable to do so. the question is however passed on to the next team if they are unable to answer.</p>
+<p class='dummy-text'>2) The passed on question, if answered by any other team, will add +5 points to their total score.The passed on question , if answered by any other team, will add +5 points to their total.</p>
+<p class='dummy-text'>3) or to a question being asked, a team  may choose to double the points on offer i.e. if they are able to answer correctly, they will be awarded +20 points. However, if the answer they provide is wrong, there would be a negative marking i.e. -10 marks will be offered as a penalty.</p>
+<p class='dummy-text'>The top 5 teams will then move on to the third round.</p>
+<p class='dummy-text'>Round 3:
+	It is basically a guessing game combined of Pictionary and Charades. For the first minute of the round, one player will draw pictures related to the given word and try to convey it to the other member. For the next minute, roles will be reversed with a little twist where they won't be allowed to draw but will have to explain through words and actions.The team guessing the maximum words will eventually win.
+</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Jyothir- 7779844805</li>
+							<li>Prashant- 7632909290</li>
+							<li>Rudra- 7857055393</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/enigma.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Enigma</p>
+						<p class='dummy-text'>Team Size: 2-3</p>
+						<p class='dummy-text'>Event Description : In 1805, Samuel Morse invented what was going to be the most groundbreaking communication system ever, the
+Morse code and telegraph. The electric telegraph transformed how wars were fought and won and how journalists
+and newspapers conducted business. Rather than taking weeks to be delivered by horse-and-carriage mail carts,
+pieces of news could be exchanged between telegraph stations almost instantly. This code uses small and long
+electric pulses to generate “dots” and “dashes” which are used in different combinations to represent alphabets.
+This event will let you get into the shoes of Samuel Morse and Sherlock Holmes at the same time as you design a
+circuit which can generate Morse code and then decode the code and try to guess what your partner has got out of
+the message box.</p>
+<p class='dummy-text'>First the team of two contestants have to make a circuit consisting of 2 led’s and two pushbuttons (or they can tap
+the wires). One LED will be to show the dots (by touching the wire for short duration) and dashes (by touching the
+wire for long duration) and the other will be lighted up to show the end of the word.</p>
+<p class='dummy-text'>ROUND 1: One-word messages (Pokémon names, mobile company names, food items)
+Guessing the entire word correctly gives 10 points. Otherwise 1/2 points per correct alphabet.</p>
+<p class='dummy-text'>ROUND 2: 3-word messages (“HE THINKS BIG”, “THEY DON’T KNOW”)
+Same marking scheme.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Rudra- 7857055393</li>
+							<li>Abhinav- 7061956822</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/green_avengers.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Green Avengers</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : The teams will have to design a Superhero or a cartoon character who is pro-environment. They
+will be provided with resources and then they will have to present it in front of the judges. The superhero will be
+judged upon creativity/idea, feasibility, presentation etc.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Abhikriti- 8987580681</li>
+							<li>Onaiza- 7070170015</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/save_the_egg.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Save the egg</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : The Teams are supposed to build a parachute in a limited time. Thereafter, an egg would be
+attached to each parachute and it would be dropped from a certain height. The parachutes, containing the eggs have
+to land in a predefined area. Points would be given on the basis of design of parachute, egg save, time of flight and
+the accuracy with which it lands.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Vivek- 9905529566</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/fly_your_plane.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Fly your Plane</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : The objective of this event is to design a plane using the materials provided within the given time.
+Once the time elapses, each team’s plane would be flown to check its time of flight as well as the maximum distance
+it flies. The teams would be judged based upon the design employed to build the plane, distance the plane flies and
+its time of flight.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Vivek- 9905529566</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/sold.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : 1-2-3 Sold</p>
+						<p class='dummy-text'>Team Size: 3</p>
+						<p class='dummy-text'>Event Description : The event shall be comprising of two rounds and will be held in pairs.
+Round1: Teams are supposed to solve a puzzle that is allotted to them in least possible time. The first 10 teams to
+solve their puzzle will proceed to the next round.
+Round2: Teams will be allotted a fixed budget to buy different parts of a car via an auction and create the best
+possible Electric car.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Harsh- 7903742187</li>
+							<li>Samrat- 9955739818</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/rapidough.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Rapidough</p>
+						<p class='dummy-text'>Team Size: 3</p>
+						<p class='dummy-text'>Event Description : In this event, participants will be given a real-life dying product or service and they will have only
+1 minute to 5 minutes to formulate a strategy for the company to bring a turnaround for the respective company
+and verbally present in front of the audience and judges.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Sumit Kumar- 94741162812</li>
+							<li>Anil Peri- 06303572261</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/neural_dust.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Neural Dust</p>
+						<p class='dummy-text'>Team Size: 3</p>
+						<p class='dummy-text'>Event Description :Neural Dust is a kind of brain game. Here for teams of 2 or 3, we will show some pictures on a
+slide/paper. For e.g., one slide containing images of animals or anything like ice-creams or boat, random 20 pictures.
+Only one person from the team is allowed to see this slide and we'll give them 5 minutes to memorize those images.
+After that there will be some generic questions rounds based on the technicality of the picture to be the asked by
+panels present there.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Sapna- 9973820869</li>
+							<li>Ayan- 8804618396</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/wiki_wars.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Wiki Wars</p>
+						<p class='dummy-text'>Team Size: 1</p>
+						<p class='dummy-text'>Event Description : It is a nifty game that can be played with only a web browser. It tests the ability to navigate
+Wikipedia and to think ahead. It is best played in a place with lots of computers that are physically next to each other
+(e.g. a computer lab). Get a few friends to play. This is either the easiest or the hardest part, but it is crucial. Make
+sure your Internet should be functional and reliable. Go to Wikipedia.org. Pick a start and end page. One method is
+to use the "Random Article" page on the left side bar, although this may bring up extremely obscure pages. Another
+is to have an assigned person pick two pages, or to alternate between players. All players should then navigate to
+the starting page. Navigate to the target page using wiki links. Some rule sets allow the use of the back button and
+find function. Note: It is usually acceptable to use the back button to get out of a page with no links in the article.
+The winner should show their history to everyone else. It's interesting to follow the meandering (and at times
+bizarre) nature of wiki links, and will prevent cheating. It is considered cheating to backspace pages, or use the "find
+on page" tool.</p>
+<p class='dummy-text'>A) 2-player Challenge’: The form of the Wikipedia game where two people take it in turns to ask the other to
+navigate between two pages of their choosing, e.g. from Teletubbies to noodles. The number of clicks taken is
+counted, and once a player has completed the challenge, he sets the other a challenge of his own. The winner is the
+person who completes the game in the least number of clicks</p>
+<p class='dummy-text'>B) ‘Time Trials’: Rather than using the click rules, the winner can be determined by whoever reaches the "Homing
+Page" in the shortest amount of time. This is easier with two parallel machines, although it should be noted that they
+ought to have equivalent internet connections.</p>
+<p class='dummy-text'>C) 'Clicks to Hitler': Believed to be the original form of 'The Wikipedia Game, 'the objective is to begin by selecting
+the 'Random Article' link. From there you look at the selected article and click the links in the main body of the
+article that are believed to lead to the Adolf Hitler article. Two players or more can play and they count the number
+of articles it takes to get to Adolf Hitler. The person who gets there with the least number of articles wins.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Pawan- 8789385542</li>
+							<li>Gyandeep- 9973748417</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/flash_time_paradox.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Flash Time Paradox</p>
+						<p class='dummy-text'>Team Size: 3</p>
+						<p class='dummy-text'>Event Description : This event consists of two rounds -</p>
+<p class='dummy-text'>Round 1- Participants need to build a tower using a deck of playing cards. The participants whose building stand tall
+and strong till the end will qualify for the next round.</p>
+<p class='dummy-text'>Round 2- In this round, the selected group of participants would be provided with some products. The team is
+required to advertise their product on the Dias and convince the audience to buy their product. This round will test
+the team coordination and communication skills of the participants.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Abhinit-8987702765</li>
+							<li>Jayanth-8978548734</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/partner_drive.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Partner in Drive</p>
+						<p class='dummy-text'>Team Size: 2</p>
+						<p class='dummy-text'>Event Description : One of the participants will be blind folded and the other team mate has to direct his companion
+to drive the car through the obstacles. The team taking minimum time to complete the task shall win.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Abhinit- 8987702765</li>
+							<li>Aman- 7870004459</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/biz_tech_quiz.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Biz Tech Quiz</p>
+						<p class='dummy-text'>Team Size: 3</p>
+						<p class='dummy-text'>Event Description : The BizQuiz is a two stage Quizzing Contest comprising of a preliminary screening written stage,
+followed by a six team stage final consisting of several rounds of various stipulations and scoring schemes including
+buzzer rounds, centrally themed on Technology and Business. Participation is in teams of three.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Pitamber Kaushik- 8051182991</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/lone_survivor.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Lone Wolf Quiz</p>
+						<p class='dummy-text'>Team Size: 1</p>
+						<p class='dummy-text'>Event Description : A general quiz covering all topics and open for individual participation only.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Anik Das- 8876157532</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/tech_debate.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Tech Debate</p>
+						<p class='dummy-text'>Team Size: 1</p>
+						<p class='dummy-text'>Event Description : A Tech Debate divided into two rounds- Prelims & Finals respectively. The topic for the Prelims
+round is given in advance to the participants. The speaking time for the Prelims will be 2 minutes and the choice of
+stance will be open. The format of the Final round, though, will be a surprise.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Vivek Gupta- 9905529566</li>
+						</ul>
+					</div>
+					<div>
+						<div class='dummy-img'><img src='./public/images/events/bug_hunt.jpg'>
+						</div>
+						<p class='dummy-text'>Event Name : Bug Hunt</p>
+						<p class='dummy-text'>Team Size: 3</p>
+						<p class='dummy-text'>Event Description : Debugging is the art and science of understanding how the programmer might have thought of
+approaching the problem and what could have possibly gone wrong. This Pantheon, get ready to stretch your mind
+to solve some of the toughest bugs that may unknowingly occur in a piece of code.
+Languages - C/C++, Java, Python and 3 more surprises.</p>
+						<p class='dummy-text'>Event Coordinators:</p>
+						<ul class = 'dummy-text'>
+							<li>Aashray: 8294263760</li>
+							<li>Prasun: 8252210305</li>
+						</ul>
+					</div>
 					<span class="loading"></span>
 					<span class="icon close-content"></span>
 				</div>
 			</section>
 		</div><!-- /container -->
+		<script src="./public/vendor/jquery2.1.3.js"></script>
+		<script src="./public/js/preloader.js"></script>
 		<script src="./public/js/classie.js"></script>
 		<script src="./public/js/helper.js"></script>
 		<script src="./public/js/grid3d.js"></script>

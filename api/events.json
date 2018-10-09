@@ -11,7 +11,7 @@
 			"winners":["str","str"],
 			"points":["str"],
 			"rules":
-			"1. The contest will have the ACM ICPC Style Rank List.
+			"1. The contest will have the ACM ICPC Style Rank List. 
 			2. There is no restriction on the programming language.  
 			3. All the problems have same points allotted to them. 4. Users are ranked according to the most problems solved. Ties will be broken by the total time for each user in ascending order of time. 
 			5. The total time is the sum of the time consumed for each problem solved. The time consumed for a solved problem is the time elapsed from the beginning of the contest to the submission of the 
@@ -21,7 +21,7 @@
 			8. Any participant found to be indulging in any form of malpractice will be immediately disqualified."
 			
 		},
-		"Cyber-BridgeTon":{
+		"CyberBridgeTon":{
 			"name":"Cyber-BridgeTon",
 			"desc":"Cost, time and placement constraints are all considered in this design marathon. Ingenuity and speed are your friends while tardiness will lead you astray when making simulation bridges. This is a 2 round event, with a preliminary round and a final round. This event requires participants to design a bridge, which can withstand both structural and environmental challenges. The fundamental knowledge of physics and the creativity of the 
 			teams will be tested in a cohesive manner in this event. The team with the best design will be adjudged as the winners.",
@@ -47,7 +47,7 @@
 			"rules":"1. Participants will have to prepare a report of their presentation with required photographs as a proof of their project progress, in less than 1000 words, and mail it to the address of events@pantheon18.in before October.  
 			2. The selected teams will be sent mails regarding their selection and will be informed  about the further rounds.  3. The selected teams will have to be present during the entire exhibition and will  have to explain their project to the technical enthusiasts present. 4. The teams will also be explaining their project to the judging panel who will scrutinize their project.  5. The teams will be given a total time of 10 minutes to explain their project.  6. The teams will be marked on their content, level of research, presentation  skills and most importantly crowd interaction skills.  7. The decision of the judging panel will be final and binding. "	
 		},
-		"Illuminati ":{
+		"Illuminati":{
 			"name":"Illuminati",
 			"desc":" Illuminati, the mock-paper presentation event of Pantheon’18 brings to you a once in a while opportunity to unleash your creative side. If you have the mettle to prove your technical prowess, Illuminati provides you with the perfect platform to present your research paper on a scientific theme. All you have to do prior to the presentation is submit your abstract and relevant information set. Are you ready to enlighten and establish a new world order?",
 			"venue":"",
@@ -59,7 +59,7 @@
 			"points":["str"],
 			"rules":"1. Participating teams will have to prepare a report of their Presentation with required graphic details, in less than 1000 words, and mail it to the address of _______________________ 2. The selected teams will be sent mails regarding their selection and will be informed about the further rounds. 3. The teams will be given 15 minutes to present their research paper with a supplementary PowerPoint presentation. 4. The selected teams have to submit at least five hard copies of their research to the esteemed panel who will be scrutinizing their research. 5. There will be an additional viva session of every team at the end of their presentations. 6. The teams will be judged on their content, level of research, presentation skills and viva performances. 7. The dress code will be strictly formal wears. 8. Plagiarism is strictly prohibited. 9. The decision of the Judging Panel will be final and binding. "	
 		},
-		"Droid Trooper ":{
+		"DroidTrooper":{
 			"name":"Droid Trooper",
 			"desc":"The contestants have to make a manual robot which can be wired or wireless and the bot has to traverse a terrain consisting of different zones. While traversing it has to perform certain task (which will be mentioned in the rulebook) by any suitable mechanism and reach the finish point. Points will be awarded for crossing terrains and performing the task. ",
 			"venue":"",
@@ -73,7 +73,7 @@
 			6. The dimensions of the bot will be mentioned in rulebook. 7. Details about points and penalties will be given in the  8. problem statement along with the different views of     the game field. 
 			9. Basic components such as motors, wheels, switches, motor clamps etc. will provided by ROBOLUTION at nominal rates or contestants can buy their own components. "	
 		},
-		"Cash Flow ":{
+		"CashFlow":{
 			"name":"Cash Flow",
 			"desc":"How does it feel to be a part of a virtual world where you decide your own fortunes based on some flashy headlines? All biz geeks are invited here! Dive into the world of stocks, assets and liabilities and maximise your profit. ",
 			"venue":"",
@@ -85,7 +85,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Techniq ":{
+		"Techniq":{
 			"name":"Techniq ",
 			"desc":" Techniq is an event that combines mental ability with knowledge and craftsmanship. The first round is an aptitude round with tricky questions, out of which 4 teams proceed to the finals. ",
 			"venue":"",
@@ -97,7 +97,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Facts and Furious":{
+		"FactsandFurious":{
 			"name":"Facts and Furious",
 			"desc":"1st round: A memory game based on videos showing technology and innovation will be conducted. 2nd round: Group discussion on topic related to Artificial intelligence. ",
 			"venue":"",
@@ -110,13 +110,13 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"QriUS ":{
+		"QriUS":{
 			"name":"QriUS",
 			"desc":"Does quizzing get on your nerves? Do you spend your nights and days cramming information? We invite all those Quizzing aficionados to attend this event which spans over anything and everything about technology. Witness a novel quiz where we add our own quirks, making it more interesting and fun to take part in",
 			"venue":"",
 			"time":"",
 			"day":"",
-			"teamSize":"3",
+			"teamSize":3"",
 			"contact":["Shivam – 8976648824","Aayush – 9934657093"],
 			"winners":["str","str"],
 			"points":["str"],
@@ -134,7 +134,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"The Uncertainty Conundrum ":{
+		"TheUncertaintyConundrum":{
 			"name":"The Uncertainty Conundrum ",
 			"desc":"1st round:   Crossword and puzzle solving round.  
 			2nd round:   A treasure hunt having riddles related to electronic and electrical items around the  campus. ",
@@ -147,7 +147,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"C-Wiz ":{
+		"CWiz":{
 			"name":"C-Wiz",
 			"desc":"Knowledge is always the precursor of understanding. The event C-Wiz is a general aptitude in civil engineering quiz dedicated to expansion of knowledge. C-Wiz is a quizzing event that will be held in two rounds. Participants compete in teams of two. The first round will have questions related to civil engineering and business. The top 6 teams qualify for the second round, which will be a buzzer round. ",
 			"venue":"",
@@ -159,7 +159,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Code It Blind ":{
+		"CodeItBlind":{
 			"name":"Code It Blind ",
 			"desc":"Do you think you have what it takes to be a proficient coder? Can you write a simple program with the only catch being that you are blind-folded? If you think you have what it takes to solve this puzzle then you are welcome here! Come and be a part of this event as you compete through three intriguing and spellbinding rounds to emerge as the final winner! ",
 			"venue":"",
@@ -171,7 +171,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Mock CID":{
+		"MockCID":{
 			"name":"Mock CID",
 			"desc":"Can you solve the riddles and the mysteries to find the killer before it’s too late? Get ready to solve this mind-boggling case as you play the Sherlock while working as a team to solve the puzzle before time runs out. ",
 			"venue":"",
@@ -183,7 +183,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"DCrypt ":{
+		"DCrypt":{
 			"name":"DCrypt",
 			"desc":"Do you think you are good at surfing the Internet? Are you smart enough to break the decryptions? Get ready to use your grey matter to take you to the next level. Make sure you are familiar with language(s). ",
 			"venue":"",
@@ -208,7 +208,7 @@
 			"rules":""	
 		},
 		
-		"Rap the Scrap ":{
+		"RaptheScrap":{
 			"name":"Rap the Scrap ",
 			"desc":"Finding innovative ways to use robotics for efficient waste management.",
 			"venue":"",
@@ -220,7 +220,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Machine Learning cum Deep Learning Brainstormer ":{
+		"MachineLearningcumDeepLearningBrainstormer":{
 			"name":"Machine Learning cum Deep Learning Brainstormer",
 			"desc":"Tired of just hearing people spout buzzwords like Machine Learning, Artificial intelligence? Fret no more , for we shall provide you with a proper walk-through to understanding these terms and the technologies they define. ",
 			"venue":"",
@@ -232,7 +232,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Circuit Chasers ":{
+		"CircuitChasers":{
 			"name":"",
 			"desc":" The event comprises of two rounds viz Prelims & Final round. In the prelims round, each team comprising of 3 members will have to go through a technical challenge. In the final round, the contestants will be provided with clues regarding electronic & electrical components which have to be decoded and then interconnected to form a circuit. ",
 			"venue":"",
@@ -244,7 +244,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"BIT Cryptic ":{
+		"BITCryptic":{
 			"name":"BIT Cryptic",
 			"desc":" In a team of 3, the participants will have to face quizzing questions about latest tech developments in the first round. In the next & final round, cryptic crosswords related to technology would have to be finished. ",
 			"venue":"",
@@ -299,7 +299,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Green Avengers ":{
+		"GreenAvengers":{
 			"name":"Green Avengers",
 			"desc":"The teams will have to design a Superhero or a cartoon character who is pro-environment. They will be provided with resources and then they will have to present it in front of the judges. The superhero will be judged upon creativity/idea, feasibility, presentation etc. ",
 			"venue":"",
@@ -311,7 +311,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"AdZap ":{
+		"AdZap":{
 			"name":"AdZap ",
 			"desc":" The teams will have to instantaneously decide on a skit that would depict an ad for the environment friendly or natural or sustainable product given to them. The judging criteria for this event would be short but witty ads that will convey the message clearly and also the level of coordination in the group. ",
 			"venue":"",
@@ -323,7 +323,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Save the egg ":{
+		"Savetheegg":{
 			"name":"Save the egg",
 			"desc":"The Teams are supposed to build a parachute in a limited time. Thereafter, an egg would be attached to each parachute and it would be dropped from a certain height. The parachutes, containing the eggs have to land in a predefined area. Points would be given on the basis of design of parachute, egg save, time of flight and the accuracy with which it lands.",
 			"venue":"",
@@ -335,7 +335,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Fly your Plane":{
+		"FlyyourPlane":{
 			"name":"Fly your Plane",
 			"desc":"The objective of this event is to design a plane using the materials provided within the given time. Once the time elapses, each team’s plane would be flown to check its time of flight as well as the maximum distance it flies. The teams would be judged based upon the design employed to build the plane, distance the plane flies and its time of flight. ",
 			"venue":"",
@@ -347,7 +347,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"1-2-3 Solid":{
+		"123Solid":{
 			"name":"1-2-3 Solid",
 			"desc":"The event shall be comprising of two rounds and will be held in pairs. 
 			Round1: Teams are supposed to solve a puzzle that is allotted to them in least possible time. The first 10 teams to solve their puzzle will proceed to the next round. 
@@ -361,7 +361,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Rapidough ":{
+		"Rapidough":{
 			"name":"Rapidough",
 			"desc":"- In this event participants will be given a real-life dying product or service and they will have only 1 minute to 5 minutes to formulate a strategy for the company to bring a turnaround for the respective company and verbally present in front of the audience and judges. ",
 			"venue":"",
@@ -373,7 +373,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"E-Dumb Charades":{
+		"EDumbCharades":{
 			"name":"E-Dumb Charades",
 			"desc":" It will be a team event in which contestants will take part in teams of 2-3. One member of each team will be given a famous CEO of some company, which they will have to act out and their teammates will have to guess the CEO. The CEO will be decided by a chit system and the judging can be done on the number of CEO's guessed correctly within the time limit or if one CEO is to be given, then on the minimum time required to correctly guess the CEO. ",
 			"venue":"",
@@ -385,7 +385,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Neural Dust":{
+		"NeuralDust":{
 			"name":"Neural Dust ",
 			"desc":" Neural Dust is a kind of brain game. Here for teams of 2 or 3, we will show some pictures on a slide/paper. For e.g., one slide containing images of animals or anything like ice-creams or boat, random 20 pictures. Only one person from the team is allowed to see this slide and we'll give them 5 minutes to memorize those images.  After that there will be some generic questions rounds based on the technicality of the picture to be the asked by panels present there.",
 			"venue":"",
@@ -397,7 +397,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Wiki Wars ":{
+		"WikiWars":{
 			"name":"Wiki Wars",
 			"desc":"It is a nifty game that can be played with only a web browser. It tests the ability to navigate Wikipedia and to think ahead. It is best played in a place with lots of computers that are physically next to each other (e.g. a computer lab). Get a few friends to play. This is either the easiest or the hardest part, but it is crucial. Make sure your Internet should be functional and reliable. Go to Wikipedia.org. Pick a start and end page. One method is to use the "Random Article" page on the left side bar, although this may bring up extremely obscure pages. Another is to have an assigned person pick two pages, or to alternate between players. All players should then navigate to the starting page. Navigate to the target page using wiki links. Some rule sets allow the use of the back button and find function. Note: It is usually acceptable to use the back button to get out of a page with no links in the article. The winner should show their history to everyone else. It's interesting to follow the meandering (and at times bizarre) nature of wiki links, and will prevent cheating. It is considered cheating to backspace pages, or use the "find on page" tool.  
 			A) 2-player Challenge’: The form of the Wikipedia game where two people take it in turns to ask the other to navigate between two pages of their choosing, e.g. from Teletubbies to noodles. The number of clicks taken is counted, and once a player has completed the challenge, he sets the other a challenge of his own. The winner is the person who completes the game in the least number of clicks  
@@ -412,7 +412,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Flash Time Paradox ":{
+		"FlashTimeParadox":{
 			"name":"Flash Time Paradox",
 			"desc":" This event consists of two rounds -  
 			Round 1 - Participants need to build a tower using a deck of playing cards.  The participants whose building stand tall and strong till the end will qualify for the next round.   
@@ -426,7 +426,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Partner in drive ":{
+		"Partnerindrive":{
 			"name":"Partner in drive",
 			"desc":"One of the participants will be blind folded and the other team mate has to direct his companion to drive the car through the obstacles. The team taking minimum time to complete the task shall win. ",
 			"venue":"",
@@ -438,7 +438,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Biz Tech Quiz ":{
+		"BizTechQuiz":{
 			"name":"Biz Tech Quiz",
 			"desc":"The BizQuiz is a two stage Quizzing Contest comprising of a preliminary screening written stage, followed by a six team stage final consisting of several rounds of various stipulations and scoring schemes including buzzer rounds, centrally themed on Technology and Business. Participation is in teams of three.",
 			"venue":"",
@@ -450,7 +450,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Lone Wolf Quiz ":{
+		"LoneWolfQuiz":{
 			"name":"Lone Wolf Quiz ",
 			"desc":" A general quiz covering all topics and open for individual participation only",
 			"venue":"",
@@ -462,7 +462,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Tech Debate ":{
+		"TechDebate":{
 			"name":"Tech Debate ",
 			"desc":" A Tech Debate divided into two rounds- Prelims & Finals respectively. The topic for the Prelims round is given in advance to the participants. The speaking time for the Prelims will be 2 minutes and the choice of stance will be open. The format of the Final round, though, will be a surprise. ",
 			"venue":"",
@@ -479,7 +479,7 @@
 
 
 
-		"NERVE ":{
+		"NERVE":{
 			"name":"NERVE",
 			"desc":" A test of mental, social and physical abilities through various activities. There will be various rounds like crosswords, dare games and compatibility test of you and your partner. The top 3 will be decided on how well you know your partner. You know right! No guts, no glory. ",
 			"venue":"",
@@ -492,7 +492,7 @@
 			"rules":""	
 		},
 
-		"AD-ZAP ":{
+		"ADZAP":{
 			"name":"AD-ZAP",
 			"desc":" The teams have to instantaneously decide on a skit that would depict an ad for the environment-friendly or natural or sustainable product given to them. The judging criteria for this event would be short but witty ads that will convey the message clearly and also the level of coordination in the group.",
 			"venue":"",
@@ -504,7 +504,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"WHATCHAMACALIT ":{
+		"WHATCHAMACALIT":{
 			"name":"WHATCHAMACALIT ",
 			"desc":" This event tests one’s analytical skills, vocabulary, and one’s ability to convey his thoughts without speaking. This will be a 2 round event. ",
 			"venue":"",
@@ -516,7 +516,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"MEDIA-CRE ":{
+		"MEDIACRE":{
 			"name":"MEDIA-CRE ",
 			"desc":"Round 1: The participants will be given one word at a time. Participants will have 60 seconds to write as many small words as possible from that one big word within those 60 seconds. The one with the highest word count of legitimate words (with letters from that one big word) wins.  Round 2: The round exemplifies the classical game of ‘Pictureka’. One of the teammates will be given a picture to draw and the other participant will have to guess it. The teams to guess in a lesser time will move on to the final round. Round 3: The round tests the creativity of the participants as they will have to suggest divergent titles through a series of video clips.",
 			"venue":"",
@@ -528,7 +528,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Globium Leviosa ":{
+		"GlobiumLeviosa":{
 			"name":"Globium Leviosa ",
 			"desc":"Chemical reactions which yield carbon-dioxide would be used to inflate balloons. There would be in 5-6 different types of chemicals which produce CO2 from which team members would choose a single set of reactants. The team whose balloon would be biggest in size would win. Small bottles for chemical reactions would also be provided to the teams. We would provide two sets of chemicals from which participating teams would have to pick which chemicals they need for inflating their balloon. ",
 			"venue":"",
@@ -540,7 +540,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Bidding wars ":{
+		"Biddingwars":{
 			"name":"Bidding wars ",
 			"desc":"The participating teams are given the task to virtually set up a simple industry (Chemical Industry) which would be graded according to minimum virtual money used and most efficient. They are given some fixed virtual money and each team has to bid for certain parts of an industry. And at the end when an industrial plant design is completed one member of each team has to give a presentation and show that their industry is most efficient.",
 			"venue":"",
@@ -552,7 +552,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"FLASH MOB ":{
+		"FLASHMOB":{
 			"name":"FLASH MOB ",
 			"desc":"“Dance before the music's over. Live before your life is over.” When was the last time people just started dancing around you? Grace us with your presence as we bring forth an unforgettable experience for you during Pantheon’ 18. And for those of you who’ve already had the pleasure of attending one of our flashmobs, you know where to be! ",
 			"venue":"",
@@ -564,7 +564,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Bharas ":{
+		"Bharas":{
 			"name":"Bharas",
 			"desc":"A hand-writing event, where the participants will be given a topic for ranting and expressing their opinions",
 			"venue":"",
@@ -576,7 +576,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Techxpert ":{
+		"Techxpert":{
 			"name":"Techxpert",
 			"desc":"Technology-based extempore round followed by a group discussion. An enthralling battle of words. We give you the stage to voice your opinions on the technical milestones. It can be presented as a poem, a free verse, a comic speech or a genre of your choice. Creativity and presence of mind are all you need to make it to the finals where you have to battle the other techxperts in a competitive group discussion.  Your beliefs and determination will make you the winner.  Remember, Ideas are Bulletproof! ",
 			"venue":"",
@@ -588,7 +588,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"Comic Quiz ":{
+		"ComicQuiz":{
 			"name":"Comic Quiz ",
 			"desc":" A fun-filled quiz that combines the best of childhood memories with the vast universe of Comics, Anime and Cartoon characters. ",
 			"venue":"",
@@ -600,7 +600,7 @@
 			"points":["str"],
 			"rules":""	
 		},
-		"The Pixel Auction ":{
+		"ThePixelAuction":{
 			"name":"The Pixel Auction ",
 			"desc":" Best trending photos of Psoc insta handle shall be taken up, total images will be 5 • Participants have to go through two rounds, screening shall be done on justification for buying a photo, here Photographic instinct shall be judged by us(Only if turnout is high) • Next shall be the auction where virtual money would be provided and photos will be auctioned one by one • Winner shall be the one with most photos and maximum remaining cash  Judging:  •on basis of finding creativeness in a photograph and placing views • auction judgement as usual ",
 			"venue":"",

@@ -5,34 +5,72 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Pantheon'18 | Birla Institute of Technology, Mesra</title>
+		<link rel="icon" href="./favicon.png">
 		<link rel="stylesheet" type="text/css" href="./public/vendor/normalizemin.css" />
 		<link rel="stylesheet" type="text/css" href="./public/css/formalEventDemo.css" />
 		<link rel="stylesheet" type="text/css" href="./public/css/formalEventComponent.css" />
 		<link rel="stylesheet" href="./public/vendor/animatemin.css">
+		<link rel="stylesheet" href="./public/css/preloader.css">
+		<link rel="stylesheet" href="./public/css/scrollbar.css">
+		<style>
+			#headLogo {
+				height: 25vh;
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+			}
+
+			#headLogo img {
+				max-height: 80%;
+				max-width: 80%;
+			}
+
+			#headLogo span {
+				margin: auto 0;
+				color: white;
+				font-size: 48px;
+				font-family: 'Alice', serif;
+			}
+		</style>
 		<script src="./public/js/modernizr.custom.js"></script>
 	</head>
-	<body>
+	<body style="background: url('public/images/blackBack.jpg');background-size: cover;background-repeat: no-repeat;">
+
+		<!-- Preloader -->
+		<div id="preloader">
+				<div id="status">&nbsp;</div>
+			</div>
+
+		<div id="headLogo">
+				<span style="display: inline-block; padding-right: 1vw; position: relative; z-index: -1; visibility: visible; animation-duration: 2s; animation-name: fadeInUp;"
+					class="wow fadeInDown" data-wow-duration="2s">
+					<img src="./public/images/logo.png" title="logo">
+				</span>
+				<span style="animation-duration: 2s; animation-name: fadeInUp;" class="wow fadeInUp">Informal Events</span>
+			</div>
+
+
 		<div class="container">
 			<section class="grid3d vertical" id="grid3d">
 				<div class="grid-wrap">
 					<div class="grid">
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/5.jpg" alt="img05"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/8.jpg" alt="img08"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/2.jpg" alt="img02"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/4.jpg" alt="img04"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/3.jpg" alt="img03"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
-						<figure><img class="animated rubberBand delay-2s" src="./public/images/formalEvent/1.jpg" alt="img01"/></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/nerve.jpg" alt="img01"/><h3>Nerve</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/adzap.jpg" alt="img05"/><h3>AdZap</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/watchamicallit.jpg" alt="img08"/><h3>Whatchamacalit</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/mediacre.jpg" alt="img02"/><h3>Mediacre</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/chemeboat.jpg" alt="img04"/><h3>Chemeboat</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/connecting_the_dots.jpg" alt="img03"/><h3>Connecting the Dots</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/bhadas.jpg" alt="img01"/><h3>Bhadaas</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/techxpert.jpg" alt="img01"/><h3>Techxpert</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/cquiz.jpg" alt="img01"/><h3>Comic Quiz</h3></figure>
+						<figure><img class="animated rubberBand delay-2s" src="./public/images/events/pixel_auction.jpg" alt="img01"/><h3>The Pixel Auction</h3></figure>
 						</div>
 				</div><!-- /grid-wrap -->
 				<div class="content">
 					<!-- Content can be recieved by seperate XHR request and adding ineer html acccordingly-->
 
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/nerve.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Nerve</p>
 						<p class='dummy-text'>Team Size: 2</p>
@@ -46,7 +84,7 @@ well you know your partner. You know right! No guts, no glory.</p>
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/adzap.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : AdZap</p>
 						<p class='dummy-text'>Team Size: 3-4</p>
@@ -60,7 +98,7 @@ short but witty ads that will convey the message clearly and also the level of c
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/watchamicallit.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Whatchamacalit</p>
 						<p class='dummy-text'>Team Size: 2-3</p>
@@ -73,7 +111,7 @@ without speaking. This will be a 2 round event.</p>
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/mediacre.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Mediacre</p>
 						<p class='dummy-text'>Team Size: 2-3</p>
@@ -93,7 +131,7 @@ series of video clips.</p>
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/chemeboat.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Chemeboat</p>
 						<p class='dummy-text'>Team Size: 2</p>
@@ -108,7 +146,7 @@ the dynamics and the durability in addition to the performance of the boat in th
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/connecting_the_dots.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Connecting the Dots</p>
 						<p class='dummy-text'>Team Size: 2</p>
@@ -121,17 +159,11 @@ guess the recent current affair relating all the images, it can be about anythin
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/bhadas.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Bhadaas</p>
 						<p class='dummy-text'>Team Size: 1</p>
-						<p class='dummy-text'>Event Description : कभी 􀍩कसी 􀍪वषय पर आपको 􀄐ोध आया है?􀍩कसी 􀍪वषय पर कभी आपका राय 􀍩कसी दूसरे के
-􀍪वप􀇐रत गया है?
-अगर आप 􀍩कसी 􀍪वषय पर अपनी राय 􀄤कट करना चाहते है, तो सबसे सह􀈣 मा􀃚यम एवं मंच आपका इं􀇓तज़ार कर
-रहा है, िजसका नाम है BHADAAS!कभी 􀍩कसी 􀍪वषय पर आपको 􀄐ोध आया है?􀍩कसी 􀍪वषय पर कभी आपका राय 􀍩कसी दूसरे के
-􀍪वप􀇐रत गया है?
-अगर आप 􀍩कसी 􀍪वषय पर अपनी राय 􀄤कट करना चाहते है, तो सबसे सह􀈣 मा􀃚यम एवं मंच आपका इं􀇓तज़ार कर
-रहा है, िजसका नाम है BHADAAS!</p>
+						<p class='dummy-text'>Event Description : Ever felt disagreement surging through your body? Ever felt that your opinion needs to be asserted and people convinced of it. If yes, Bhadaas gives you the perfect stage to do this.</p>
 						<p class='dummy-text'>Event Coordinators:</p>
 						<ul class = 'dummy-text'>
 							<li>Divyanshi-7070432640</li>
@@ -139,7 +171,7 @@ guess the recent current affair relating all the images, it can be about anythin
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/techxpert.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Techxpert</p>
 						<p class='dummy-text'>Team Size: 1</p>
@@ -156,7 +188,7 @@ Remember, Ideas are Bulletproof!</p>
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/cquiz.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : Comic Quiz</p>
 						<p class='dummy-text'>Team Size: 2</p>
@@ -169,7 +201,7 @@ Comics, Anime and Cartoon characters.</p>
 						</ul>
 					</div>
 					<div>
-						<div class='dummy-img'><img src='./public/images/formalEvent/1.jpg'>
+						<div class='dummy-img'><img src='./public/images/events/pixel_auction.jpg'>
 						</div>
 						<p class='dummy-text'>Event Name : The Pixel Auction</p>
 						<p class='dummy-text'>Team Size: 3-4</p>
@@ -196,6 +228,8 @@ Photographic instinct shall be judged by us(Only if turnout is high).</li>
 				</div>
 			</section>
 		</div><!-- /container -->
+		<script src="./public/vendor/jquery2.1.3.js"></script>
+		<script src="./public/js/preloader.js"></script>
 		<script src="./public/js/classie.js"></script>
 		<script src="./public/js/helper.js"></script>
 		<script src="./public/js/grid3d.js"></script>

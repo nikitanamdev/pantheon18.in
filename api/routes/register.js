@@ -11,6 +11,10 @@ const config = require('../config.json');
 const counter = require('./../models/counters.js');
 const lookups = require('./../models/lookups');
 const teams = require('./../models/teams');
+const adminAuth = require('./../middleware/adminAuth.js');
+const manishAuth = require('./../middleware/manishAuth.js');
+const notifs = require('./../models/notifications.js');
+const feedbacks = require('./../models/feedback.js');
 //const Events = require('./../events.json');
 
 router.post('/register', (req, res, next) => {
@@ -234,6 +238,7 @@ router.post('/verify', (req, res, next) =>{
                             });
                         })
                         .catch((err) => {
+                            console.log(err);
                             res.status(500).json({
                                 status: "fail",
                                 message: err
@@ -358,7 +363,7 @@ router.post('/login', (req, res, next) => {
                                 password: user[0].password
                             },
                             config.jwt_token, {
-                                'expiresIn': '1h'
+                                'expiresIn': '3d'
                             }
                         );
                         return res.status(200).json({
@@ -1132,7 +1137,6 @@ router.post('/teamRegister', checkAuth, (req, res, next)=> {
                                 });
                             });
                     }
-
             } else {
                 return res.status(200).json({
                     status: 'fail',
@@ -1234,7 +1238,6 @@ router.get('/acceptRequest/:teamN', checkAuth, (req, res, next) => {
                 message: err
             });
         });
-
 });
 
 router.get('/deleteRequest/:teamN', checkAuth, (req, res, next) => {
@@ -1452,65 +1455,17 @@ router.post('/eventRegister', (req, res, next) => {
 //     });
 // });
 
-/* Teams points update route */
-router.get('/pointUpdate',checkAuth2, (req, res, next) => {
-    let countUpdates = 0;
-    teams
-        .findOneAndUpdate(
-            {
-                teamName : req.body.teamName
-            },
-            {
-                $inc : {
-                        points : req.body.points
-                }
-            }
-        )
-        .exec()
-        .then((result) => {
-            console.log(result);
-            for (let i = 0; i < result['teamMembers'].length; i++) {
-                const teamMember = result['teamMembers'][i];
-                lookups
-                    .update({
-                        email: teamMember
-                    }, {
-                        $inc: {
-                            teamPoints: req.body.points
-                        }
-                    })
-                    .exec()
-                    .then((result) => {
-                        console.log('Points updated');
-                        countUpdates = countUpdates + 1;
-                        if (i === result['teamMembers'].length - 1 || countUpdates === result['teamMembers'].length) {
-                            return res.status(200).json({
-                                status: 'success',
-                                message: "Team points updated!"
-                            });
-                        } else {
-                            console.log("Team is still being edited!");
-                        }
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                        res.status(500).json({
-                            status: "fail",
-                            message: err
-                        });
-                    });
-            }
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json({
-                status: "fail",
-                message: err
-            });
-        })
+/**
+ * Get Admin permission
+ */
+router.get('/adminRights', adminAuth, (req, res, next)=>{
+    res.status(200).json({
+        status: "success",
+        message: "Successfully Logged In"
+    });
 });
 /* Search of Team Members step1*/
-router.get('/searchTeam',checkAuth2, (req, res, next) => {
+router.post('/searchTeam', adminAuth, (req, res, next) => {
     teams
         .find({teamName : req.body.teamName})
         .exec()
@@ -1522,11 +1477,47 @@ router.get('/searchTeam',checkAuth2, (req, res, next) => {
                 });
             }
             else{
-                res.status(200).json({
-                    status: "success",
-                    message: "Team Found.",
-                    teamMembers : team[0].teamMembers
-                });
+                console.log(team[0].teamMembers.length);
+                const teamSize = team[0].teamMembers.length;
+                let count = 0;
+                let memberList = [];
+                for(let i=0;i<teamSize;i++){
+                    users
+                        .find({ email : team[0].teamMembers[i] })
+                        .exec()
+                        .then((doc) => {
+                            if(doc===null || doc.length < 1){
+                                res.status(200).json({
+                                    status: "fail",
+                                    message: "The Users got Corrupted!! User not found"
+                                });
+                            } else {
+                                count = count + 1;
+                                const memberData = {
+                                    email: team[0].teamMembers[i],
+                                    panId: doc[0].panId,
+                                    name: doc[0].name,
+                                    collegeId: doc[0].collegeId
+                                }
+                                memberList.push(memberData);
+                                if(count == teamSize){
+                                    res.status(200).json({
+                                        status: "success",
+                                        message: "Team Found.",
+                                        teamMembers: memberList,
+                                        count: teamSize
+                                    });
+                                }
+                            }
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            res.status(500).json({
+                                status: "fail",
+                                message: err
+                            });
+                        });
+                }
             }
         })
         .catch((err) => {
@@ -1539,8 +1530,7 @@ router.get('/searchTeam',checkAuth2, (req, res, next) => {
 });
 
 /* Verification of team members step2*/
-router.get('/verifyTeam',checkAuth2, (req, res, next) => {
-    let countUpdates =0;
+router.post('/verifyTeam', adminAuth, (req, res, next) => {
     teams
         .find({teamName : req.body.teamName})
         .exec()
@@ -1553,8 +1543,11 @@ router.get('/verifyTeam',checkAuth2, (req, res, next) => {
             }
             else{
                 var result = team[0];
-                for (let i = 0; i < result['teamMembers'].length; i++) {
-                    const teamMember = result['teamMembers'][i];
+                const teamSize = result.teamMembers.length;
+                let countUpdates = 0;
+                console.log(result.teamMembers);
+                for (let i = 0; i < teamSize; i++) {
+                    const teamMember = result.teamMembers[i];
                     users
                         .update({
                             email: teamMember
@@ -1566,10 +1559,10 @@ router.get('/verifyTeam',checkAuth2, (req, res, next) => {
                         .exec()
                         .then((result) => {
                             countUpdates = countUpdates + 1;
-                            if (i === result['teamMembers'].length - 1 || countUpdates === result['teamMembers'].length) {
+                            if (i == teamSize - 1 || countUpdates == teamSize) {
                                 return res.status(200).json({
                                     status: 'success',
-                                    message: "Team verified!"
+                                    message: "All Team Members verified Onsite!"
                                 });
                             } else {
                                 console.log("Team is still being verified!");
@@ -1595,7 +1588,7 @@ router.get('/verifyTeam',checkAuth2, (req, res, next) => {
 });
 
 /* Search of users step1 */
-router.get('/searchUser',checkAuth2,(req, res, next) => {
+router.post('/searchUser', adminAuth, (req, res, next) => {
     users
         .find({panId : req.body.panId})
         .exec()
@@ -1605,8 +1598,25 @@ router.get('/searchUser',checkAuth2,(req, res, next) => {
                     status: 'fail',
                     message: "No such user, get him registered now!"
                 });
+            } else if(user[0].status == true) {
+                return res.status(200).json({
+                    status: 'fail',
+                    message: "User Already Verified Onsite."
+                });
             }
             else{
+                const payload = {
+                    name: user[0].name,
+                    panId: user[0].panId,
+                    collegeName: user[0].collegeName,
+                    collegeId: user[0].collegeId,
+                    email : user[0].email
+                };
+                return res.status(200).json({
+                    status: "success",
+                    message: "User Details Found",
+                    data: payload
+                });
             }
         })
         .catch((err) => {
@@ -1618,7 +1628,7 @@ router.get('/searchUser',checkAuth2,(req, res, next) => {
         });
 });
 /* Verification of user step2 */
-router.get('/verifyMember',checkAuth2,(req, res, next) => {
+router.post('/verifyUser', adminAuth, (req, res, next) => {
     users
         .update({
                 panId : req.body.panId
@@ -1631,7 +1641,7 @@ router.get('/verifyMember',checkAuth2,(req, res, next) => {
         .then((result) => {
             res.status(200).json({
                 status: "success",
-                message: "User Found!"
+                message: "User Verified Onsite!"
             });
         })
         .catch((err) => {
@@ -1644,7 +1654,7 @@ router.get('/verifyMember',checkAuth2,(req, res, next) => {
 });
 
 /* Event verification of teams */
-router.get('/eventVerify' , checkAuth2 , (req, res, next) => {
+router.post('/eventTeamVerify', adminAuth, (req, res, next) => {
     teams
         .find({
             teamName: req.body.teamName
@@ -1676,7 +1686,180 @@ router.get('/eventVerify' , checkAuth2 , (req, res, next) => {
             });
         });
 });
+
+/**
+ * Get Manish permission
+ */
+router.get('/manishRights', manishAuth, (req, res, next)=>{
+    res.status(200).json({
+        status: "success",
+        message: "Successfully Logged In"
+    });
+});
+
+/* Teams points update route */
+router.post('/pointUpdate', manishAuth, (req, res, next) => {
+    let countUpdates = 0;
+    const nos = 0;
+    teams
+        .findOneAndUpdate(
+            {
+                teamName : req.body.teamName
+            },
+            {
+                $inc : {
+                    points : req.body.points
+                }
+            }
+        )
+        .exec()
+        .then((result) => {
+            console.log(result);
+            
+            for (let i = 0; i < result.teamMembers.length; i++) {
+                const teamMember = result.teamMembers[i];
+                lookups
+                    .findOneAndUpdate({
+                        email: teamMember
+                    }, {
+                        $inc: {
+                            teamPoints: req.body.points
+                        }
+                    })
+                    .exec()
+                    .then((doc) => {
+                        console.log('Points updated');
+                        console.log(doc);
+                        countUpdates = countUpdates + 1;
+                        if (i == result.teamMembers.length - 1 || countUpdates == result.teamMembers.length) {
+                            return res.status(200).json({
+                                status: 'success',
+                                message: "Team points updated!"
+                            });
+                        } else {
+                            console.log("Team is still being edited!");
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        res.status(500).json({
+                            status: "fail",
+                            message: err
+                        });
+                    });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        })
+});
+
+
+/**
+ * LeaderBoard
+ */
+router.get('/leaderboard', (req, res, next) => {
+    teams
+        .find({})
+        .sort({ points: -1 })
+        .exec()
+        .then((board) => {
+            res.status(200).json({
+                status: 'success',
+                message: 'LeaderBoard retrieved successfully',
+                data: board
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
+
+/**
+ * Save Notifications
+ */
+router.post('/saveNotifications', manishAuth, (req, res, next) => {
+    const notif = new notifs({
+        _id: mongoose.Types.ObjectId(), 
+        messageTitle: req.body.messageTitle,
+        messageBody: req.body.messageBody
+    });
+
+    notif
+        .save()
+        .then((result) => {
+            res.status(200).json({
+                status: "success",
+                message: "Message saved successfully"
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
+
+/**
+ * Get the notifications
+ */
+router.get('/notifications', (req, res, next) => {
+    notifs
+        .find({})
+        .sort({ createdAt: 1 })
+        .exec()
+        .then((result) => {
+            res.status(200).json({
+                status: 'success',
+                message: 'notifications sent successfully',
+                notifs: result
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
+
+router.post('/feedback', (req, res, next) => {
+    const newfeedback = new feedbacks({
+        _id: mongoose.Types.ObjectId(),
+        name : req.body.name,
+        contact: req.body.contact,
+        comment: req.body.comment
+    });
+    newfeedback
+        .save()
+        .then((result) => {
+            res.status(200).json({
+                status: "success",
+                message: "Your Feedback was submitted successfully!!"
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: "fail",
+                message: err
+            });
+        });
+});
+
 module.exports = router;
+
 
 // router.post('/fetchTeam', checkAuth, (req, res, next) => {
 //     lookups

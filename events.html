@@ -3,30 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events | Pantheon'18</title>
+    <title>Pantheon'18 | Birla Institute of Technology, Mesra</title>
     <link rel="stylesheet" href="public/css/events.css">
+    <link rel="stylesheet" href="./public/css/preloader.css">
     <link rel="icon" href="./favicon.png">
+    <style>
+        #headLogo {
+            height: 25vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        #headLogo img {
+            max-height: 80%;
+            max-width: 80%;
+        }
+
+        #headLogo span {
+            margin: auto 0;
+            color: white;
+            font-size: 48px;
+            font-family: 'Alice', serif;
+        }
+    </style>
 </head>
 <body style="background: url('public/images/blackBack.jpg') 0% 0% / cover no-repeat; display: block;">
+    
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+    
+    <div id="headLogo">
+        <span style="display: inline-block; padding-right: 1vw; position: relative; z-index: -1; visibility: visible; animation-duration: 2s; animation-name: fadeInUp;"
+                class="wow fadeInDown" data-wow-duration="2s">
+            <img src="./public/images/logo.png" title="logo">
+        </span>
+        <span style="animation-duration: 2s; animation-name: fadeInUp;" class="wow fadeInUp">Events</span>
+    </div>
+
     <div id="app" class="container">
-        <a href="./formalEvents.html"><card data-image="https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=">
+        <a href="./formalEvents.html" target="_blank"><card data-image="./public/images/Formal2.jpg">
             <h2 slot="header">Formal Events</h2>
-            <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <p slot="content">Put your knowledge to test with some brain-storming events that are lined up just for you!</p>
             </card></a>
-        <a href="./informalEvents.html"><card data-image="https://images.unsplash.com/photo-1479659929431-4342107adfc1?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
+        <a href="./informalEvents.html" target="_blank"><card data-image="./public/images/Informal2.jpg">
             <h2 slot="header">Informal Events</h2>
-            <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <p slot="content">A plethora of exhilarating and enthralling events awaits!</p>
         </card></a>
-        <a href="./formalEvents.html"><card data-image="https://images.unsplash.com/photo-1479644025832-60dabb8be2a1?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
-            <h2 slot="header">Fugiya Night</h2>
-            <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </card></a>
-        <a href="./formalEvents.html"><card data-image="https://images.unsplash.com/photo-1479621051492-5a6f9bd9e51a?dpr=2&auto=compress,format&fit=crop&w=1199&h=811&q=80&cs=tinysrgb&crop=">
+        <a href="./guestLectures.html" target="_blank"><card data-image="./public/images/Guestlecture.jpg">
             <h2 slot="header">Guest Lectures</h2>
-        <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p slot="content">Get a chance to be a part of a seminar by some of the accomplished personalities of their fields.</p>
         </card></a>
 
     </div>
+    <script src="./public/vendor/jquery2.1.3.js"></script>
+    <script src="./public/js/preloader.js"></script>
     <script src="./public/vendor/vuemin.js"></script>
     <script src="./public/js/events.js"></script>
 </body>
